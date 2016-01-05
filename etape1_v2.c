@@ -15,7 +15,7 @@ char* readFileBytes(const char *name)
 
 int main(int argc, char * argv[]){
     int isValid = 1;
-    char* fileBytes = readFileBytes(argv[1]);
+    unsigned char* fileBytes = readFileBytes(argv[1]);
     /* Lecture des bits 'magiques' ELF */
     if(fileBytes[0] == 127 && fileBytes[1] == 69 && fileBytes[2] == 76 && fileBytes[3] == 70){
         printf("[*] Fichier ELF Reconnu\n");
@@ -113,24 +113,109 @@ int main(int argc, char * argv[]){
             printf("[*] OS/ABI : Standalone\n");
         }
         else{
-            printf("[E] OS/ABI : Inconnu\n");
+            printf("[W] OS/ABI : Inconnu\n");
             printf("%d\n",fileBytes[i]);
             isValid = 0;
         }
 
     }
     i++;
+
+    /* Lecture de la version de l'ABI */
+    if(isValid == 1){
+        printf("[*] Version de l'ABI : %d\n",fileBytes[i]);
+    }
+    i++;
+
     /* Vérification de l'espace réservé EI_PAD */
-    for(i;i<16;i++){
-        if(fileBytes[i] != 0){
-            printf("[E] Bits de reserves EI_PAD non réservés à 0");
-            isValid = 0;
+    if(isValid == 1){
+        for(i;i<15;i++){
+            if(fileBytes[i] != 0){
+                printf("[E] Bits de reserves EI_PAD non réservés à 0");
+                isValid = 0;
+                break;
+            }
         }
     }
     i++;
 
+    /* Lecture du type de l'objet */
+    if(isValid == 1){
+        if(fileBytes[i] == 0){
+            printf("[*] Pas de type de fichier\n");
+        }
+        else if(fileBytes[i] == 1){
+            printf("[*] Objet de type : Repositionable (Relocatable)\n");
+        }
+        else if(fileBytes[i] == 2){
+            printf("[*] Objet de type : Executable\n");
+        }
+        else if(fileBytes[i] == 3){
+            printf("[*] Objet de type : Partagé\n");
+        }
+        else if(fileBytes[i] == 4){
+            printf("[*] Objet de type : Core\n");
+        }
+        else{
+            printf("[W] Type inconnu\n");
+        }
+    }
+    i+=2;
 
+    /* Lecture de la machine cible */
+    if(isValid == 1){
+        if(fileBytes[i] == 0){
+            printf("[*] Aucune machine cible\n");
+        }
+        else if(fileBytes[i] == 2){
+            printf("[*] Machine cible : SPARC\n");
+        }
+        else if(fileBytes[i] == 3){
+            printf("[*] Machine cible : Intel 80386\n");
+        }
+        else if(fileBytes[i] == 4){
+            printf("[*] Machine cible : Motorola 68000\n");
+        }
+        else if(fileBytes[i] == 7){
+            printf("[*] Machine cible : Intel i860\n");
+        }
+        else if(fileBytes[i] == 8){
+            printf("[*] Machine cible : MIPS I\n");
+        }
+        else if(fileBytes[i] == 19){
+            printf("[*] Machine cible : Intel i960\n");
+        }
+        else if(fileBytes[i] == 20){
+            printf("[*] Machine cible : PowerPC\n");
+        }
+        else if(fileBytes[i] == 40){
+            printf("[*] Machine cible : ARM\n");
+        }
+        else if(fileBytes[i] == 50){
+            printf("[*] Machine cible : Intel IA64\n");
+        }
+        else if(fileBytes[i] == 62){
+            printf("[*] Machine cible : x64\n");
+        }
+        else{
+            printf("[W] Machine cible non reconnue\n");
+        }
+    }
+    i+=2;
 
+    /* Lecture de la version du fichier */
+    if(isValid == 1){
+        if(fileBytes[i] == 0){
+            printf("[E] Version invalide\n");
+            isValid = 0;
+        }
+        else if(fileBytes[i] == 1){
+            printf("[*] Version 0x1\n");
+        }
+        else{
+            printf("[W] Version inconnue\n");
+        }
+    }
 
 
 
