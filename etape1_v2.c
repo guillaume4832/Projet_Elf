@@ -43,10 +43,10 @@ int main(int argc, char * argv[]){
     /* Lecture de l'encodage des données processeur */
     if(isValid == 1){
         if(fileBytes[i] == 1){
-            printf("[*] EI_DATA: ELFDATA2LSB\n");
+            printf("[*] EI_DATA: ELFDATA2LSB Little endian\n");
         }
         else if(fileBytes[i] == 2){
-            printf("[*] EI_DATA : ELFDATA2MSB\n");
+            printf("[*] EI_DATA : ELFDATA2MSB Big endian\n");
         }
         else{
             printf("[E] Erreur de lecture de l'encodage EI_DATA ELF\n");
