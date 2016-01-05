@@ -1,12 +1,12 @@
-Journal de bord
+﻿Journal de bord
 
 Lundi 4 Janvier 2016
 	Recherche documentaire
 
-Afin de mieux apprehender le projet, nous avons regarde les fiches techniques donn�es et d'autres ressources glanees 
+Afin de mieux appréhender le projet, nous avons regardé les fiches techniques données et d'autres ressources glanées 
 sur Internet.
 
 Lundi 5 Janvier
 	Programmation de la Phase 1 du Projet
 
-On demarre la programmation du projet.
+On démarre la programmation du projet.
