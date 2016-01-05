@@ -39,6 +39,8 @@ void print_elf_header(Elf32_Ehdr elf_header)
 
 		case ELFCLASS64:
 			printf("64-bit objects\n");
+			printf("Cet algorithme ne rentre pas dans le cas d'utilisation 64 bits\n");
+			return;
 			break;
 
 		default:
