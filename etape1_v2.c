@@ -66,13 +66,71 @@ int main(int argc, char * argv[]){
         }
     }
     i++;
+
+    /* Lecture de l'os ABI */
+
+    if(isValid == 1){
+        if(fileBytes[i] == 0){
+            printf("[*] OS/ABI : Unix System V\n");
+        }
+        else if(fileBytes[i] == 1){
+            printf("[*] OS/ABI : HP-UX\n");
+        }
+        else if(fileBytes[i] == 2){
+            printf("[*] OS/ABI : NetBSD\n");
+        }
+        else if(fileBytes[i] == 3){
+            printf("[*] OS/ABI : Linux\n");
+        }
+        else if(fileBytes[i] == 6){
+            printf("[*] OS/ABI : Sun Solaris\n");
+        }
+        else if(fileBytes[i] == 7){
+            printf("[*] OS/ABI : IBM AIX\n");
+        }
+        else if(fileBytes[i] == 8){
+            printf("[*] OS/ABI : SGI Irix\n");
+        }
+        else if(fileBytes[i] == 9){
+            printf("[*] OS/ABI : FreeBSD\n");
+        }
+        else if(fileBytes[i] == 10){
+            printf("[*] OS/ABI : Compaq TRU64\n");
+        }
+        else if(fileBytes[i] == 11){
+            printf("[*] OS/ABI : Novell Modesto\n");
+        }
+        else if(fileBytes[i] == 12){
+            printf("[*] OS/ABI : OpenBSD\n");
+        }
+        else if(fileBytes[i] == 64){
+            printf("[*] OS/ABI : ARL EABI\n");
+        }
+        else if(fileBytes[i] == 97){
+            printf("[*] OS/ABI : ARM\n");
+        }
+        else if(fileBytes[i] == 255){
+            printf("[*] OS/ABI : Standalone\n");
+        }
+        else{
+            printf("[E] OS/ABI : Inconnu\n");
+            printf("%d\n",fileBytes[i]);
+            isValid = 0;
+        }
+
+    }
+    i++;
+    /* Vérification de l'espace réservé EI_PAD */
     for(i;i<16;i++){
         if(fileBytes[i] != 0){
             printf("[E] Bits de reserves EI_PAD non réservés à 0");
             isValid = 0;
         }
     }
-    
+    i++;
+
+
+
 
 
 
