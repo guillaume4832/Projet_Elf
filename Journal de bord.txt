@@ -10,3 +10,5 @@ Lundi 5 Janvier
 	Programmation de la Phase 1 du Projet
 
 On démarre la programmation du projet.
+L'étape 1 est fini. Cependant, il y a eu un ajustement suite aux contraintes imposées dans le projet ( se limiter aux ELF 32
+bits).
