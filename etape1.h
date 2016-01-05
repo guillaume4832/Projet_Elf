@@ -12,8 +12,5 @@
 
 bool elf_check_file(Elf32_Ehdr *hdr);
 
-bool elf_check_supported(Elf32_Ehdr *hdr);
 
-void print_elf_header(Elf32_Ehdr *elf_header);
-
-void *elf_load_file(void *file);
+void print_elf_header(Elf32_Ehdr elf_header);
