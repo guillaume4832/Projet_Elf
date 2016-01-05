@@ -1,65 +1,37 @@
 #include "etape1.h"
 
-bool elf_check_file(Elf32_Ehdr *hdr) {
-	if(!hdr) return false;
-	printf("%x",*hdr);
-	printf("%x",hdr->e_ident[1]);
-	printf("%x",hdr->e_ident[2]);
-	//if(htonl(hdr->e_ident[EI_MAG0]) != ELFMAG0) {
-	if(hdr->e_ident[0] != 0x7f) {
-	
-		printf("ELF Header EI_MAG0 incorrect.\n");
-		return false;
-	}
-	if(htonl(hdr->e_ident[EI_MAG1]) != ELFMAG1) {
-		printf("ELF Header EI_MAG1 incorrect.\n");
-		return false;
-	}
-	if(htonl(hdr->e_ident[EI_MAG2]) != ELFMAG2) {
-		printf("ELF Header EI_MAG2 incorrect.\n");
-		return false;
-	}
-	if(htonl(hdr->e_ident[EI_MAG3]) != ELFMAG3) {
-		printf("ELF Header EI_MAG3 incorrect.\n");
-		return false;
-	}
-	return true;
+
+void read_elf_header(int32_t fd, Elf32_Ehdr *elf_header)
+{
+	assert(elf_header != NULL);
+	assert(lseek(fd, (off_t)0, SEEK_SET) == (off_t)0);
+	assert(read(fd, (void *)elf_header, sizeof(Elf32_Ehdr)) == sizeof(Elf32_Ehdr));
 }
 
-bool elf_check_supported(Elf32_Ehdr *hdr) {
-	if(!elf_check_file(hdr)) {
-		printf("Invalid ELF File.\n");
-		return false;
+bool is_ELF(Elf32_Ehdr eh)
+{
+	/* ELF magic bytes are 0x7f,'E','L','F'
+	 * Using  octal escape sequence to represent 0x7f
+	 */
+	if(!strncmp((char*)eh.e_ident, "\177ELF", 4)) {
+		printf("ELFMAGIC \t= ELF\n");
+		/* IS a ELF file */
+		return 1;
+	} else {
+		printf("ELFMAGIC mismatch!\n");
+		/* Not ELF file */
+		return 0;
 	}
-	if(htonl(hdr->e_ident[EI_CLASS]) != ELFCLASS32) {
-		printf("Unsupported ELF File Class.\n");
-		return false;
-	}
-	if(htonl(hdr->e_ident[EI_DATA]) != ELFDATA2LSB) {
-		printf("Unsupported ELF File byte order.\n");
-		return false;
-	}
-	if(htonl(hdr->e_machine) != EM_386) {
-		printf("Unsupported ELF File target.\n");
-		return false;
-	}
-	if(htonl(hdr->e_ident[EI_VERSION]) != EV_CURRENT) {
-		printf("Unsupported ELF File version.\n");
-		return false;
-	}
-	if(htonl(hdr->e_type) != ET_REL && htonl(hdr->e_type) != ET_EXEC) {
-		printf("Unsupported ELF File type.\n");
-		return false;
-	}
-	return true;
 }
 
-void print_elf_header(Elf32_Ehdr *elf_header)
+
+
+void print_elf_header(Elf32_Ehdr elf_header)
 {
 
 	/* Storage capacity class */
 	printf("Storage class\t= ");
-	switch(htonl(elf_header->e_ident[EI_CLASS]))
+	switch(elf_header.e_ident[EI_CLASS])
 	{
 		case ELFCLASS32:
 			printf("32-bit objects\n");
@@ -76,7 +48,7 @@ void print_elf_header(Elf32_Ehdr *elf_header)
 
 	/* Data Format */
 	printf("Data format\t= ");
-	switch(htonl(elf_header->e_ident[EI_DATA]))
+	switch(elf_header.e_ident[EI_DATA])
 	{
 		case ELFDATA2LSB:
 			printf("2's complement, little endian\n");
@@ -93,7 +65,7 @@ void print_elf_header(Elf32_Ehdr *elf_header)
 
 	/* OS ABI */
 	printf("OS ABI\t\t= ");
-	switch(htonl(elf_header->e_ident[EI_OSABI]))
+	switch(elf_header.e_ident[EI_OSABI])
 	{
 		case ELFOSABI_SYSV:
 			printf("UNIX System V ABI\n");
@@ -152,13 +124,13 @@ void print_elf_header(Elf32_Ehdr *elf_header)
 			break;
 
 		default:
-			printf("Unknown (0x%x)\n", htonl(elf_header->e_ident[EI_OSABI]));
+			printf("Unknown (0x%x)\n", elf_header.e_ident[EI_OSABI]);
 			break;
 	}
 
 	/* ELF filetype */
 	printf("Filetype \t= ");
-	switch(htonl(elf_header->e_type))
+	switch(elf_header.e_type)
 	{
 		case ET_NONE:
 			printf("N/A (0x0)\n");
@@ -176,13 +148,13 @@ void print_elf_header(Elf32_Ehdr *elf_header)
 			printf("Shared Object\n");
 			break;
 		default:
-			printf("Unknown (0x%x)\n", elf_header->e_type);
+			printf("Unknown (0x%x)\n", elf_header.e_type);
 			break;
 	}
 
 	/* ELF Machine-id */
 	printf("Machine\t\t= ");
-	switch(htonl(elf_header->e_machine))
+	switch(elf_header.e_machine)
 	{
 		case EM_NONE:
 			printf("None (0x0)\n");
@@ -196,38 +168,38 @@ void print_elf_header(Elf32_Ehdr *elf_header)
 			printf("ARM (0x%x)\n", EM_ARM);
 			break;
 		default:
-			printf("Machine\t= 0x%x\n", htonl(elf_header->e_machine));
+			printf("Machine\t= 0x%x\n", elf_header.e_machine);
 			break;
 	}
 
 	/* Entry point */
-	printf("Entry point\t= 0x%08x\n", htonl(elf_header->e_entry));
+	printf("Entry point\t= 0x%08x\n", elf_header.e_entry);
 
 	/* ELF header size in bytes */
-	printf("ELF header size\t= 0x%08x\n", htonl(elf_header->e_ehsize));
+	printf("ELF header size\t= 0x%08x\n", htonl(elf_header.e_ehsize));
 
 	/* Program Header */
 	printf("\nProgram Header\t= ");
-	printf("0x%08x\n", htonl(elf_header->e_phoff));		/* start */
-	printf("\t\t  %d entries\n", htonl(elf_header->e_phnum));	/* num entry */
-	printf("\t\t  %d bytes\n", htonl(elf_header->e_phentsize));	/* size/entry */
+	printf("0x%08x\n", elf_header.e_phoff);		/* start */
+	printf("\t\t  %d entries\n", elf_header.e_phnum);	/* num entry */
+	printf("\t\t  %d bytes\n", elf_header.e_phentsize);	/* size/entry */
 
 	/* Section header starts at */
 	printf("\nSection Header\t= ");
-	printf("0x%08x\n", htonl(elf_header->e_shoff));		/* start */
-	printf("\t\t  %d entries\n", htonl(elf_header->e_shnum));	/* num entry */
-	printf("\t\t  %d bytes\n", htonl(elf_header->e_shentsize));	/* size/entry */
-	printf("\t\t  0x%08x (string table offset)\n", htonl(elf_header->e_shstrndx));
+	printf("0x%08x\n", elf_header.e_shoff);		/* start */
+	printf("\t\t  %d entries\n", elf_header.e_shnum);	/* num entry */
+	printf("\t\t  %d bytes\n", elf_header.e_shentsize);	/* size/entry */
+	printf("\t\t  0x%08x (string table offset)\n", elf_header.e_shstrndx);
 
 	/* File flags (Machine specific)*/
-	printf("\nFile flags \t= 0x%08x\n", htonl(elf_header->e_flags));
+	printf("\nFile flags \t= 0x%08x\n", elf_header.e_flags);
 
 	/* ELF file flags are machine specific.
 	 * INTEL implements NO flags.
 	 * ARM implements a few.
 	 * Add support below to parse ELF file flags on ARM
 	 */
-	int32_t ef = htonl(elf_header->e_flags);
+	int32_t ef = elf_header.e_flags;
 	printf("\t\t  ");
 
 	if(ef & EF_ARM_RELEXEC)
@@ -275,25 +247,34 @@ void print_elf_header(Elf32_Ehdr *elf_header)
 
 }
 
- 
-void *elf_load_file(void *file) {
-	Elf32_Ehdr *hdr = (Elf32_Ehdr *)file;
-	if(!elf_check_supported(hdr)) {
-		printf("ELF File cannot be loaded.\n");
-		return NULL;
-	}
-	print_elf_header(hdr);
-	return NULL;
-}
+
 
 int main() {
 
-FILE *f = NULL;
+
+int32_t fd;
+Elf32_Ehdr eh;
+
+fd = open("bitabit.o", O_RDONLY|O_SYNC);
+
+if(fd<0) {
+		printf("Error Unable to open\n");
+		return 0;
+	}
+
+	/* ELF header : at start of file */
+	read_elf_header(fd, &eh);
+	if(!is_ELF(eh)) {
+		return 0;
+	}
+	
+
+print_elf_header(eh);
 
 
-f = fopen("bitabit.o", "rb");
 
-elf_load_file(f);
+
+
 
 return 0;
 }
