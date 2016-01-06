@@ -381,7 +381,160 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
     return header;
 }
 
+void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbose) {
+	int i;
+	unsigned char* fileBytes = readFileBytes(filePath);
+	unsigned int addrStrTable;
+	for(i=0;i<header.e_shnum;i++){
+		int j = (unsigned int)header.e_shoff+i*(unsigned int)header.e_shentsize;
+		/* Lecture des indices de nom de section */
+		unsigned int first = fileBytes[j];
+        unsigned int second = fileBytes[j+1];
+        unsigned int third = fileBytes[j+2];
+        unsigned int fourth = fileBytes[j+3];
+        unsigned int sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+
+		shdr[i].sh_name = sum;
+
+		j+=4;
+		/* Lecture de la définition de la sémantique de la section */
+		first = fileBytes[j];
+        second = fileBytes[j+1];
+        third = fileBytes[j+2];
+        fourth = fileBytes[j+3];
+        sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+		shdr[i].sh_type = sum;
+
+		j+=4;
+
+		/* Lecture des flags */
+
+		first = fileBytes[j];
+        second = fileBytes[j+1];
+        third = fileBytes[j+2];
+        fourth = fileBytes[j+3];
+        sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+		shdr[i].sh_flags = sum;
+
+		j+=4;
+
+		/* Lecture de l'adresse à laquelle le premier octect de la section doit se trouver, sinon 0 */
+
+		first = fileBytes[j];
+        second = fileBytes[j+1];
+        third = fileBytes[j+2];
+        fourth = fileBytes[j+3];
+        sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+		shdr[i].sh_addr = sum;
+
+		j+=4;
+
+		/* Lecture du décalage du premier octect de la section par rapport au début du fichier */
+
+		first = fileBytes[j];
+        second = fileBytes[j+1];
+        third = fileBytes[j+2];
+        fourth = fileBytes[j+3];
+        sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+		shdr[i].sh_offset = sum;
+
+		if(i == header.e_shstrndx){
+			addrStrTable = sum;
+		}
+		
+		j+=4;
+
+		/* Lecture de la taille de la section en octet */
+
+		first = fileBytes[j];
+        second = fileBytes[j+1];
+        third = fileBytes[j+2];
+        fourth = fileBytes[j+3];
+        sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+		shdr[i].sh_size = sum;
+
+		
+
+		j+=4;
+
+		/* Lecture du lien vers un indice de la table des entêtes de section*/
+
+		first = fileBytes[j];
+        second = fileBytes[j+1];
+        third = fileBytes[j+2];
+        fourth = fileBytes[j+3];
+        sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+		shdr[i].sh_link = sum;
+
+		j+=4;
+
+		/* Lecture des informations complémentaires */
+
+		first = fileBytes[j];
+        second = fileBytes[j+1];
+        third = fileBytes[j+2];
+        fourth = fileBytes[j+3];
+        sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+		shdr[i].sh_info = sum;
+
+		j+=4;
+
+		/* Lecture de addralign */
+
+		first = fileBytes[j];
+        second = fileBytes[j+1];
+        third = fileBytes[j+2];
+        fourth = fileBytes[j+3];
+        sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+		shdr[i].sh_addralign = sum;
+
+		j+=4;
+
+		/* Lecture de entsize */
+
+		first = fileBytes[j];
+        second = fileBytes[j+1];
+        third = fileBytes[j+2];
+        fourth = fileBytes[j+3];
+        sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+		shdr[i].sh_entsize = sum;
+
+		j+=4;
+
+		
+	}
+
+	printf("  [Nr] 			Nom\t\tType\t\tAdr\t\tDécala.\tTaille\tES\tFan\tLN\tInf\tAl\n");
+
+	for(i=0;i<header.e_shnum;i++){
+
+
+		// addrStrTable
+		char* name;
+		int n = 0;
+		int j = addrStrTable + shdr[i].sh_name;
+		
+		while (fileBytes[j] != 0x00)
+		{
+			
+			name[n] = fileBytes[j];
+			j++;
+			n++;
+
+		}
+		name[n]=0;
+		
+		 
+
+		printf("  [%d] %20s\t\t%d\t\t%08d\t%06x\t%x\t%x\t%d\t%d\t%d\t%d\n",i,name,shdr[i].sh_type,shdr[i].sh_addr,shdr[i].sh_offset,shdr[i].sh_size,shdr[i].sh_entsize,shdr[i].sh_flags,shdr[i].sh_link,shdr[i].sh_info,shdr[i].sh_addralign);		
+	}
+	
+}
+
+
 int main(int argc, char * argv[]){
-    Elf32_Ehdr header = readHeader(argv[1],1);
+    Elf32_Ehdr header = readHeader(argv[1],0);	
+	Elf32_Shdr shdr[header.e_shnum]; 
+	readSheader(argv[1],header,shdr,0);
     return 0;
 }
