@@ -6,9 +6,15 @@ Lundi 4 Janvier 2016
 Afin de mieux appréhender le projet, nous avons regardé les fiches techniques données et d'autres ressources glanées 
 sur Internet.
 
-Lundi 5 Janvier
+Mardi 5 Janvier
 	Programmation de la Phase 1 du Projet
 
 On démarre la programmation du projet.
 L'étape 1 est fini. Cependant, il y a eu un ajustement suite aux contraintes imposées dans le projet ( se limiter aux ELF 32
 bits).
+
+Mercredi 6 Janvier
+	2ème version de l'étape 1, programationt de l'étape 2.
+
+Afin d'être plus simple, un 2ème version de l'étape 1 à été faite. Tout d'abord sans utiliser le fichier elf puis, par la
+suite, avec l'intégration de ce fichier. En parallèle, l'étape 2 commence à être programmée.
