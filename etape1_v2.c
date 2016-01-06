@@ -15,6 +15,7 @@ char* readFileBytes(const char *name)
 
 int main(int argc, char * argv[]){
     int isValid = 1;
+    int is64 = 0;
     unsigned char* fileBytes = readFileBytes(argv[1]);
     /* Lecture des bits 'magiques' ELF */
     if(fileBytes[0] == 127 && fileBytes[1] == 69 && fileBytes[2] == 76 && fileBytes[3] == 70){
@@ -32,6 +33,7 @@ int main(int argc, char * argv[]){
         }
         else if(fileBytes[i] == 2){
             printf("[*] Classe: 64 bits ELFCLASS64\n");
+            is64 = 1;
         }
         else{
             printf("[E] Erreur de lecture de la classe du fichier ELF\n");
@@ -216,7 +218,95 @@ int main(int argc, char * argv[]){
             printf("[W] Version inconnue\n");
         }
     }
+    i+=4;
 
+    if(isValid == 1 && is64 == 0){
+        unsigned int first = fileBytes[i];
+        unsigned int second = fileBytes[i+1];
+        unsigned int third = fileBytes[i+2];
+        unsigned int fourth = fileBytes[i+3];
+        unsigned int sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        printf("[*] Adresse du point d'entrée : 0x%x\n",sum);
+    }
+    i+=4;
+
+    if(isValid == 1 && is64 == 0){
+        unsigned int first = fileBytes[i];
+        unsigned int second = fileBytes[i+1];
+        unsigned int third = fileBytes[i+2];
+        unsigned int fourth = fileBytes[i+3];
+        unsigned int sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        printf("[*] Début des en-têtes de programme : %d\n",sum);
+    }
+    i+=4;
+
+    if(isValid == 1 && is64 == 0){
+        unsigned int first = fileBytes[i];
+        unsigned int second = fileBytes[i+1];
+        unsigned int third = fileBytes[i+2];
+        unsigned int fourth = fileBytes[i+3];
+        unsigned int sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        printf("[*] Début des en-têtes de section : %d\n",sum);
+    }
+    i+=4;
+
+    if(isValid == 1 && is64 == 0){
+        unsigned int first = fileBytes[i];
+        unsigned int second = fileBytes[i+1];
+        unsigned int third = fileBytes[i+2];
+        unsigned int fourth = fileBytes[i+3];
+        unsigned int sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        printf("[*] Fanions : 0x%x\n",sum);
+    }
+    i+=4;
+
+    if(isValid == 1 && is64 == 0){
+        unsigned int first = fileBytes[i];
+        unsigned int second = fileBytes[i+1];
+        unsigned int sum = first + second *16*16;
+        printf("[*] Taille de cet en-tête : %d\n",sum);
+    }
+    i+=2;
+
+    if(isValid == 1 && is64 == 0){
+        unsigned int first = fileBytes[i];
+        unsigned int second = fileBytes[i+1];
+        unsigned int sum = first + second *16*16;
+        printf("[*] Taille de l'en-tête du programme : %d\n",sum);
+    }
+    i+=2;
+
+    if(isValid == 1 && is64 == 0){
+        unsigned int first = fileBytes[i];
+        unsigned int second = fileBytes[i+1];
+        unsigned int sum = first + second *16*16;
+        printf("[*] Nombre d'en-tête du programme : %d\n",sum);
+    }
+    i+=2;
+
+    if(isValid == 1 && is64 == 0){
+        unsigned int first = fileBytes[i];
+        unsigned int second = fileBytes[i+1];
+        unsigned int sum = first + second *16*16;
+        printf("[*] Taille des en-têtes de section : %d\n",sum);
+    }
+    i+=2;
+
+    if(isValid == 1 && is64 == 0){
+        unsigned int first = fileBytes[i];
+        unsigned int second = fileBytes[i+1];
+        unsigned int sum = first + second *16*16;
+        printf("[*] Nombre d'en-tête de section : %d\n",sum);
+    }
+    i+=2;
+
+    if(isValid == 1 && is64 == 0){
+        unsigned int first = fileBytes[i];
+        unsigned int second = fileBytes[i+1];
+        unsigned int sum = first + second *16*16;
+        printf("[*] Table d'indexes des chaînes d'en-tête de section : %d\n",sum);
+    }
+    i+=2;
 
 
     return 0;
