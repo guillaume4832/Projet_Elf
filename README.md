@@ -13,6 +13,9 @@ make clean
 
 ##Utilisation
 ###Flags:
+```
+./main <OPTS> <FILENAME>
+```
 
 | Options       | Effet                    |
 | ------------- |:------------------------:|
@@ -20,5 +23,9 @@ make clean
 | -S            | Sections                 |
 | -x<num>       | Detail Section <num>     |
 | -s            | Symbol Table             |
+
+##TODO:
+* Gestion des options
+* Lecture de la table de relocation
 
 > Bonne année 2016
