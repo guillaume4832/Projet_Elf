@@ -25,3 +25,22 @@ Reprise par la suite de la 2ème version pour continuer à programmer la 2ème �
 On rencontre un problème lors de la finalisation du code : le tableau est bien affiché et bien indenté -4-, cependant la section
 7 .rel.debug_info rencontre des problèmes d'information sur les colonnes adresse, décalage et Fanions (Flags). Il est donc à finaliser.
 On peut voir également que le texte n'est pas présent sur les Fanions et les types.
+
+Jeudi 7 Janvier 
+	Finition de 2ème étape et programmation de la 3ème, 4ème et 5ème étape
+
+Il y a eu 2 travaux en parallèle :  Dans un premier temps, pendant la matinée, un premier travail consistait à finir
+la mise en forme du résultat de la phase 2 afin d'avoir le même affichage qu'avec l'outil "readelf -S".
+
+Dans un deuxième temps, le deuxième travail consistait à continuer la phase 1 par la 3ème étape puis la 4ème étape dans,
+également, la même mise en forme que la fonction readelf
+
+-- Note :  Lors de la réalisation de la 4ème étape, le premier groupe a recueilli un problème : il est imposible d'intégrer
+tout les chaines de caractères montrer par la fonction readelf car, on pense, la documentation ne possède pas toutes
+les options de fichier que propose cette fonction. 
+
+ L'étape 4 étant fini, on continue l'étape 5 débuté entre-temps par le premier groupe.
+
+    
+
+
