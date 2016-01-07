@@ -598,6 +598,73 @@ void readSection(int numsection,char * filePath,Elf32_Ehdr header,Elf32_Shdr* sh
 
 }
 
+void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr){
+    printf("\n");
+    unsigned char* fileBytes = readFileBytes(filePath); // Contenu du fichier
+    int i;
+    int addrSymTable;
+    int addrStrTable;
+    int size;
+    for(i=0;i<header.e_shnum;i++){
+        if(shdr[i].sh_type == 2){
+            addrSymTable = shdr[i].sh_offset;
+            size = shdr[i].sh_size;
+        }
+        if(i != header.e_shstrndx && shdr[i].sh_type == 3){
+            addrStrTable = shdr[i].sh_offset;
+        }
+    }
+
+    int k = addrSymTable;
+    int numSymb = 0;
+    while(k<size+addrSymTable){
+        printf("%2d:",numSymb);
+        numSymb++;
+        /* Lecture de st_Name */
+
+        int first = fileBytes[k];
+        int second = fileBytes[k+1];
+        int third = fileBytes[k+2];
+        int fourth = fileBytes[k+3];
+        int name = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+
+        int addrStrName = addrStrTable+name;
+        char * nameString = malloc(sizeof(char)*75);
+        int j = 0;
+        while(fileBytes[addrStrName] != 0){
+            nameString[j] = fileBytes[addrStrName];
+            addrStrName++;
+            j++;
+        }
+        /* Nom du Symbol */
+        nameString[j] = 0;
+        printf("\t%s",nameString);
+
+        k+=4;
+
+        first = fileBytes[k];
+        second = fileBytes[k+1];
+        third = fileBytes[k+2];
+        fourth = fileBytes[k+3];
+        /* Valeur du symbol */
+        int value = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        printf("\t\t%8x",value);
+
+        k+=4;
+
+        first = fileBytes[k];
+        second = fileBytes[k+1];
+        third = fileBytes[k+2];
+        fourth = fileBytes[k+3];
+        /* Valeur du symbol */
+        int size = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        printf("\t%2d\n",size);
+
+        k+=8;
+    }
+    printf("\n");
+}
+
 
 int main(int argc, char * argv[]){
     /* Lecture du header */
@@ -606,7 +673,9 @@ int main(int argc, char * argv[]){
 	Elf32_Shdr shdr[header.e_shnum];
 	readSheader(argv[1],header,shdr,0);
     /* Lecture d'une section (contenu) */
-    readSection(12,argv[1],header,shdr);
+    //readSection(18,argv[1],header,shdr);
+    /* Lecture de la table des symboles */
+    readSymTable(argv[1],header,shdr);
 
     return 0;
 }
