@@ -1,0 +1,10 @@
+Lecteur de fichiers ELF
+
+Installation:
+  - make
+
+Nettoyage:
+  - make clean
+
+Utilisation:
+    TODO
