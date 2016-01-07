@@ -51,9 +51,9 @@ char* nom_type(Elf32_Word sh_type)
 
 
 char* nom_flags(unsigned int flags) {
-	
+
 	char* val = malloc(sizeof(char)*9);
-	
+
 	int p;
 	for(p=0;p<9;p++) {
 			val[p]='\0';
@@ -70,7 +70,7 @@ char* nom_flags(unsigned int flags) {
 	}
 
 
-    
+
 	if (b & 00000001)
 	{
 		val[0]='W';
@@ -612,20 +612,20 @@ void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbo
 		char* name = malloc(sizeof(char)*75);
 		int n = 0;
 		int j = addrStrTable + shdr[i].sh_name;
-		
+
 		while (fileBytes[j] != 0x00)
 		{
-			
+
 			name[n] = fileBytes[j];
 			j++;
 			n++;
 
 		}
 		name[n]=0;
-		
-	
+
+
 		if(isVerbose == 1)
-			printf("  [%2d] %-25s%-12s%08d\t%06x\t%06x\t%02x\t%-1.04s\t%d\t%d\t%d\n",i,name,nom_type(shdr[i].sh_type),shdr[i].sh_addr,shdr[i].sh_offset,shdr[i].sh_size,shdr[i].sh_entsize,nom_flags(shdr[i].sh_flags),shdr[i].sh_link,shdr[i].sh_info,shdr[i].sh_addralign);		
+			printf("  [%2d] %-25s%-12s%08d\t%06x\t%06x\t%02x\t%-1.04s\t%d\t%d\t%d\n",i,name,nom_type(shdr[i].sh_type),shdr[i].sh_addr,shdr[i].sh_offset,shdr[i].sh_size,shdr[i].sh_entsize,nom_flags(shdr[i].sh_flags),shdr[i].sh_link,shdr[i].sh_info,shdr[i].sh_addralign);
 	}
 	if(isVerbose == 1)
 		printf (("Clé des fanions:\n W (écriture), A (allocation), X (exécution), U (Valeur Inconnue)\n"));
@@ -702,6 +702,9 @@ void readSection(int numsection,char * filePath,Elf32_Ehdr header,Elf32_Shdr* sh
 
 void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr){
     printf("\n");
+
+    printf("  Num:    Valeur Tail   Type     Lien   Ndx Nom\n");
+
     unsigned char* fileBytes = readFileBytes(filePath); // Contenu du fichier
     int i;
     int addrSymTable;
@@ -720,7 +723,7 @@ void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr){
     int k = addrSymTable;
     int numSymb = 0;
     while(k<size+addrSymTable){
-        printf("%2d:",numSymb);
+        printf("   %2d:",numSymb);
         numSymb++;
         /* Lecture de st_Name */
 
@@ -740,7 +743,7 @@ void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr){
         }
         /* Nom du Symbol */
         nameString[j] = 0;
-        printf("\t%s",nameString);
+
 
         k+=4;
 
@@ -750,7 +753,7 @@ void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr){
         fourth = fileBytes[k+3];
         /* Valeur du symbol */
         int value = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
-        printf("\t\t%8x",value);
+        printf("  %08x",value);
 
         k+=4;
 
@@ -760,9 +763,87 @@ void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr){
         fourth = fileBytes[k+3];
         /* Valeur du symbol */
         int size = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
-        printf("\t%2d\n",size);
+        printf("   %2d",size);
 
-        k+=8;
+        k+=4;
+
+        int info = fileBytes[k];
+        int bind = ELF32_ST_BIND(info);
+        int type = ELF32_ST_TYPE(info);
+        printf("   ");
+        switch(type){
+          case 0:
+            printf("NOTYPE ");
+            break;
+          case 1:
+            printf("OBJECT ");
+            break;
+          case 2:
+            printf("FUNC   ");
+            break;
+          case 3:
+            printf("SECTION");
+            break;
+          case 4:
+            printf("FILE   ");
+            break;
+          case 13:
+            printf("LOPROC ");
+            break;
+          case 15:
+            printf("HIPROC ");
+            break;
+          default:
+            printf("UNKNOWN");
+        }
+        printf("  ");
+        switch(bind){
+          case 0:
+            printf("LOCAL ");
+            break;
+          case 1:
+            printf("GLOBAL");
+            break;
+          case 2:
+            printf("WEAK  ");
+            break;
+          case 13:
+            printf("LOPROC");
+            break;
+          case 15:
+            printf("HIPROC");
+            break;
+          default:
+            printf("UKN   ");
+            break;
+        }
+
+        k++;
+
+        int other = fileBytes[k];
+
+        k++;
+
+        first = fileBytes[k];
+        second = fileBytes[k+1];
+        int shndx = first + second *16*16;
+        printf("\t");
+        switch(shndx){
+          case SHN_UNDEF:
+            printf("UND");
+            break;
+          case SHN_ABS:
+            printf("ABS");
+            break;
+          default:
+            printf("%3d",shndx);
+            break;
+        }
+
+        printf(" %s",nameString);
+
+        printf("\n");
+        k+=2;
     }
     printf("\n");
 }
@@ -772,8 +853,8 @@ int main(int argc, char * argv[]){
     /* Lecture du header */
     Elf32_Ehdr header = readHeader(argv[1],0);
     /* Lecture des headers de sections */
-	Elf32_Shdr shdr[header.e_shnum];
-	readSheader(argv[1],header,shdr,0);
+    Elf32_Shdr shdr[header.e_shnum];
+    readSheader(argv[1],header,shdr,0);
     /* Lecture d'une section (contenu) */
     //readSection(18,argv[1],header,shdr);
     /* Lecture de la table des symboles */
