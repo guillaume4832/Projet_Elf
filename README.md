@@ -2,11 +2,13 @@
 ######Amédée Fleau - Clément Heresaz - Guillaume Chaput - Lucas Albarede -Loïc Chevalier
 
 ##Installation
-```make
+```
+make
 ```
 
 ##Suppression
-```make clean
+```
+make clean
 ```
 
 ##Utilisation
