@@ -441,7 +441,7 @@ void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbo
 		if(i == header.e_shstrndx){
 			addrStrTable = sum;
 		}
-		
+
 		j+=4;
 
 		/* Lecture de la taille de la section en octet */
@@ -453,7 +453,7 @@ void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbo
         sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
 		shdr[i].sh_size = sum;
 
-		
+
 
 		j+=4;
 
@@ -501,7 +501,7 @@ void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbo
 
 		j+=4;
 
-		
+
 	}
 
 	printf("  [Nr] 			Nom\t\tType\t\tAdr\t\tDécala.\tTaille\tES\tFan\tLN\tInf\tAl\n");
@@ -510,31 +510,30 @@ void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbo
 
 
 		// addrStrTable
-		char* name;
+
+		char* name = malloc(sizeof(char)*75);
 		int n = 0;
 		int j = addrStrTable + shdr[i].sh_name;
-		
-		while (fileBytes[j] != 0x00)
+
+		while (fileBytes[j] != 0)
 		{
-			
 			name[n] = fileBytes[j];
 			j++;
 			n++;
 
 		}
-		name[n]=0;
-		
-		 
+        name[n] = 0;
 
-		printf("  [%d] %20s\t\t%d\t\t%08d\t%06x\t%x\t%x\t%d\t%d\t%d\t%d\n",i,name,shdr[i].sh_type,shdr[i].sh_addr,shdr[i].sh_offset,shdr[i].sh_size,shdr[i].sh_entsize,shdr[i].sh_flags,shdr[i].sh_link,shdr[i].sh_info,shdr[i].sh_addralign);		
+
+		printf("  [%d] %20s\t\t%d\t\t%08d\t%06x\t%x\t%x\t%d\t%d\t%d\t%d\n",i,name,shdr[i].sh_type,shdr[i].sh_addr,shdr[i].sh_offset,shdr[i].sh_size,shdr[i].sh_entsize,shdr[i].sh_flags,shdr[i].sh_link,shdr[i].sh_info,shdr[i].sh_addralign);
 	}
-	
+
 }
 
 
 int main(int argc, char * argv[]){
-    Elf32_Ehdr header = readHeader(argv[1],0);	
-	Elf32_Shdr shdr[header.e_shnum]; 
+    Elf32_Ehdr header = readHeader(argv[1],0);
+	Elf32_Shdr shdr[header.e_shnum];
 	readSheader(argv[1],header,shdr,0);
     return 0;
 }
