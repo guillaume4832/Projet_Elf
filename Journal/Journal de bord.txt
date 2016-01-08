@@ -41,6 +41,9 @@ les options de fichier que propose cette fonction.
 
  L'étape 4 étant fini, on continue l'étape 5 débuté entre-temps par le premier groupe.
 
-    
+-- Note : Dans l'étape 3, le sujet précise "la section choisie pourra être désignée par son numéro ou par son nom." Nous le faisons que
+à partir de son numéro.
+
+Réorganisiation des étapes du projet en modules (.h) et non sur un fichier unique, Ajout d'un Lisez-moi et d'un Makefile.    
 
 
