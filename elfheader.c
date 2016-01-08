@@ -4,6 +4,7 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
     Elf32_Ehdr header;
     int isValid = 1;
     int is64 = 0;
+    int isBigEndian = 0;
     unsigned char* fileBytes = readFileBytes(filePath);
     /* Lecture des bits 'magiques' ELF */
     if(fileBytes[0] == 127 && fileBytes[1] == 69 && fileBytes[2] == 76 && fileBytes[3] == 70){
@@ -50,6 +51,7 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
         else if(fileBytes[i] == 2){
             if(isVerbose == 1)
                 printf("[*] EI_DATA :                                          ELFDATA2MSB Big endian\n");
+                isBigEndian = 1;
         }
         else{
             if(isVerbose == 1)
@@ -151,20 +153,10 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
             printf("[*] Version de l'ABI :                                 %d\n",fileBytes[i]);
         header.e_ident[EI_ABIVERSION] = fileBytes[i];
     }
-    i++;
-
-    /* Vérification de l'espace réservé EI_PAD */
-    if(isValid == 1){
-        for(i;i<15;i++){
-            if(fileBytes[i] != 0){
-                if(isVerbose == 1)
-                    printf("[E] Bits de reserves EI_PAD non réservés à 0");
-                isValid = 0;
-                break;
-            }
-        }
-    }
-    i++;
+    if(isBigEndian == 1)
+        i=17;
+    if(isBigEndian == 0)
+        i=16;
 
     /* Lecture du type de l'objet */
     if(isValid == 1){
@@ -190,9 +182,15 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
         }
         header.e_type = fileBytes[i];
     }
-    i+=2;
+
 
     /* Lecture de la machine cible */
+
+    if(isBigEndian == 1)
+        i = 19;
+    else
+        i = 18;
+
     if(isValid == 1){
         if(isVerbose == 1){
             if(fileBytes[i] == 0){
@@ -234,7 +232,11 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
         }
         header.e_machine = fileBytes[i];
     }
-    i+=2;
+
+    if(isBigEndian == 1)
+        i = 23;
+    else
+        i = 20;
 
     /* Lecture de la version du fichier */
     if(isValid == 1){
@@ -253,14 +255,22 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
         }
         header.e_version = fileBytes[i];
     }
-    i+=4;
+    if(isBigEndian == 0)
+        i+=4;
+    else
+        i+=1;
 
     if(isValid == 1 && is64 == 0){
         unsigned int first = fileBytes[i];
         unsigned int second = fileBytes[i+1];
         unsigned int third = fileBytes[i+2];
         unsigned int fourth = fileBytes[i+3];
-        unsigned int sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        unsigned int sum;
+        if(isBigEndian == 0)
+            sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        else
+            sum = first *16*16*16*16*16*16 + second * 16*16*16*16 + third*16*16 + fourth;
+
         if(isVerbose == 1)
             printf("[*] Adresse du point d'entrée :                        0x%x\n",sum);
         header.e_entry = sum;
@@ -272,7 +282,11 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
         unsigned int second = fileBytes[i+1];
         unsigned int third = fileBytes[i+2];
         unsigned int fourth = fileBytes[i+3];
-        unsigned int sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        unsigned int sum;
+        if(isBigEndian == 0)
+            sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        else
+            sum = first *16*16*16*16*16*16 + second * 16*16*16*16 + third*16*16 + fourth;
         if(isVerbose == 1)
             printf("[*] Début des en-têtes de programme :                  %d\n",sum);
         header.e_phoff = sum;
@@ -284,7 +298,11 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
         unsigned int second = fileBytes[i+1];
         unsigned int third = fileBytes[i+2];
         unsigned int fourth = fileBytes[i+3];
-        unsigned int sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        unsigned int sum;
+        if(isBigEndian == 0)
+            sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        else
+            sum = first *16*16*16*16*16*16 + second * 16*16*16*16 + third*16*16 + fourth;
         if(isVerbose == 1)
             printf("[*] Début des en-têtes de section :                    %d\n",sum);
         header.e_shoff = sum;
@@ -296,7 +314,11 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
         unsigned int second = fileBytes[i+1];
         unsigned int third = fileBytes[i+2];
         unsigned int fourth = fileBytes[i+3];
-        unsigned int sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        unsigned int sum;
+        if(isBigEndian == 0)
+            sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        else
+            sum = first *16*16*16*16*16*16 + second * 16*16*16*16 + third*16*16 + fourth;
         if(isVerbose == 1)
             printf("[*] Fanions :                                          0x%x\n",sum);
         header.e_flags = sum;
@@ -306,7 +328,11 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
     if(isValid == 1 && is64 == 0){
         unsigned int first = fileBytes[i];
         unsigned int second = fileBytes[i+1];
-        unsigned int sum = first + second *16*16;
+        unsigned int sum;
+        if(isBigEndian == 0)
+            sum = first + second *16*16;
+        else
+            sum = first *16*16 + second;
         if(isVerbose == 1)
             printf("[*] Taille de cet en-tête :                            %d\n",sum);
         header.e_ehsize = sum;
@@ -316,7 +342,11 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
     if(isValid == 1 && is64 == 0){
         unsigned int first = fileBytes[i];
         unsigned int second = fileBytes[i+1];
-        unsigned int sum = first + second *16*16;
+        unsigned int sum;
+        if(isBigEndian == 0)
+            sum = first + second *16*16;
+        else
+            sum = first *16*16 + second;
         if(isVerbose == 1)
             printf("[*] Taille de l'en-tête du programme :                 %d\n",sum);
         header.e_phentsize = sum;
@@ -326,7 +356,11 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
     if(isValid == 1 && is64 == 0){
         unsigned int first = fileBytes[i];
         unsigned int second = fileBytes[i+1];
-        unsigned int sum = first + second *16*16;
+        unsigned int sum;
+        if(isBigEndian == 0)
+            sum = first + second *16*16;
+        else
+            sum = first *16*16 + second;
         if(isVerbose == 1)
             printf("[*] Nombre d'en-tête du programme :                    %d\n",sum);
         header.e_phnum = sum;
@@ -336,7 +370,11 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
     if(isValid == 1 && is64 == 0){
         unsigned int first = fileBytes[i];
         unsigned int second = fileBytes[i+1];
-        unsigned int sum = first + second *16*16;
+        unsigned int sum;
+        if(isBigEndian == 0)
+            sum = first + second *16*16;
+        else
+            sum = first *16*16 + second;
         if(isVerbose == 1)
             printf("[*] Taille des en-têtes de section :                   %d\n",sum);
         header.e_shentsize = sum;
@@ -346,7 +384,11 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
     if(isValid == 1 && is64 == 0){
         unsigned int first = fileBytes[i];
         unsigned int second = fileBytes[i+1];
-        unsigned int sum = first + second *16*16;
+        unsigned int sum;
+        if(isBigEndian == 0)
+            sum = first + second *16*16;
+        else
+            sum = first *16*16 + second;
         if(isVerbose == 1)
             printf("[*] Nombre d'en-tête de section :                      %d\n",sum);
         header.e_shnum = sum;
@@ -356,7 +398,11 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
     if(isValid == 1 && is64 == 0){
         unsigned int first = fileBytes[i];
         unsigned int second = fileBytes[i+1];
-        unsigned int sum = first + second *16*16;
+        unsigned int sum;
+        if(isBigEndian == 0)
+            sum = first + second *16*16;
+        else
+            sum = first *16*16 + second;
         if(isVerbose == 1)
             printf("[*] Table d'indexes des chaînes d'en-tête de section : %d\n",sum);
         header.e_shstrndx = sum;
