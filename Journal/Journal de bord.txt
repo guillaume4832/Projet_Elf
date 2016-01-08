@@ -33,14 +33,20 @@ Dans un deuxième temps, le deuxième travail consistait à continuer la phase 1
 -- Note :  Lors de la réalisation de la 4ème étape, le premier groupe a rencontré un problème : il est imposible d'intégrer toutes les chaines de caractères afichées par la fonction readelf car, il semblerait que la documentation ne liste pas toutes
  les options de fichier que propose la fonction readelf.
 
-<<<<<<< HEAD
+
  L'étape 4 étant fini, on continue l'étape 5 débutée entretemps par le premier groupe.
-    
-=======
+
 -- Note : Dans l'étape 3, le sujet précise "la section choisie pourra être désignée par son numéro ou par son nom." Nous le faisons que
 à partir de son numéro.
 
-Réorganisiation des étapes du projet en modules (.h) et non sur un fichier unique, Ajout d'un Lisez-moi et d'un Makefile.    
->>>>>>> 78e6a79ca08f7c5de8f00ce333f89efe51ba0dcd
+Réorganisation des étapes du projet en modules (.h) et non sur un fichier unique, Ajout d'un Lisez-moi et d'un Makefile.    
 
+Vendredi 8 Janvier
+	Finition de l'étape 5
+
+Dans un premier temps avec un groupe, après plusieurs heures de travail, la partie 5 est terminé. La principale difficulté
+était de comprendre comment récupérer les données pour avoir le même affichage que la fonction readelf. 
+
+Dans un deuxième temps avec un 2ème groupe, Il fallait remette en forme le code afin de le rendre compatible avec des
+fichiers "Big endian". Ce n'est pas encore fini car ce travail s'est fait en parallèle avec le 1er groupe. 
 
