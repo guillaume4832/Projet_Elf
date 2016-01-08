@@ -27,5 +27,6 @@ make clean
 ##TODO:
 * Gestion des options
 * Lecture de la table de relocation
+* Gestion du Big Endian dans la table des symboles
 
 > Bonne année 2016
