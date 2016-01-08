@@ -1,49 +1,46 @@
 ﻿Journal de bord
 
 Lundi 4 Janvier 2016
-	Recherche documentaire
+	Recherche documentaire 
 
 Afin de mieux appréhender le projet, nous avons regardé les ressources techniques fournies et d'autres ressources glanées 
 sur Internet.
 
 Mardi 5 Janvier
-	Programmation de la Phase 1 du Projet
+	Programmation de la Phase 1 du Projet 
 
-On démarre la programmation du projet + de la recherche documentaires (2 groupes distincts)
-L'étape 1 est fini. Cependant, il y a eu un ajustement suite aux contraintes imposées dans le projet ( se limiter aux ELF 32
-bits).
-
--- Note : 2ème version de l'étape 1 en cours
+On démarre la programmation du projet + de la recherche documentaires (2 groupes distincts) 
+L'étape 1 est fini. Cependant, il y a eu un ajustement suite aux contraintes imposées dans le projet ( se limiter aux ELF 32 bits). 
 
 Mercredi 6 Janvier
-	2ème version de l'étape 1, programation de l'étape 2.
+	Seconde version de l'étape 1, programation de l'étape 2. 
 
-Afin d'être plus simple, une seconde version de l'étape 1 a été réalisée. Tout d'abord sans utiliser le fichier elf puis, par la
-suite, avec l'intégration de ce fichier. En parallèle, l'étape 2 commence à être programmée (2 groupes distincts).
+Afin d'être plus simple et efficace, une seconde version de l'étape 1 a été réalisée. Tout d'abord sans utiliser le fichier elf.h et ses fonctions, avant de réintégrer ce fichier. En parallèle, l'étape 2 commence à être programmée (2 groupes distincts). 
 
-Reprise par la suite de la 2ème version pour continuer à programmer la 2ème étape.
-On rencontre un problème lors de la finalisation du code : le tableau est bien affiché et bien indenté -4-, cependant la section
+Reprise par la suite de la 2ème version pour continuer à programmer la 2ème étape. 
+On rencontre un problème lors de la finalisation du code : le tableau est bien affiché et bien indenté -4-, cependant la section 
 7 .rel.debug_info rencontre des problèmes d'information sur les colonnes adresse, décalage et Fanions (Flags). Il est donc à finaliser.
 On peut voir également que le texte n'est pas présent sur les Fanions et les types.
 
 Jeudi 7 Janvier 
-	Finition de 2ème étape et programmation de la 3ème, 4ème et 5ème étape
+Finition de 2ème étape et programmation de la 3ème, 4ème et 5ème étape
 
-Il y a eu 2 travaux en parallèle :  Dans un premier temps, pendant la matinée, un premier travail consistait à finir
-la mise en forme du résultat de la phase 2 afin d'avoir le même affichage qu'avec l'outil "readelf -S".
+Il y a eu 2 travaux en parallèle :  Dans un premier temps, pendant la matinée, un premier travail consistait à achever
+ le travail de mise en forme du résultat de la phase 2 afin d'avoir le même affichage qu'avec l'outil "readelf -S".
 
-Dans un deuxième temps, le deuxième travail consistait à continuer la phase 1 par la 3ème étape puis la 4ème étape dans,
-également, la même mise en forme que la fonction readelf
+Dans un deuxième temps, le deuxième travail consistait à continuer la phase 1 par la 3ème étape puis la 4ème étape en les affichant de la même façon, mise en forme comprise, que la fonction readelf le fait.
 
--- Note :  Lors de la réalisation de la 4ème étape, le premier groupe a recueilli un problème : il est imposible d'intégrer
-tout les chaines de caractères montrer par la fonction readelf car, on pense, la documentation ne possède pas toutes
-les options de fichier que propose cette fonction. 
+-- Note :  Lors de la réalisation de la 4ème étape, le premier groupe a rencontré un problème : il est imposible d'intégrer toutes les chaines de caractères afichées par la fonction readelf car, il semblerait que la documentation ne liste pas toutes
+ les options de fichier que propose la fonction readelf.
 
- L'étape 4 étant fini, on continue l'étape 5 débuté entre-temps par le premier groupe.
-
+<<<<<<< HEAD
+ L'étape 4 étant fini, on continue l'étape 5 débutée entretemps par le premier groupe.
+    
+=======
 -- Note : Dans l'étape 3, le sujet précise "la section choisie pourra être désignée par son numéro ou par son nom." Nous le faisons que
 à partir de son numéro.
 
 Réorganisiation des étapes du projet en modules (.h) et non sur un fichier unique, Ajout d'un Lisez-moi et d'un Makefile.    
+>>>>>>> 78e6a79ca08f7c5de8f00ce333f89efe51ba0dcd
 
 
