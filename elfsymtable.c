@@ -1,6 +1,17 @@
 #include "elfsymtable.h"
 
-void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr){
+int getIndSectionSymtab(Elf32_Ehdr header,Elf32_Shdr* shdr) {
+	int i;
+	for(i=0;i<header.e_shnum;i++){
+		if (shdr[i].sh_type == 2) {
+			return i;
+		}	
+	}
+	return 0;	
+}
+
+
+void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Sym* sym){
     printf("\n");
 
     printf("  Num:    Valeur Tail   Type     Lien   Ndx Nom\n");
@@ -22,6 +33,7 @@ void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr){
 
     int k = addrSymTable;
     int numSymb = 0;
+	
     while(k<size+addrSymTable){
         printf("   %2d:",numSymb);
         numSymb++;
@@ -34,6 +46,8 @@ void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr){
         int name = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
 
         int addrStrName = addrStrTable+name;
+		sym[numSymb].st_name = addrStrName;
+		
         char * nameString = malloc(sizeof(char)*75);
         int j = 0;
         while(fileBytes[addrStrName] != 0){
@@ -41,9 +55,9 @@ void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr){
             addrStrName++;
             j++;
         }
+	
         /* Nom du Symbol */
         nameString[j] = 0;
-
 
         k+=4;
 
@@ -54,20 +68,22 @@ void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr){
         /* Valeur du symbol */
         int value = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
         printf("  %08x",value);
-
+		sym[numSymb].st_value = value;
         k+=4;
 
         first = fileBytes[k];
         second = fileBytes[k+1];
         third = fileBytes[k+2];
         fourth = fileBytes[k+3];
-        /* Valeur du symbol */
+		
+        /* Taille du symbol */
         int size = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
         printf("   %2d",size);
-
+		sym[numSymb].st_size = size;
         k+=4;
 
         int info = fileBytes[k];
+		sym[numSymb].st_info = info;
         int bind = ELF32_ST_BIND(info);
         int type = ELF32_ST_TYPE(info);
         printf("   ");
@@ -127,6 +143,8 @@ void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr){
         first = fileBytes[k];
         second = fileBytes[k+1];
         int shndx = first + second *16*16;
+		sym[numSymb].st_shndx = shndx;
+		sym[numSymb].st_other = 0;
         printf("\t");
         switch(shndx){
           case SHN_UNDEF:
@@ -144,6 +162,7 @@ void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr){
 
         printf("\n");
         k+=2;
+		
     }
     printf("\n");
 }
