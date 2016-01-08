@@ -9,20 +9,19 @@
 #include "elfrelocation.h"
 
 void main(int argc, char * argv[]){
-  // Lecture du header
-	Elf32_Ehdr header = readHeader(argv[1],0);
-  // Lecture des headers de sections
+	// Lecture du header
+    Elf32_Ehdr header = readHeader(argv[1],1);
+	// Lecture des headers de sections
 	Elf32_Shdr shdr[header.e_shnum];
 	readSheader(argv[1],header,shdr,0);
-  // Lecture d'une section
-  // readSection(18,argv[1],header,shdr);
-  // Lecture de la table des symboles
-	
+	// Lecture d'une section
+	readSection(7,argv[1],header,shdr);
+	// Lecture de la table des symboles
+
 	int j = getIndSectionSymtab(header,shdr);
 	Elf32_Sym sym[(shdr[j].sh_size)/(4+4+4+1+1+2)];
 	readSymTable(argv[1],header,shdr,sym);
    
-
 	int i;
 	int count = 0;
 	for(i=0;i<header.e_shnum;i++) {

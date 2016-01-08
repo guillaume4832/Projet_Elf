@@ -29,6 +29,11 @@ char* nom_type(Elf32_Word sh_type)
     case 0x6ffffffc:		return "VERDEF";
     case 0x7ffffffd:		return "AUXILIARY";
     case 0x7fffffff:		return "FILTER";
+	case 0x70000001:		return "ARM_EXITDX";
+	case 0x70000002:		return "ARM_PREEMPTMAP";
+	case 0x70000003:		return "ARM_ATTRIBUTES";
+	case 0x70000004:		return "ARM_DEBUGOVERLAY";
+	case 0x70000005:		return "ARM_OVERLAYSECTION";
     case SHT_GNU_LIBLIST:	return "GNU_LIBLIST";
 
 	default: return "";
@@ -98,9 +103,17 @@ char* nom_flags(unsigned int flags) {
 }
 
 void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbose) {
+
+	printf("Lecture des headers de sections\n");
+
 	int i;
 	unsigned char* fileBytes = readFileBytes(filePath);
 	unsigned int addrStrTable;
+
+    int isBigEndian = header.e_ident[EI_DATA]-1;
+
+
+
 	for(i=0;i<header.e_shnum;i++){
 		int j = (unsigned int)header.e_shoff+i*(unsigned int)header.e_shentsize;
 		/* Lecture des indices de nom de section */
@@ -108,7 +121,11 @@ void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbo
         unsigned int second = fileBytes[j+1];
         unsigned int third = fileBytes[j+2];
         unsigned int fourth = fileBytes[j+3];
-        unsigned int sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+		unsigned int sum;
+        if(isBigEndian == 0)
+            sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        else
+            sum = first *16*16*16*16*16*16 + second * 16*16*16*16 + third*16*16 + fourth;
 
 		shdr[i].sh_name = sum;
 
@@ -118,7 +135,10 @@ void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbo
         second = fileBytes[j+1];
         third = fileBytes[j+2];
         fourth = fileBytes[j+3];
-        sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        if(isBigEndian == 0)
+            sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        else
+            sum = first *16*16*16*16*16*16 + second * 16*16*16*16 + third*16*16 + fourth;
 		shdr[i].sh_type = sum;
 
 		j+=4;
@@ -129,7 +149,10 @@ void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbo
         second = fileBytes[j+1];
         third = fileBytes[j+2];
         fourth = fileBytes[j+3];
-        sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+		if(isBigEndian == 0)
+            sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        else
+            sum = first *16*16*16*16*16*16 + second * 16*16*16*16 + third*16*16 + fourth;
 		shdr[i].sh_flags = sum;
 
 		j+=4;
@@ -140,7 +163,10 @@ void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbo
         second = fileBytes[j+1];
         third = fileBytes[j+2];
         fourth = fileBytes[j+3];
-        sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+		if(isBigEndian == 0)
+            sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        else
+            sum = first *16*16*16*16*16*16 + second * 16*16*16*16 + third*16*16 + fourth;
 		shdr[i].sh_addr = sum;
 
 		j+=4;
@@ -151,7 +177,10 @@ void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbo
         second = fileBytes[j+1];
         third = fileBytes[j+2];
         fourth = fileBytes[j+3];
-        sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+		if(isBigEndian == 0)
+            sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        else
+            sum = first *16*16*16*16*16*16 + second * 16*16*16*16 + third*16*16 + fourth;
 		shdr[i].sh_offset = sum;
 
 		if(i == header.e_shstrndx){
@@ -166,7 +195,10 @@ void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbo
         second = fileBytes[j+1];
         third = fileBytes[j+2];
         fourth = fileBytes[j+3];
-        sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+		if(isBigEndian == 0)
+            sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        else
+            sum = first *16*16*16*16*16*16 + second * 16*16*16*16 + third*16*16 + fourth;
 		shdr[i].sh_size = sum;
 
 
@@ -179,7 +211,10 @@ void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbo
         second = fileBytes[j+1];
         third = fileBytes[j+2];
         fourth = fileBytes[j+3];
-        sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+		if(isBigEndian == 0)
+            sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        else
+            sum = first *16*16*16*16*16*16 + second * 16*16*16*16 + third*16*16 + fourth;
 		shdr[i].sh_link = sum;
 
 		j+=4;
@@ -190,7 +225,10 @@ void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbo
         second = fileBytes[j+1];
         third = fileBytes[j+2];
         fourth = fileBytes[j+3];
-        sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+		if(isBigEndian == 0)
+            sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        else
+            sum = first *16*16*16*16*16*16 + second * 16*16*16*16 + third*16*16 + fourth;
 		shdr[i].sh_info = sum;
 
 		j+=4;
@@ -201,7 +239,10 @@ void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbo
         second = fileBytes[j+1];
         third = fileBytes[j+2];
         fourth = fileBytes[j+3];
-        sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+		if(isBigEndian == 0)
+            sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        else
+            sum = first *16*16*16*16*16*16 + second * 16*16*16*16 + third*16*16 + fourth;
 		shdr[i].sh_addralign = sum;
 
 		j+=4;
@@ -212,7 +253,10 @@ void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbo
         second = fileBytes[j+1];
         third = fileBytes[j+2];
         fourth = fileBytes[j+3];
-        sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+		if(isBigEndian == 0)
+            sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        else
+            sum = first *16*16*16*16*16*16 + second * 16*16*16*16 + third*16*16 + fourth;
 		shdr[i].sh_entsize = sum;
 
 		j+=4;
