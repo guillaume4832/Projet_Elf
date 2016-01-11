@@ -103,8 +103,8 @@ char* nom_flags(unsigned int flags) {
 }
 
 void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbose) {
-
-	printf("Lecture des headers de sections\n");
+    if(isVerbose == 1)
+	   printf("Lecture des headers de sections\n");
 
 	int i;
 	unsigned char* fileBytes = readFileBytes(filePath);

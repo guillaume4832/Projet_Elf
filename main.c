@@ -8,8 +8,18 @@
 #include "elfsection.h"
 #include "elfsymtable.h"
 #include "elfrelocation.h"
+#include "filereader.h"
+
+int isnumber(const char*s) {
+   char* e = NULL;
+   (void) strtol(s, &e, 0);
+   return e != NULL && *e == (char)0;
+}
 
 void main(int argc, char * argv[]){
+
+	//Lecture des Options
+
     int opt;
 	char *fileName;
 
@@ -37,7 +47,42 @@ void main(int argc, char * argv[]){
 				verboseSectionH = 1;
 				break;
 			case 'x':
-				sectionDetails = atoi(optarg);
+				if(isnumber(optarg))
+				{
+					sectionDetails = atoi(optarg);
+				}
+				else{
+					unsigned char* fileBytes = readFileBytes(fileName);
+					Elf32_Ehdr header = readHeader(fileName,verboseHeader);
+					Elf32_Shdr shdr[header.e_shnum];
+					readSheader(fileName,header,shdr,verboseSectionH);
+					int i;
+					int addrStrTable = shdr[header.e_shstrndx].sh_offset;
+					for(i=0;i<header.e_shnum;i++){
+
+
+						// addrStrTable
+						char* name = malloc(sizeof(char)*75);
+						int n = 0;
+						int j = addrStrTable + shdr[i].sh_name;
+
+						while (fileBytes[j] != 0x00)
+						{
+
+							name[n] = fileBytes[j];
+							j++;
+							n++;
+
+						}
+						name[n]=0;
+						if(strcmp(optarg,name) == 0){
+							sectionDetails = i;
+							break;
+						}
+						if(i== header.e_shnum-1)
+							printf("Section inconnue (-x)\n");
+					}
+				}
 				break;
 			case 's':
 				verboseSymboles = 1;
