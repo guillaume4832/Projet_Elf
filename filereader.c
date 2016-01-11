@@ -12,14 +12,11 @@ char* readFileBytes(const char *name)
     return ret;
 }
 
-int writeFileBytes(char* fileBytes, char* fileName){
+int writeFileBytes(char* fileBytes, char* fileName, int size){
     void * file_to_write = fopen(fileName, "ab+");
     if(file_to_write != NULL){
         int i = 0;
-        int isOk = 1;
-        while(isOk == 1){
-            if(i > sizeof(&fileBytes))
-                break;
+        for(i;i<size;i++){
             fwrite(&fileBytes[i], 1, sizeof(fileBytes[i]), file_to_write);
             i++;
         }
