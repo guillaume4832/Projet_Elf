@@ -27,7 +27,6 @@ make clean
 | -r            | Relocation Table         |
 
 ## TODO:
-* Options: Choix de section par nom
 * Documentation/Commentage de code
 * Etape 6
 
