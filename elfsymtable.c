@@ -5,9 +5,9 @@ int getIndSectionSymtab(Elf32_Ehdr header,Elf32_Shdr* shdr) {
 	for(i=0;i<header.e_shnum;i++){
 		if (shdr[i].sh_type == 2) {
 			return i;
-		}	
+		}
 	}
-	return 0;	
+	return 0;
 }
 
 
@@ -17,6 +17,7 @@ void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Sym*
     printf("  Num:    Valeur Tail   Type     Lien   Ndx Nom\n");
 
     unsigned char* fileBytes = readFileBytes(filePath); // Contenu du fichier
+	int isBigEndian = header.e_ident[EI_DATA]-1;
     int i;
     int addrSymTable;
     int addrStrTable;
@@ -33,7 +34,7 @@ void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Sym*
 
     int k = addrSymTable;
     int numSymb = 0;
-	
+
     while(k<size+addrSymTable){
         printf("   %2d:",numSymb);
         numSymb++;
@@ -43,11 +44,15 @@ void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Sym*
         int second = fileBytes[k+1];
         int third = fileBytes[k+2];
         int fourth = fileBytes[k+3];
-        int name = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+		int name;
+		if(isBigEndian == 0)
+            name = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        else
+            name = first *16*16*16*16*16*16 + second * 16*16*16*16 + third*16*16 + fourth;
 
         int addrStrName = addrStrTable+name;
 		sym[numSymb].st_name = addrStrName;
-		
+
         char * nameString = malloc(sizeof(char)*75);
         int j = 0;
         while(fileBytes[addrStrName] != 0){
@@ -55,7 +60,7 @@ void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Sym*
             addrStrName++;
             j++;
         }
-	
+
         /* Nom du Symbol */
         nameString[j] = 0;
 
@@ -66,7 +71,11 @@ void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Sym*
         third = fileBytes[k+2];
         fourth = fileBytes[k+3];
         /* Valeur du symbol */
-        int value = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        int value;
+        if(isBigEndian == 0)
+            value = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        else
+            value = first *16*16*16*16*16*16 + second * 16*16*16*16 + third*16*16 + fourth;
         printf("  %08x",value);
 		sym[numSymb].st_value = value;
         k+=4;
@@ -75,9 +84,13 @@ void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Sym*
         second = fileBytes[k+1];
         third = fileBytes[k+2];
         fourth = fileBytes[k+3];
-		
+
         /* Taille du symbol */
-        int size = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        int size;
+        if(isBigEndian == 0)
+            size = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+        else
+            size = first *16*16*16*16*16*16 + second * 16*16*16*16 + third*16*16 + fourth;
         printf("   %2d",size);
 		sym[numSymb].st_size = size;
         k+=4;
@@ -142,7 +155,11 @@ void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Sym*
 
         first = fileBytes[k];
         second = fileBytes[k+1];
-        int shndx = first + second *16*16;
+        int shndx;
+        if(isBigEndian == 0)
+            shndx = first + second *16*16;
+        else
+            shndx = first *16*16 + second;
 		sym[numSymb].st_shndx = shndx;
 		sym[numSymb].st_other = 0;
         printf("\t");
@@ -162,7 +179,7 @@ void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Sym*
 
         printf("\n");
         k+=2;
-		
+
     }
     printf("\n");
 }
