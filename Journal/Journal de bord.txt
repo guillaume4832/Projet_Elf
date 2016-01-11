@@ -62,5 +62,6 @@ la documention du programme. Cependant ce travail a été écourté suite à l'a
 les tests. Cet audit a d'ailleurs relevé des problèmes de factorisations de code et la necessité d'utiliser un tableau pour
 pouvoir éditer les globales lors de la phase 2.
 
-En fin de journée, l'étape 6 est terminée et l'implentation des codes de test pour la soutenance est partiellement achevée.
+En fin de journée, l'étape 6 est sur le point d'être terminée (quelques bugs subsitent) et l'implentation des codes
+de test pour la soutenance est partiellement achevée.
 
