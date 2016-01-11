@@ -6,6 +6,4 @@
 
 int getIndSectionSymtab(Elf32_Ehdr header,Elf32_Shdr* shdr);
 
-void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr,Elf32_Sym* sym);
-
-
+void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr,Elf32_Sym* sym, int isVerbose);

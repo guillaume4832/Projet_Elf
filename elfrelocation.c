@@ -29,8 +29,10 @@ void readRelTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Rel*
 				}
 				name[n]=0;
 
-				printf("\nSection de relocalisation '%s' à l'adresse de décalage %x contient %d entrée(s):\n",name,shdr[i].sh_offset,shdr[i].sh_size/(4*2));
-				printf("Décalage   Info      Type          Val.-sym  Noms-symboles\n");
+				if(isVerbose == 1){
+					printf("\nSection de relocalisation '%s' à l'adresse de décalage %x contient %d entrée(s):\n",name,shdr[i].sh_offset,shdr[i].sh_size/(4*2));
+					printf("Décalage   Info      Type          Val.-sym  Noms-symboles\n");
+				}
 				k = (unsigned int)shdr[i].sh_offset;
 				rel[i]=malloc(sizeof(Elf32_Rel)*shdr[i].sh_size/(4*2));
 				for(j=0;j<(shdr[i].sh_size/(4*2));j++) {
@@ -140,8 +142,8 @@ void readRelTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Rel*
 
 					int val = sym[ELF32_R_SYM(rel[i][j].r_info)+1].st_value;
 
-
-					printf("%08x   %08x  %-12s  %08x  %s\n",rel[i][j].r_offset,rel[i][j].r_info,type,val,nomSymb);
+					if(isVerbose == 1)
+						printf("%08x   %08x  %-12s  %08x  %s\n",rel[i][j].r_offset,rel[i][j].r_info,type,val,nomSymb);
 				}
 
 
@@ -176,5 +178,6 @@ void readRelTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Rel*
 				}
 			}*/
 	}
-printf("\n");
+if(isVerbose == 1)
+	printf("\n");
 }

@@ -11,10 +11,11 @@ int getIndSectionSymtab(Elf32_Ehdr header,Elf32_Shdr* shdr) {
 }
 
 
-void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Sym* sym){
-    printf("\n");
-
-    printf("  Num:    Valeur Tail   Type     Lien   Ndx Nom\n");
+void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Sym* sym, int isVerbose){
+    if(isVerbose == 1){
+        printf("\n");
+        printf("  Num:    Valeur Tail   Type     Lien   Ndx Nom\n");
+    }
 
     unsigned char* fileBytes = readFileBytes(filePath); // Contenu du fichier
 	int isBigEndian = header.e_ident[EI_DATA]-1;
@@ -36,7 +37,8 @@ void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Sym*
     int numSymb = 0;
 
     while(k<size+addrSymTable){
-        printf("   %2d:",numSymb);
+        if(isVerbose == 1)
+            printf("   %2d:",numSymb);
         numSymb++;
         /* Lecture de st_Name */
 
@@ -76,7 +78,8 @@ void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Sym*
             value = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
         else
             value = first *16*16*16*16*16*16 + second * 16*16*16*16 + third*16*16 + fourth;
-        printf("  %08x",value);
+        if(isVerbose == 1)
+            printf("  %08x",value);
 		sym[numSymb].st_value = value;
         k+=4;
 
@@ -91,7 +94,8 @@ void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Sym*
             size = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
         else
             size = first *16*16*16*16*16*16 + second * 16*16*16*16 + third*16*16 + fourth;
-        printf("   %2d",size);
+        if(isVerbose == 1)
+            printf("   %2d",size);
 		sym[numSymb].st_size = size;
         k+=4;
 
@@ -99,54 +103,55 @@ void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Sym*
 		sym[numSymb].st_info = info;
         int bind = ELF32_ST_BIND(info);
         int type = ELF32_ST_TYPE(info);
-        printf("   ");
-        switch(type){
-          case 0:
-            printf("NOTYPE ");
-            break;
-          case 1:
-            printf("OBJECT ");
-            break;
-          case 2:
-            printf("FUNC   ");
-            break;
-          case 3:
-            printf("SECTION");
-            break;
-          case 4:
-            printf("FILE   ");
-            break;
-          case 13:
-            printf("LOPROC ");
-            break;
-          case 15:
-            printf("HIPROC ");
-            break;
-          default:
-            printf("UNKNOWN");
+        if(isVerbose == 1){
+            printf("   ");
+            switch(type){
+              case 0:
+                printf("NOTYPE ");
+                break;
+              case 1:
+                printf("OBJECT ");
+                break;
+              case 2:
+                printf("FUNC   ");
+                break;
+              case 3:
+                printf("SECTION");
+                break;
+              case 4:
+                printf("FILE   ");
+                break;
+              case 13:
+                printf("LOPROC ");
+                break;
+              case 15:
+                printf("HIPROC ");
+                break;
+              default:
+                printf("UNKNOWN");
+            }
+            printf("  ");
+            switch(bind){
+              case 0:
+                printf("LOCAL ");
+                break;
+              case 1:
+                printf("GLOBAL");
+                break;
+              case 2:
+                printf("WEAK  ");
+                break;
+              case 13:
+                printf("LOPROC");
+                break;
+              case 15:
+                printf("HIPROC");
+                break;
+              default:
+                printf("UKN   ");
+                break;
+            }
         }
-        printf("  ");
-        switch(bind){
-          case 0:
-            printf("LOCAL ");
-            break;
-          case 1:
-            printf("GLOBAL");
-            break;
-          case 2:
-            printf("WEAK  ");
-            break;
-          case 13:
-            printf("LOPROC");
-            break;
-          case 15:
-            printf("HIPROC");
-            break;
-          default:
-            printf("UKN   ");
-            break;
-        }
-
         k++;
 
         int other = fileBytes[k];
@@ -162,24 +167,27 @@ void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Sym*
             shndx = first *16*16 + second;
 		sym[numSymb].st_shndx = shndx;
 		sym[numSymb].st_other = 0;
-        printf("\t");
-        switch(shndx){
-          case SHN_UNDEF:
-            printf("UND");
-            break;
-          case SHN_ABS:
-            printf("ABS");
-            break;
-          default:
-            printf("%3d",shndx);
-            break;
+        if(isVerbose == 1){
+            printf("\t");
+            switch(shndx){
+              case SHN_UNDEF:
+                printf("UND");
+                break;
+              case SHN_ABS:
+                printf("ABS");
+                break;
+              default:
+                printf("%3d",shndx);
+                break;
+            }
+
+            printf(" %s",nameString);
+
+            printf("\n");
         }
-
-        printf(" %s",nameString);
-
-        printf("\n");
         k+=2;
 
     }
-    printf("\n");
+    if(isVerbose == 1)
+        printf("\n");
 }
