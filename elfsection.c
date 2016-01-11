@@ -5,7 +5,8 @@ void readSection(int numsection,char * filePath,Elf32_Ehdr header,Elf32_Shdr* sh
     int i;
     char* name = malloc(sizeof(char)*75);
     unsigned char* fileBytes = readFileBytes(filePath); // Contenu du fichier
-    int addrStrTable = shdr[header.e_shstrndx].sh_offset; // Récupération de l'adresse de la string table
+    int addrStrTable = shdr[header.e_shstrndx].sh_offset;// Récupération de l'adresse de la string table
+    
     int n = 0;
     int j = addrStrTable + shdr[numsection].sh_name;
 
@@ -20,7 +21,10 @@ void readSection(int numsection,char * filePath,Elf32_Ehdr header,Elf32_Shdr* sh
     printf("\nVidange hexadécimale de la section < %s > :\n",name);
 
     int addr = shdr[numsection].sh_offset; // Adresse de la section
+    ///printf("%x", addr);
+    
     int size = shdr[numsection].sh_size; // Taille de la section
+    ///printf("%d", size);
     char * tampon = malloc(sizeof(char)*16);
     int idxTab = 1;
     int startLine = 1;
