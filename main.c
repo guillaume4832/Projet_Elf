@@ -1,3 +1,14 @@
+/**
+ * \file main.c
+ * \brief Programme Principal.
+ * \author Amédée Fleau - Clément Heresaz - Guillaume Chaput - Lucas Albarede - Loïc Chevalier
+ * \version 1
+ * \date 11 Janvier 2016
+ *
+ * Programme Principal pour la gestion du format ELF
+ *
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <elf.h>
@@ -10,11 +21,27 @@
 #include "elfrelocation.h"
 #include "filereader.h"
 
+/**
+ * \fn int isnumber(const char*s)
+ * \brief Vérifie si la chaîne de caractère donnée est un nombre.
+ *
+ * \param *s Chaîne de caractères reçue en entrée.
+ * \return 0 si il ne s'agit pas d'un nombre, 1 sinon.
+ */
+
 int isnumber(const char*s) {
    char* e = NULL;
    (void) strtol(s, &e, 0);
    return e != NULL && *e == (char)0;
 }
+
+/**
+ * \fn void main(int argc, char * argv[])
+ * \brief Programme principal du fichier.
+ *
+ * \param argc Nombre d'arguments reçus en entrée.
+ * \param argv Tableau d'arguments reçus en entrée.
+ */
 
 void main(int argc, char * argv[]){
 
