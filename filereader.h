@@ -4,4 +4,5 @@
 #include <stdlib.h>
 
 char* readFileBytes(const char *name);
+int writeFileBytes(char* fileBytes, char* fileName);
 #endif
