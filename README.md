@@ -34,6 +34,8 @@ make clean
 * Faut-il traiter le cas des fichiers exécutables ?
 * Etape 6 ?
 * Quels flags gérer dans les hsections ?
+* CORRECTION FICHIER GENERER TABLE DES SYMBOLES ERREUR -> Corriger l'adresse
+
 
 
 > Bonne année 2016
