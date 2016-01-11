@@ -30,4 +30,10 @@ make clean
 * Documentation/Commentage de code
 * Etape 6
 
+## Question en suspens:
+* Faut-il traiter le cas des fichiers exécutables ?
+* Etape 6 ?
+* Quels flags gérer dans les hsections ?
+
+
 > Bonne année 2016
