@@ -19,6 +19,7 @@
 #include "elfsection.h"
 #include "elfsymtable.h"
 #include "elfrelocation.h"
+#include "elfdeleterel.h"
 #include "filereader.h"
 
 /**
@@ -155,8 +156,10 @@ void main(int argc, char * argv[]){
 	}
 
 	if (count != 0) {
-    Elf32_Rel* rel[count];
-	readRelTable(fileName,header,shdr,rel,sym,verboseRelocation);
+    	Elf32_Rel* rel[count];
+		readRelTable(fileName,header,shdr,rel,sym,verboseRelocation);
 	}
+	
+	delRelTable(fileName,header,shdr);
 
 }
