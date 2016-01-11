@@ -38,7 +38,9 @@ void main(int argc, char * argv[]){
 	int verboseSymboles = 0;
 	int verboseRelocation = 0;
 	int sectionDetails = -1;
+	int hasFile = 0;
 	while ((opt = getopt_long(argc, argv, "hSx:srf:", longopts, NULL)) != -1) {
+
 		switch(opt) {
 			case 'h':
 				verboseHeader = 1;
@@ -92,11 +94,16 @@ void main(int argc, char * argv[]){
 				break;
 			case 'f':
 				fileName = optarg;
+				hasFile = 1;
 				break;
 			default:
 				fprintf(stderr, "Unrecognized option %c\n", opt);
 				exit(1);
 		}
+	}
+	if(hasFile == 0){
+		printf("Veuillez préciser un nom de fichier avec l'option -f\n-f : Nom de fichier\n-h : Lecture du header\n-S : Lecture des en-têtes de sections\n-x <Nom/Numéro de section> : Détail d'une section\n-s : Lecture de la table des symboles\n-r : Lecture de la table de relocation\n");
+		exit(1);
 	}
 	// Lecture du header
     Elf32_Ehdr header = readHeader(fileName,verboseHeader);
