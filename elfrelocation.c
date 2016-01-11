@@ -8,11 +8,12 @@ void readRelTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Rel*
 	int k;
 	char* type = malloc(sizeof(char)*15);
 	int addrStrTable = shdr[header.e_shstrndx].sh_offset;
+	int isBigEndian = header.e_ident[EI_DATA]-1;
 	for(i=0;i<header.e_shnum;i++) {
-	
+
 			if(shdr[i].sh_type == 9) {
 
-				
+
 
 				char* name = malloc(sizeof(char)*75);
 				int n = 0;
@@ -20,27 +21,31 @@ void readRelTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Rel*
 
 				while (fileBytes[l] != 0x00)
 				{
-	
+
 					name[n] = fileBytes[l];
 					l++;
 					n++;
 
 				}
 				name[n]=0;
-		    
+
 				printf("\nSection de relocalisation '%s' à l'adresse de décalage %x contient %d entrée(s):\n",name,shdr[i].sh_offset,shdr[i].sh_size/(4*2));
 				printf("Décalage   Info      Type          Val.-sym  Noms-symboles\n");
 				k = (unsigned int)shdr[i].sh_offset;
 				rel[i]=malloc(sizeof(Elf32_Rel)*shdr[i].sh_size/(4*2));
 				for(j=0;j<(shdr[i].sh_size/(4*2));j++) {
-					
+
 
 					unsigned int first = fileBytes[k];
         			unsigned int second = fileBytes[k+1];
         			unsigned int third = fileBytes[k+2];
         			unsigned int fourth = fileBytes[k+3];
-        			unsigned int sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
-					
+        			unsigned int sum;
+					if(isBigEndian == 0)
+			            sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+			        else
+			            sum = first *16*16*16*16*16*16 + second * 16*16*16*16 + third*16*16 + fourth;
+
 
 					rel[i][j].r_offset = sum;
 
@@ -50,8 +55,11 @@ void readRelTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Rel*
         			second = fileBytes[k+1];
         			third = fileBytes[k+2];
         			fourth = fileBytes[k+3];
-        			sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
-					
+					if(isBigEndian == 0)
+			            sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
+			        else
+			            sum = first *16*16*16*16*16*16 + second * 16*16*16*16 + third*16*16 + fourth;
+
 					rel[i][j].r_info = sum;
 					k+=4;
 
@@ -92,11 +100,11 @@ void readRelTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Rel*
 						 default:
 							type="UNKNOWN";
 					}
-				
+
 
 
 				int addrStrName = sym[ELF32_R_SYM(rel[i][j].r_info)+1].st_name;
-				
+
 				char * nameString = malloc(sizeof(char)*75);
        			int w = 0;
 
@@ -108,40 +116,40 @@ void readRelTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Rel*
 				 nameString[w] = 0;
 
 					char* nomSymb = nameString;
-					
-					if (nomSymb[0] == 0) {
-		
 
-				
+					if (nomSymb[0] == 0) {
+
+
+
 						char* name2 = malloc(sizeof(char)*75);
 						int n = 0;
 						int l = addrStrTable + shdr[sym[ELF32_R_SYM(rel[i][j].r_info)+1].st_shndx].sh_name;
-						
-						
+
+
 						while (fileBytes[l] != 0)
 						{
-		
+
 							name2[n] = fileBytes[l];
 							l++;
 							n++;
-		
+
 						}
-						name2[n]=0;					
+						name2[n]=0;
 						nomSymb=name2;
 					}
-					
+
 					int val = sym[ELF32_R_SYM(rel[i][j].r_info)+1].st_value;
 
 
-					printf("%08x   %08x  %-12s  %08x  %s\n",rel[i][j].r_offset,rel[i][j].r_info,type,val,nomSymb);	
-				}	
+					printf("%08x   %08x  %-12s  %08x  %s\n",rel[i][j].r_offset,rel[i][j].r_info,type,val,nomSymb);
+				}
 
 
 			}
 			/*else if(shdr[i].sh_type == 4) {
 				k = (unsigned int)shdr[i].sh_offset+i*(unsigned int)shdr[i].sh_size;
 				for(j=0;j<(shdr[i].sh_size/(32*3));j++) {
-					
+
 					unsigned int first = fileBytes[k];
         			unsigned int second = fileBytes[k+1];
         			unsigned int third = fileBytes[k+2];
@@ -156,16 +164,16 @@ void readRelTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Rel*
         			fourth = fileBytes[k+3];
         			sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
 					rel[j].r_info = sum;
-					k+=4;			
-				
+					k+=4;
+
 					first = fileBytes[k];
         			second = fileBytes[k+1];
         			third = fileBytes[k+2];
         			fourth = fileBytes[k+3];
         			sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
 					rel[j].r_addend = sum;
-					k+=4;			
-				}	
+					k+=4;
+				}
 			}*/
 	}
 printf("\n");
