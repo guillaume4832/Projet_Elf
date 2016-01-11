@@ -34,9 +34,11 @@ void readSymTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Sym*
     }
 
     int k = addrSymTable;
+    
     int numSymb = 0;
 
     while(k<size+addrSymTable){
+		///printf("%x\n", k);
         if(isVerbose == 1)
             printf("   %2d:",numSymb);
         numSymb++;

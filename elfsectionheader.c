@@ -146,6 +146,7 @@ void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbo
 	for(i=0;i<header.e_shnum;i++){
 		int j = (unsigned int)header.e_shoff+i*(unsigned int)header.e_shentsize;
 		/* Lecture des indices de nom de section */
+		/* Chaque entrée a une taille de 40 octets */
 		unsigned int first = fileBytes[j];
         unsigned int second = fileBytes[j+1];
         unsigned int third = fileBytes[j+2];
@@ -155,8 +156,10 @@ void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbo
             sum = first + second *16*16 + third *16*16*16*16 + fourth *16*16*16*16*16*16;
         else
             sum = first *16*16*16*16*16*16 + second * 16*16*16*16 + third*16*16 + fourth;
-
 		shdr[i].sh_name = sum;
+	/*	if ( i == 1 || i == 6){
+			printf( "Début de section: %x  ",j);
+			};*/
 
 		j+=4;
 		/* Lecture de la définition de la sémantique de la section */
@@ -169,7 +172,6 @@ void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbo
         else
             sum = first *16*16*16*16*16*16 + second * 16*16*16*16 + third*16*16 + fourth;
 		shdr[i].sh_type = sum;
-
 		j+=4;
 
 		/* Lecture des flags */
@@ -183,7 +185,6 @@ void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbo
         else
             sum = first *16*16*16*16*16*16 + second * 16*16*16*16 + third*16*16 + fourth;
 		shdr[i].sh_flags = sum;
-
 		j+=4;
 
 		/* Lecture de l'adresse à laquelle le premier octect de la section doit se trouver, sinon 0 */
@@ -197,7 +198,6 @@ void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbo
         else
             sum = first *16*16*16*16*16*16 + second * 16*16*16*16 + third*16*16 + fourth;
 		shdr[i].sh_addr = sum;
-
 		j+=4;
 
 		/* Lecture du décalage du premier octect de la section par rapport au début du fichier */
@@ -214,8 +214,8 @@ void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbo
 
 		if(i == header.e_shstrndx){
 			addrStrTable = sum;
+			
 		}
-
 		j+=4;
 
 		/* Lecture de la taille de la section en octet */
@@ -302,10 +302,10 @@ void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbo
 		char* name = malloc(sizeof(char)*75);
 		int n = 0;
 		int j = addrStrTable + shdr[i].sh_name;
+		
 
 		while (fileBytes[j] != 0x00)
 		{
-
 			name[n] = fileBytes[j];
 			j++;
 			n++;
