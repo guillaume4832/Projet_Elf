@@ -14,18 +14,20 @@ make clean
 ## Utilisation
 ### Flags:
 ```
-./main <OPTS> <FILENAME>
+./main -f <FILENAME> <OPTS>
 ```
 
 | Options       | Effet                    |
 | ------------- |:------------------------:|
+| -f            | Filename (required)      |
 | -h            | Header                   |
 | -S            | Sections                 |
 | -x<num>       | Detail Section <num>     |
 | -s            | Symbol Table             |
+| -r            | Relocation Table         |
 
 ## TODO:
-* Gestion des options
+* Options: Choix de section par nom
 * Documentation/Commentage de code
 * Etape 6
 
