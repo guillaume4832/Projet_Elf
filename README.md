@@ -1,18 +1,18 @@
-#Projet ELF
-######Amédée Fleau - Clément Heresaz - Guillaume Chaput - Lucas Albarede -Loïc Chevalier
+# Projet ELF
+###### Amédée Fleau - Clément Heresaz - Guillaume Chaput - Lucas Albarede -Loïc Chevalier
 
-##Installation
+## Installation
 ```
 make
 ```
 
-##Suppression
+## Suppression
 ```
 make clean
 ```
 
-##Utilisation
-###Flags:
+## Utilisation
+### Flags:
 ```
 ./main <OPTS> <FILENAME>
 ```
@@ -24,9 +24,9 @@ make clean
 | -x<num>       | Detail Section <num>     |
 | -s            | Symbol Table             |
 
-##TODO:
+## TODO:
 * Gestion des options
-* Lecture de la table de relocation
-* Gestion du Big Endian dans la table des symboles
+* Documentation/Commentage de code
+* Etape 6
 
 > Bonne année 2016
