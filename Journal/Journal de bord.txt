@@ -1,4 +1,4 @@
-﻿Amédée Fleau - Clément Heresaz - Guillaume Chaput - Lucas Albarede -Loïc Chevalier
+﻿Amédée Fleau - Clément Heresaz - Guillaume Chaput - Lucas Albarede - Loïc Chevalier
 
 Projet d'éditeur de liens au format ELF
 Journal de bord 
@@ -54,5 +54,13 @@ Dans un deuxième temps, un 2ème groupe, s'est appliqué à mettre en forme le 
 Préparation de la phase 2 et de l'implémentation des options (par exemple « -x », « -s » ou « -r »).
 
 Lundi 11 Janvier 
-	 Impémentation des Options
+	 Implémentation des Options, Documentation,Test et étape 6 phase 2
+
+Tout d'abord les options ont été implémentées afin de faciliter le programme. Le fichier README a été corigé en conséquence.
+Ensuite, 2 groupes de travail se sont constitués. Le premier commence l'étape 6 de la phase 2 pendant que le deuxième fait
+la documention du programme. Cependant ce travail a été écourté suite à l'audit de code qui prône plus de se concentrer sur
+les tests. Cet audit a d'ailleurs relevé des problèmes de factorisations de code et la necessité d'utiliser un tableau pour
+pouvoir éditer les globales lors de la phase 2.
+
+En fin de journée, l'étape 6 est terminée et l'implentation des codes de test pour la soutenance est partiellement achevée.
 
