@@ -27,14 +27,8 @@ make clean
 | -r            | Relocation Table         |
 
 ## TODO:
-* Documentation/Commentage de code
-* Etape 6
+* Etape 7
 
-## Question en suspens:
-* Faut-il traiter le cas des fichiers exécutables ?
-* Etape 6 ?
-* Quels flags gérer dans les hsections ?
-* CORRECTION FICHIER GENERER TABLE DES SYMBOLES ERREUR -> Corriger l'adresse
 
 
 
