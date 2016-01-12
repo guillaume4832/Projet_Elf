@@ -62,3 +62,11 @@ Ensuite, 2 groupes de travail se sont constitués. Le premier entame l'étape 6 
 
 En fin de journée, l'étape 6 est sur le point d'être terminée (quelques bugs subsitent) et l'implentation des codes de test pour la soutenance est partiellement achevée.
 
+-- Note: Ajouts mineures de test dans le programme
+
+Mardi 12 Janvier
+	Finition de l'étape 6, commancement de l'étape 7 et fonctionnalités
+	
+Le groupe s'est encore séparé en 2 parties : le premier corrige les bugs restant du code émis hier. Dès que cela est fait, ce groupe est passé à la programmation de l'étape 7.
+Parallèlement, le deuxième groupe de travaile s'est attelé à la documentation "Doxygen" du code et à l'ajout de fonctionnalitées : une option correspondante au besoin de l'étape 6 ainsi que le renomage dynamique du fichier sortant ( sans les sections REL).
+En fin de journée, l'équipe s'est reconstitué pour continuer l'étape 7
