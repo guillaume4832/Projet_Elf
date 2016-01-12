@@ -20,6 +20,7 @@
 #include "elfsymtable.h"
 #include "elfrelocation.h"
 #include "elfdeleterel.h"
+#include "elfrelocateSymb.h"
 #include "filereader.h"
 
 /**
@@ -47,7 +48,7 @@ int isnumber(const char*s) {
 void main(int argc, char * argv[]){
 
 	//Lecture des Options
-
+	
     int opt;
 	char *fileName;
 
@@ -133,6 +134,7 @@ void main(int argc, char * argv[]){
 		printf("Veuillez préciser un nom de fichier avec l'option -f\n-f : Nom de fichier\n-h : Lecture du header\n-S : Lecture des en-têtes de sections\n-x <Nom/Numéro de section> : Détail d'une section\n-s : Lecture de la table des symboles\n-r : Lecture de la table de relocation\n");
 		exit(1);
 	}
+
 	// Lecture du header
     Elf32_Ehdr header = readHeader(fileName,verboseHeader);
 	// Lecture des headers de sections
@@ -145,21 +147,30 @@ void main(int argc, char * argv[]){
 
 	int j = getIndSectionSymtab(header,shdr);
 	Elf32_Sym sym[(shdr[j].sh_size)/(4+4+4+1+1+2)];
+
 	readSymTable(fileName,header,shdr,sym,verboseSymboles);
 
 	int i;
 	int count = 0;
+	int symval;
 	for(i=0;i<header.e_shnum;i++) {
-		if (shdr[i].sh_type == 9 || 4) {
+		if (shdr[i].sh_type == 9) {
 			count = count+1;
 		}
 	}
+	char* nomfichier = malloc(sizeof(char)*75);
+
 
 	if (count != 0) {
-    	Elf32_Rel* rel[count];
+
+		Elf32_Rel* rel[count];
+
 		readRelTable(fileName,header,shdr,rel,sym,verboseRelocation);
+		printf("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");
+		//nomfichier = delRelTable(fileName,header,shdr);
+		
+		//symval = elfrelocatesymb(nomfichier,header,rel,shdr,sym);
 	}
 	
-	delRelTable(fileName,header,shdr);
-
+	
 }

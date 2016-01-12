@@ -5,4 +5,4 @@
 
 #include "filereader.h"
 
-void delRelTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr);
+char* delRelTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr);
