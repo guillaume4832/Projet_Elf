@@ -48,20 +48,17 @@ Vendredi 8 Janvier
 Après plusieurs heures de travail, la partie 5 est terminée. La principale difficulté
  nécessita pour la résoudre que nous comprenions comment récupérer les données afin d'obtenir le même affichage que la fonction readelf. 
 
-Dans un deuxième temps, un 2ème groupe, s'est appliqué à mettre en forme le programme afin de le rendre compatible avec des
- fichiers "Big endian". Cette partie du travail n'est pas encore achevée au soir du vendredi car ce travail s'est fait en parallèle avec le 1er groupe.
+Dans un deuxième temps, un 2ème groupe, s'est appliqué à mettre en forme le programme afin de le rendre compatible avec des fichiers "Big endian". Cette partie du travail n'est pas encore achevée au soir du vendredi car ce travail s'est fait en parallèle avec le 1er groupe.
 
 Préparation de la phase 2 et de l'implémentation des options (par exemple « -x », « -s » ou « -r »).
 
 Lundi 11 Janvier 
-	 Implémentation des Options, Documentation,Test et étape 6 phase 2
+	 Implémentation des Options, Documentation, Tests. Début de la phase 2, début de l'étape 6.
 
-Tout d'abord les options ont été implémentées afin de faciliter le programme. Le fichier README a été corigé en conséquence.
-Ensuite, 2 groupes de travail se sont constitués. Le premier commence l'étape 6 de la phase 2 pendant que le deuxième fait
-la documention du programme. Cependant ce travail a été écourté suite à l'audit de code qui prône plus de se concentrer sur
-les tests. Cet audit a d'ailleurs relevé des problèmes de factorisations de code et la necessité d'utiliser un tableau pour
-pouvoir éditer les globales lors de la phase 2.
+Tout d'abord les options ont été implémentées afin de faciliter le programme. Le fichier README a été corrigé en conséquence.
+Ensuite, 2 groupes de travail se sont constitués. Le premier entame l'étape 6 pendant que le second fait
+ la documention du programme. Cependant cette tache de documentation a été reporté suite à l'audit de code qui prône de se concentrer davantage sur
+ les tests. Cet audit a d'ailleurs relevé des manques de factorisations dans le code et nous a expliqué la necessité d'utiliser un tableau pour pouvoir éditer les globales lors de la phase 2.
 
-En fin de journée, l'étape 6 est sur le point d'être terminée (quelques bugs subsitent) et l'implentation des codes
-de test pour la soutenance est partiellement achevée.
+En fin de journée, l'étape 6 est sur le point d'être terminée (quelques bugs subsitent) et l'implentation des codes de test pour la soutenance est partiellement achevée.
 
