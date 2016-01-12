@@ -52,12 +52,16 @@ void delRelTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr){
 		fileBytes[51] = poidsFort2;
 		fileBytes[50] = poidsFaible2;
 	}
+	
+	// Mise en forme du nom de fichier de sortie
+	
+	char* chemin = filePath; // Récupération du chemin du fichier
+	chemin[strlen(chemin)-2]= 0; // Suppression de la partie ".o"
+	strcat(chemin, "_DELREL.o"); // Ajout au nom de fichier "_DELREL.o"
 
 
 
-
-
-	void * file_to_write = fopen("pouet.o", "w");
+	void * file_to_write = fopen(chemin, "w");
     if(file_to_write != NULL){
         int i = 0;
 		int j;
