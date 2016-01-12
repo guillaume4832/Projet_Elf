@@ -1,5 +1,27 @@
+/**
+ * \file elflocation.c
+ * \brief Programme des section de type rel
+ * \author Amédée Fleau - Clément Heresaz - Guillaume Chaput - Lucas Albarede - Loïc Chevalier
+ * \version 1
+ * \date 12 Janvier 2016
+ *
+ * Programme permettant l'affichage du contenu des section rel ELF.
+ *
+ */
+
+
 #include "elfrelocation.h"
 
+/**
+ * \fn void readRelTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Rel* rel[],Elf32_Sym* sym,int isVerbose)
+ * \brief Fonction d'affichage du contenus des section rel.
+ * \param *filePath le chemin du fichier entrée en paramètre.
+ * \param header l'en-tête du fichier Elf définie par *filePath.
+ * \param shdr le tableau des en-têtes de sections.
+ * \param rel[] le tableau contenant les contenus des différentes sections de type rel
+ * \param sym le tableau des symboles.
+ * \param isVerbose Permet de cacher ou voir les informations de l'en-tête.
+ */
 
 void readRelTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Rel* rel[],Elf32_Sym* sym,int isVerbose){
 
