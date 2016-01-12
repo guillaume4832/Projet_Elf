@@ -57,6 +57,7 @@ void main(int argc, char * argv[]){
 		{ "sectionDetails", required_argument, NULL, 'x' },
 		{ "symboles", no_argument, NULL, 's' },
         { "relocation", no_argument, NULL, 'r'},
+		{ "deleteRelocation", no_argument, NULL, 'd'},
 		{ "fileName", required_argument, NULL, 'f' },
 		{ NULL, 0, NULL, 0 }
 	};
@@ -67,7 +68,8 @@ void main(int argc, char * argv[]){
 	int verboseRelocation = 0;
 	int sectionDetails = -1;
 	int hasFile = 0;
-	while ((opt = getopt_long(argc, argv, "hSx:srf:", longopts, NULL)) != -1) {
+	int optiond=0;
+	while ((opt = getopt_long(argc, argv, "hSx:srf:d", longopts, NULL)) != -1) {
 
 		switch(opt) {
 			case 'h':
@@ -124,6 +126,9 @@ void main(int argc, char * argv[]){
 				fileName = optarg;
 				hasFile = 1;
 				break;
+			case 'd':
+				optiond = 1;
+				break;
 			default:
 				fprintf(stderr, "Unrecognized option %c\n", opt);
 				exit(1);
@@ -159,7 +164,7 @@ void main(int argc, char * argv[]){
     	Elf32_Rel* rel[count];
 		readRelTable(fileName,header,shdr,rel,sym,verboseRelocation);
 	}
-	
-	delRelTable(fileName,header,shdr);
-
+	if(optiond = 1){
+		delRelTable(fileName,header,shdr);
+	}
 }
