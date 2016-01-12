@@ -17,14 +17,15 @@ make clean
 ./main -f <FILENAME> <OPTS>
 ```
 
-| Options       | Effet                    |
-| ------------- |:------------------------:|
-| -f            | Filename (required)      |
-| -h            | Header                   |
-| -S            | Sections                 |
-| -x<num>       | Detail Section <num>     |
-| -s            | Symbol Table             |
-| -r            | Relocation Table         |
+| Options       | Effet                    		 |
+| ------------- |:------------------------------:|
+| -f            | Filename (required)      		 |
+| -h            | Header                   		 | 
+| -S            | Sections                 		 |
+| -x<num>       | Detail Section <num>     		 |
+| -s            | Symbol Table             		 |
+| -r            | Relocation Table         		 |
+| -d			| Delete REL (new file generated)|
 
 ## TODO:
 * Documentation/Commentage de code
