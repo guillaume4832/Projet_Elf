@@ -4,4 +4,4 @@
 
 #include "filereader.h"
 
-int elfrelocatesymb(char * filePath, Elf32_Ehdr header, Elf32_Rel **rel, Elf32_Shdr *shdr,Elf32_Sym *sym);
+void elfrelocatesymb(char * filePath, Elf32_Ehdr header, Elf32_Rel **rel, Elf32_Shdr *shdr,Elf32_Sym *symOLD,Elf32_Sym *sym);

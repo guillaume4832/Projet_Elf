@@ -152,24 +152,39 @@ void main(int argc, char * argv[]){
 
 	int i;
 	int count = 0;
-	int symval;
 	for(i=0;i<header.e_shnum;i++) {
 		if (shdr[i].sh_type == 9) {
 			count = count+1;
 		}
 	}
-	char* nomfichier = malloc(sizeof(char)*75);
+	char* nomfichier = malloc(sizeof(char)*50);
 
 
 	if (count != 0) {
 
 		Elf32_Rel* rel[count];
-
 		readRelTable(fileName,header,shdr,rel,sym,verboseRelocation);
-		printf("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");
-		//nomfichier = delRelTable(fileName,header,shdr);
+
+
+		nomfichier = delRelTable(fileName,header,shdr);
+			
+		Elf32_Ehdr headerNew = readHeader(nomfichier,0);
+
+		Elf32_Shdr shdrNew[headerNew.e_shnum];
+
+		readSheader(nomfichier,headerNew,shdrNew,0);		
+
+		readSymTable(nomfichier,headerNew,shdrNew,sym,0);	
 		
-		//symval = elfrelocatesymb(nomfichier,header,rel,shdr,sym);
+		elfmodifsymb(nomfichier,header,headerNew,shdr,shdrNew,sym);
+		
+		j = getIndSectionSymtab(headerNew,shdrNew);
+		Elf32_Sym symNew[(shdrNew[j].sh_size)/(4+4+4+1+1+2)];
+
+		readSymTable(nomfichier,headerNew,shdrNew,symNew,verboseSymboles);
+
+		elfrelocatesymb(nomfichier,header,rel,shdr,sym,symNew);
+		
 	}
 	
 	

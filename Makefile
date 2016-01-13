@@ -1,5 +1,5 @@
-main: main.c elfheader.o elfsectionheader.o elfsection.o elfsymtable.o filereader.o elfrelocation.o elfdeleterel.o elfrelocateSymb.o
-	gcc -o main main.c elfheader.o elfsectionheader.o elfsection.o elfsymtable.o filereader.o elfrelocation.o elfdeleterel.o elfrelocateSymb.o
+main: main.c elfheader.o elfsectionheader.o elfsection.o elfsymtable.o filereader.o elfrelocation.o elfdeleterel.o elfrelocateSymb.o elfmodifsymb.o
+	gcc -o main main.c elfheader.o elfsectionheader.o elfsection.o elfsymtable.o filereader.o elfrelocation.o elfdeleterel.o elfrelocateSymb.o elfmodifsymb.o
 
 
 elfheader.o: elfheader.c elfheader.h filereader.h
@@ -22,6 +22,9 @@ elfdeleterel.o: elfdeleterel.c elfdeleterel.h filereader.h
 
 elfrelocateSymb.o: elfrelocateSymb.c elfrelocateSymb.h filereader.h
 	gcc -c elfrelocateSymb.c filereader.h
+
+elfmodifsymb.o: elfmodifsymb.c elfmodifsymb.h filereader.h
+	gcc -c elfmodifsymb.c filereader.h
 
 filereader.o: filereader.c filereader.h
 	gcc -c filereader.c
