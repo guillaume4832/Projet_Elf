@@ -58,6 +58,7 @@ void main(int argc, char * argv[]){
 		{ "sectionDetails", required_argument, NULL, 'x' },
 		{ "symboles", no_argument, NULL, 's' },
         { "relocation", no_argument, NULL, 'r'},
+		{ "deleteRelocation", no_argument, NULL, 'd'},
 		{ "fileName", required_argument, NULL, 'f' },
 		{ NULL, 0, NULL, 0 }
 	};
@@ -68,7 +69,8 @@ void main(int argc, char * argv[]){
 	int verboseRelocation = 0;
 	int sectionDetails = -1;
 	int hasFile = 0;
-	while ((opt = getopt_long(argc, argv, "hSx:srf:", longopts, NULL)) != -1) {
+	int optiond=0;
+	while ((opt = getopt_long(argc, argv, "hSx:srf:d", longopts, NULL)) != -1) {
 
 		switch(opt) {
 			case 'h':
@@ -125,6 +127,9 @@ void main(int argc, char * argv[]){
 				fileName = optarg;
 				hasFile = 1;
 				break;
+			case 'd':
+				optiond = 1;
+				break;
 			default:
 				fprintf(stderr, "Unrecognized option %c\n", opt);
 				exit(1);
@@ -140,16 +145,19 @@ void main(int argc, char * argv[]){
 	// Lecture des headers de sections
 	Elf32_Shdr shdr[header.e_shnum];
 	readSheader(fileName,header,shdr,verboseSectionH);
+	
 	// Lecture d'une section
 	if(sectionDetails != -1)
-		readSection(sectionDetails,fileName,header,shdr);
+		readSection(sectionDetails,fileName,header,shdr);  // PLANTE
 	// Lecture de la table des symboles
 
+	
 	int j = getIndSectionSymtab(header,shdr);
 	Elf32_Sym sym[(shdr[j].sh_size)/(4+4+4+1+1+2)];
 
+	
 	readSymTable(fileName,header,shdr,sym,verboseSymboles);
-
+	
 	int i;
 	int count = 0;
 	for(i=0;i<header.e_shnum;i++) {
@@ -164,28 +172,30 @@ void main(int argc, char * argv[]){
 
 		Elf32_Rel* rel[count];
 		readRelTable(fileName,header,shdr,rel,sym,verboseRelocation);
-
-
-		nomfichier = delRelTable(fileName,header,shdr);
-			
-		Elf32_Ehdr headerNew = readHeader(nomfichier,0);
-
-		Elf32_Shdr shdrNew[headerNew.e_shnum];
-
-		readSheader(nomfichier,headerNew,shdrNew,0);		
-
-		readSymTable(nomfichier,headerNew,shdrNew,sym,0);	
 		
-		elfmodifsymb(nomfichier,header,headerNew,shdr,shdrNew,sym);
-		
-		j = getIndSectionSymtab(headerNew,shdrNew);
-		Elf32_Sym symNew[(shdrNew[j].sh_size)/(4+4+4+1+1+2)];
+		if(optiond = 1){
+				
+			nomfichier = delRelTable(fileName,header,shdr);
 
-		readSymTable(nomfichier,headerNew,shdrNew,symNew,verboseSymboles);
+			Elf32_Ehdr headerNew = readHeader(nomfichier,0);
 
-		elfrelocatesymb(nomfichier,header,rel,shdr,sym,symNew);
+			Elf32_Shdr shdrNew[headerNew.e_shnum];
+
+			readSheader(nomfichier,headerNew,shdrNew,0);		
+
+			readSymTable(nomfichier,headerNew,shdrNew,sym,0);	
 		
+			elfmodifsymb(nomfichier,header,headerNew,shdr,shdrNew,sym);
+		
+			j = getIndSectionSymtab(headerNew,shdrNew);
+			Elf32_Sym symNew[(shdrNew[j].sh_size)/(4+4+4+1+1+2)];
+
+			readSymTable(nomfichier,headerNew,shdrNew,symNew,verboseSymboles);
+
+			elfrelocatesymb(nomfichier,header,rel,shdr,sym,symNew);
+		}
 	}
+
 	
-	
+
 }

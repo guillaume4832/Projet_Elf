@@ -30,4 +30,4 @@ filereader.o: filereader.c filereader.h
 	gcc -c filereader.c
 
 clean:
-	rm -f main elfheader.o elfsection.o elfsectionheader.o elfsymtable.o filereader.o elfrelocation.o elfdeleterel.o elfrecolateSymb.o
+	rm -f main elfheader.o elfsection.o elfsectionheader.o elfsymtable.o filereader.o elfrelocation.o elfdeleterel.o elfrecolateSymb.o elfmodifsymb.o elfrelocateSymb.o *.gch *~

@@ -1,7 +1,9 @@
 #include "elfdeleterel.h"
+#include <string.h>
 
 
 char* delRelTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr){
+
 
 
 	char* nomfichier = malloc(sizeof(char)*75);
@@ -54,12 +56,16 @@ char* delRelTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr){
 		fileBytes[50] = poidsFaible2;
 	}
 
+	// Mise en forme du nom de fichier de sortie
+	
+	char* chemin = filePath; // Récupération du chemin du fichier
+	chemin[strlen(chemin)-2]= 0; // Suppression de la partie ".o"
+	strcat(chemin, "_DELREL.o"); // Ajout au nom de fichier "_DELREL.o"
 
 
-//SI vous voulez changer le nom de fichier c'est ici 
-	nomfichier="pouet.o";
-	void * file_to_write = fopen(nomfichier, "w");
-////////////////////////////////////////////////////
+
+	void * file_to_write = fopen(chemin, "w");
+
     if(file_to_write != NULL){
         int i = 0;
 		int j;
@@ -184,9 +190,7 @@ char* delRelTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr){
     }
     else{
         fclose(file_to_write);
-
     }
 
-
-return nomfichier;
+return chemin;
 }

@@ -1,5 +1,25 @@
+/**
+ * \file elfsection.c
+ * \brief Programme du contenu des sections.
+ * \author Amédée Fleau - Clément Heresaz - Guillaume Chaput - Lucas Albarede - Loïc Chevalier
+ * \version 1
+ * \date 12 Janvier 2016
+ *
+ * Programme permettant l'affichage du contenu des en-tête de section ELF
+ *
+ */
+
+
 #include "elfsection.h"
 
+/**
+ * \fn void readSection(int numsection,char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr)
+ * \brief Fonction d'affichage des contenus de section.
+ * \param numsection le numéro de l'en-tête de section courant.
+ * \param *filePath le chemin du fichier entrée en paramètre.
+ * \param header l'en-tête du fichier Elf définie par *filePath.
+ * \param shdr le tableau des en-têtes de sections.
+ */
 
 void readSection(int numsection,char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr){
     int i;
