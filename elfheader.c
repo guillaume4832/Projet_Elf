@@ -14,7 +14,7 @@
 /**
  * \fn Elf32_Ehdr readHeader(char * filePath, int isVerbose)
  * \brief Lecture de l'en-tête ELF d'un fichier.
- * \param * filePath Fichier entré en paramètre.
+ * \param *filePath Fichier entré en paramètre.
  * \param isVerbose Permet de cacher ou voir les informations de l'en-tête.
  * \return header - Retourne l'objet contenant les informations de l'en-tête.
  */
@@ -33,10 +33,10 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
         header.e_ident[EI_MAG1] = fileBytes[1];
         header.e_ident[EI_MAG2] = fileBytes[2];
         header.e_ident[EI_MAG3] = fileBytes[3];
-		///"Décalage du nombre magique 0 :" 0x0; ///
-		///"Décalage du nombre magique 1 :" 0x1; ///
-		///"Décalage du nombre magique 2 :" 0x2; ///
-		///"Décalage du nombre magique 3 :" 0X3; ///
+		//"Décalage du nombre magique 0 :" 0x0; //
+		//"Décalage du nombre magique 1 :" 0x1; //
+		//"Décalage du nombre magique 2 :" 0x2; //
+		//"Décalage du nombre magique 3 :" 0X3; //
 		}
     else{
         if(isVerbose == 1)
@@ -62,7 +62,7 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
             isValid = 0;
         }
         header.e_ident[EI_CLASS] = fileBytes[i];
-        ///"Décalage du mode d'architecture :" 0X4; ///
+        //"Décalage du mode d'architecture :" 0X4; //
     }
     i++;
 
@@ -83,7 +83,7 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
             isValid = 0;
         }
         header.e_ident[EI_DATA] = fileBytes[i];
-        ///"Décalage du Boutisme :" 0X5; ///
+        //"Décalage du Boutisme :" 0X5; //
     }
     i++;
 
@@ -99,7 +99,7 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
             isValid = 0;
         }
         header.e_ident[EI_VERSION] = fileBytes[i];
-        ///"Décalage de la version :" 0X6; ///
+        //"Décalage de la version :" 0X6; //
     }
     i++;
 
@@ -170,7 +170,7 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
             isValid = 0;
         }
         header.e_ident[EI_OSABI] = fileBytes[i];
-        ///"Décalage de la machine :" 0X7; ///
+        //"Décalage de la machine :" 0X7; //
     }
     i++;
 
@@ -179,7 +179,7 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
         if(isVerbose == 1)
             printf("[*] Version de l'ABI :                                 %d\n",fileBytes[i]);
         header.e_ident[EI_ABIVERSION] = fileBytes[i];
-        ///"Décalage de la version d'ABI :" 0X8; ///
+        //"Décalage de la version d'ABI :" 0X8; //
     }
     if(isBigEndian == 1)
         i=17;
@@ -207,7 +207,7 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
             else{
                 printf("[W] Type inconnu\n");
             }
-            ///"Décalage du type :" 0X10;///
+            //"Décalage du type :" 0X10;//
         }
         header.e_type = fileBytes[i];
     }
@@ -258,7 +258,7 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
             else{
                 printf("[W] Machine cible non reconnue\n");
             }
-            ///"Décalage de la version d'ABI :" 0X12; ///
+            //"Décalage de la version d'ABI :" 0X12; //
         }
         header.e_machine = fileBytes[i];
     }
@@ -284,7 +284,7 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
                 printf("[W] Version inconnue\n");
         }
         header.e_version = fileBytes[i];
-        ///"Décalage de la version du fichier :" 0X14;///
+        //"Décalage de la version du fichier :" 0X14;//
     }
     if(isBigEndian == 0)
         i+=4;
@@ -305,7 +305,7 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
         if(isVerbose == 1)
             printf("[*] Adresse du point d'entrée :                        0x%x\n",sum);
         header.e_entry = sum;
-        ///"Décalage du point d'entree :" 0X18;///
+        //"Décalage du point d'entree :" 0X18;//
     }
     i+=4;
 
@@ -323,7 +323,7 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
         if(isVerbose == 1)
             printf("[*] Début des en-têtes de programme :                  %d\n",sum);
         header.e_phoff = sum;
-        ///"Décalage des en-tête de programme :" 0X1C;///
+        //"Décalage des en-tête de programme :" 0X1C;//
     }
     i+=4;
 
@@ -340,7 +340,7 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
         if(isVerbose == 1)
             printf("[*] Début des en-têtes de section :                    %d\n",sum);
         header.e_shoff = sum;
-        ///"Décalage des en-tête de programme :" 0X20;//
+        //"Décalage des en-tête de programme :" 0X20;//
     }
     i+=4;
 
@@ -357,7 +357,7 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
         if(isVerbose == 1)
             printf("[*] Fanions :                                          0x%x\n",sum);
         header.e_flags = sum;
-        ///"Décalage des en-tête de programme :" 0X24;//
+        //"Décalage des en-tête de programme :" 0X24;//
     }
     i+=4;
 
@@ -372,7 +372,7 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
         if(isVerbose == 1)
             printf("[*] Taille de cet en-tête :                            %d\n",sum);
         header.e_ehsize = sum;
-        ///"Décalage des en-tête de programme :" 0X28;//
+        //"Décalage des en-tête de programme :" 0X28;//
     }
     i+=2;
 
@@ -387,7 +387,7 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
         if(isVerbose == 1)
             printf("[*] Taille de l'en-tête du programme :                 %d\n",sum);
         header.e_phentsize = sum;
-        ///"Décalage des en-tête de programme :" 0X2A;//
+        //"Décalage des en-tête de programme :" 0X2A;//
     }
     i+=2;
 
@@ -402,7 +402,7 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
         if(isVerbose == 1)
             printf("[*] Nombre d'en-tête du programme :                    %d\n",sum);
         header.e_phnum = sum;
-        ///"Décalage des en-tête de programme :" 0X2C;//
+        //"Décalage des en-tête de programme :" 0X2C;//
     }
     i+=2;
 
@@ -417,7 +417,7 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
         if(isVerbose == 1)
             printf("[*] Taille des en-têtes de section :                   %d\n",sum);
         header.e_shentsize = sum;
-        ///"Décalage des en-tête de programme :" 0X2E;//
+        //"Décalage des en-tête de programme :" 0X2E;//
     }
     i+=2;
 
@@ -432,7 +432,7 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
         if(isVerbose == 1)
             printf("[*] Nombre d'en-tête de section :                      %d\n",sum);
         header.e_shnum = sum;
-        ///"Décalage des en-tête de programme :" 0X30;//
+        //"Décalage des en-tête de programme :" 0X30;//
     }
     i+=2;
 
@@ -447,7 +447,7 @@ Elf32_Ehdr readHeader(char * filePath, int isVerbose){
         if(isVerbose == 1)
             printf("[*] Table d'indexes des chaînes d'en-tête de section : %d\n",sum);
         header.e_shstrndx = sum;
-        ///"Décalage des en-tête de programme :" 0X32;//
+        //"Décalage des en-tête de programme :" 0X32;//
     }
     i+=2;
 
