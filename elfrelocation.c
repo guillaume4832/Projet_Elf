@@ -91,37 +91,25 @@ void readRelTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr, Elf32_Rel*
 
 					 switch(ELF32_R_TYPE(rel[compteur][j].r_info)){
          				 case 0:
-           				 	type ="R_386_NONE";
+           				 	type ="R_ARM_NONE";
            				 	break;
-						 case 1:
-						 	type="R_386_32";
-						 	break;
 						 case 2:
-							type="R_386_PC32";
-							break;
-						 case 3:
-							type="R_386_GOT32";
-							break;
-						 case 4:
-							type="R_386_PLT32";
+							type="R_ARM_ABS32";
 							break;
 						 case 5:
-							type="R_386_COPY";
+							type="R_ARM_ABS16";
 							break;
 						 case 6:
-							type="R_386_GLOB_DAT";
-							break;
-						 case 7:
-							type="R_386_JMP_SLOT";
+							type="R_ARM_ABS12";
 							break;
 						 case 8:
-							type="R_386_RELATIVE";
+							type="R_ARM_ABS8";
 							break;
-						 case 9:
-							type="R_386_GOTOFF";
+						 case 28:
+							type="R_ARM_CALL";
 							break;
-						 case 10:
-							type="R_386_GOTPC";
+						 case 29:
+							type="R_ARM_JUMP24";
 							break;
 						 default:
 							type="UNKNOWN";

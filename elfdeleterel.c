@@ -14,8 +14,6 @@ char* delRelTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr){
 	for(i=0;i<header.e_shnum;i++) {
 
 		if(shdr[i].sh_type != 9) {
-
-
 		}
 		else {
 			if(size == -1){

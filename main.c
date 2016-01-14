@@ -200,17 +200,18 @@ void main(int argc, char * argv[]){
 		readRelTable(fileName,header,shdr,rel,sym,verboseRelocation);
 		
 		if(optiond == 1){
-				
+			
 			nomfichier = delRelTable(fileName,header,shdr);
 
 			Elf32_Ehdr headerNew = readHeader(nomfichier,0);
 
 			Elf32_Shdr shdrNew[headerNew.e_shnum];
 
-			readSheader(nomfichier,headerNew,shdrNew,0);		
+			readSheader(nomfichier,headerNew,shdrNew,0);
+			
 
 			readSymTable(nomfichier,headerNew,shdrNew,sym,0);	
-		
+
 			nomfichier = elfmodifsymb(nomfichier,header,headerNew,shdr,shdrNew,sym);
 		
 			j = getIndSectionSymtab(headerNew,shdrNew);

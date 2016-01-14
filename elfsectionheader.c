@@ -138,7 +138,7 @@ void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbo
 	int i;
 	unsigned char* fileBytes = readFileBytes(filePath);
 	unsigned int addrStrTable;
-
+	int taillemax=0;
     int isBigEndian = header.e_ident[EI_DATA]-1;
 
 
@@ -292,8 +292,12 @@ void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbo
 
 
 	}
+
     if(isVerbose == 1)
-	   printf("  [Nr]  Nom\t\t        Type\t    Adr    \tDécala.\tTaille\tES\tFan\tLN\tInf\tAl\n");
+	   printf("  [Nr]  Nom\t\t        Type\t         Adr    \tDécala.\tTaille\tES\tFan\tLN\tInf\tAl\n");
+
+	
+
 
 	for(i=0;i<header.e_shnum;i++){
 
@@ -315,7 +319,7 @@ void readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbo
 
 
 		if(isVerbose == 1)
-			printf("  [%2d] %-25s%-12s%08d\t%06x\t%06x\t%02x\t%-1.04s\t%d\t%d\t%d\n",i,name,nom_type(shdr[i].sh_type),shdr[i].sh_addr,shdr[i].sh_offset,shdr[i].sh_size,shdr[i].sh_entsize,nom_flags(shdr[i].sh_flags),shdr[i].sh_link,shdr[i].sh_info,shdr[i].sh_addralign);
+			printf("  [%2d] %-25s%-17s%08d\t%06x\t%06x\t%02x\t%-1.04s\t%d\t%d\t%d\n",i,name,nom_type(shdr[i].sh_type),shdr[i].sh_addr,shdr[i].sh_offset,shdr[i].sh_size,shdr[i].sh_entsize,nom_flags(shdr[i].sh_flags),shdr[i].sh_link,shdr[i].sh_info,shdr[i].sh_addralign);
 	}
 	if(isVerbose == 1)
 		printf (("Clé des fanions:\n W (écriture), A (allocation), X (exécution), U (Valeur Inconnue)\n"));

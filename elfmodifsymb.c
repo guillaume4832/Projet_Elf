@@ -4,6 +4,8 @@ char* elfmodifsymb(char * filePath, Elf32_Ehdr headerOLD,Elf32_Ehdr header, Elf3
 
 unsigned char* fileBytes = readFileBytes(filePath); // Contenu du fichier
 
+
+
 int indexsymtab;
 int k,i,j;
 int compteur = 0;
@@ -11,18 +13,18 @@ int compteur2 = 0;
 unsigned int newval,newvalAddr;
 int isBigEndian = header.e_ident[EI_DATA]-1;
 unsigned char poidsFort, poidsFaible,poidsFort2, poidsFaible2,poidsMoyen1,poidsMoyen2;
-int indextab[header.e_shnum];
+int indextab[headerOLD.e_shnum];
+
 
 for(k=0;k<headerOLD.e_shnum;k++) {
-	if (shdr[k].sh_type == 2) {
-		indexsymtab = k;				
+	if (k < header.e_shnum && shdr[k].sh_type == 2) {
+		indexsymtab = k;		
 	}
 	if(shdrOLD[k].sh_type == 9) {
 	compteur++;
 	}
 	indextab[k]=compteur;
-}
-
+}	
 
 
 for(j=0;j<(shdr[indexsymtab].sh_size/shdr[indexsymtab].sh_entsize);j++){
@@ -107,5 +109,6 @@ for(j=0;j<(shdr[indexsymtab].sh_size/shdr[indexsymtab].sh_entsize);j++){
 	}
 	fclose(file_to_write);
 }
+
 return chemin;
 }
