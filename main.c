@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <elf.h>
 #include <getopt.h>
+#include <sys/stat.h>
 
 #include "elfheader.h"
 #include "elfsectionheader.h"
@@ -21,6 +22,7 @@
 #include "elfrelocation.h"
 #include "elfdeleterel.h"
 #include "elfrelocateSymb.h"
+#include "elfmodifsymb.h"
 #include "filereader.h"
 
 /**
@@ -35,6 +37,12 @@ int isnumber(const char*s) {
    char* e = NULL;
    (void) strtol(s, &e, 0);
    return e != NULL && *e == (char)0;
+}
+
+int is_file(const char* path) {
+    struct stat buf;
+    stat(path, &buf);
+    return S_ISREG(buf.st_mode);
 }
 
 /**
@@ -81,8 +89,16 @@ void main(int argc, char * argv[]){
 				break;
 			case 'x':
 				if(isnumber(optarg))
-				{
+				{	
+					unsigned char* fileBytes = readFileBytes(fileName);
+					Elf32_Ehdr header = readHeader(fileName,verboseHeader);
+					Elf32_Shdr shdr[header.e_shnum];
+					readSheader(fileName,header,shdr,verboseSectionH);
 					sectionDetails = atoi(optarg);
+					if(sectionDetails < 0 || sectionDetails >= header.e_shnum){
+						sectionDetails = -1;
+						printf("La section %s n'existe pas. Veuillez choisir un num de section valable (entre 0 et %d).\n",optarg,header.e_shnum-1);			
+					}
 				}
 				else{
 					unsigned char* fileBytes = readFileBytes(fileName);
@@ -126,8 +142,13 @@ void main(int argc, char * argv[]){
 			case 'f':
 				fileName = optarg;
 				hasFile = 1;
+				if(fileName[0]=='-') {
+					hasFile = 0;
+				}
+				
 				break;
 			case 'd':
+				
 				optiond = 1;
 				break;
 			default:
@@ -137,6 +158,11 @@ void main(int argc, char * argv[]){
 	}
 	if(hasFile == 0){
 		printf("Veuillez préciser un nom de fichier avec l'option -f\n-f : Nom de fichier\n-h : Lecture du header\n-S : Lecture des en-têtes de sections\n-x <Nom/Numéro de section> : Détail d'une section\n-s : Lecture de la table des symboles\n-r : Lecture de la table de relocation\n");
+		exit(1);
+	}
+
+	if(!is_file(fileName)){
+		printf("Ce fichier n'exsite pas. Veuillez choisir un nom de fichier valable.\n");
 		exit(1);
 	}
 
@@ -165,15 +191,15 @@ void main(int argc, char * argv[]){
 			count = count+1;
 		}
 	}
-	char* nomfichier = malloc(sizeof(char)*50);
-
+	char* nomfichier = malloc(sizeof(char)*100);
+	
 
 	if (count != 0) {
 
 		Elf32_Rel* rel[count];
 		readRelTable(fileName,header,shdr,rel,sym,verboseRelocation);
 		
-		if(optiond = 1){
+		if(optiond == 1){
 				
 			nomfichier = delRelTable(fileName,header,shdr);
 
@@ -185,14 +211,14 @@ void main(int argc, char * argv[]){
 
 			readSymTable(nomfichier,headerNew,shdrNew,sym,0);	
 		
-			elfmodifsymb(nomfichier,header,headerNew,shdr,shdrNew,sym);
+			nomfichier = elfmodifsymb(nomfichier,header,headerNew,shdr,shdrNew,sym);
 		
 			j = getIndSectionSymtab(headerNew,shdrNew);
 			Elf32_Sym symNew[(shdrNew[j].sh_size)/(4+4+4+1+1+2)];
 
-			readSymTable(nomfichier,headerNew,shdrNew,symNew,verboseSymboles);
+			readSymTable(nomfichier,headerNew,shdrNew,symNew,0);
 
-			elfrelocatesymb(nomfichier,header,rel,shdr,sym,symNew);
+			nomfichier = elfrelocatesymb(nomfichier,header,headerNew,rel,shdr,shdrNew,sym,symNew);
 		}
 	}
 

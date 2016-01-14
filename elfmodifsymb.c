@@ -1,6 +1,6 @@
 #include "elfrelocateSymb.h"
 
-void elfmodifsymb(char * filePath, Elf32_Ehdr headerOLD,Elf32_Ehdr header, Elf32_Shdr *shdrOLD,Elf32_Shdr *shdr, Elf32_Sym *sym) {
+char* elfmodifsymb(char * filePath, Elf32_Ehdr headerOLD,Elf32_Ehdr header, Elf32_Shdr *shdrOLD,Elf32_Shdr *shdr, Elf32_Sym *sym) {
 
 unsigned char* fileBytes = readFileBytes(filePath); // Contenu du fichier
 
@@ -87,21 +87,25 @@ for(j=0;j<(shdr[indexsymtab].sh_size/shdr[indexsymtab].sh_entsize);j++){
 	int size=-1;
 	int max=1;
 	int taille=-1;
-	for(indice=0;indice<headerOLD.e_shnum;indice++) {
-		if(shdrOLD[indice].sh_offset>max){
-			max = shdrOLD[indice].sh_offset;
-			taille = shdrOLD[indice].sh_size;
+	for(indice=0;indice<header.e_shnum;indice++) {
+		if(shdr[indice].sh_offset>max){
+			max = shdr[indice].sh_offset;
+			taille = shdr[indice].sh_size;
 		}
 	}
 	size = max + taille;
 
+	char* chemin = filePath; // Récupération du chemin du fichier
+	chemin[strlen(chemin)-2]= 0; // Suppression de la partie ".o"
+	strcat(chemin, "_MODIF_SYMB.o"); // Ajout au nom de fichier "_DELREL.o"
+
 	
-	void * file_to_write = fopen("toto2.o", "w");
+	void * file_to_write = fopen(filePath, "w");
     if(file_to_write != NULL){
 	for(indice2;indice2<size;indice2++){
 	fwrite(&fileBytes[indice2], 1, sizeof(fileBytes[indice2]), file_to_write);
 	}
-
+	fclose(file_to_write);
 }
-
+return chemin;
 }

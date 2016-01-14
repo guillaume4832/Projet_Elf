@@ -5,8 +5,6 @@
 char* delRelTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr){
 
 
-
-	char* nomfichier = malloc(sizeof(char)*75);
 	unsigned char* fileBytes = readFileBytes(filePath); // Contenu du fichier
 	int size = -1;
 	int i,k;
@@ -193,4 +191,4 @@ char* delRelTable(char * filePath,Elf32_Ehdr header,Elf32_Shdr* shdr){
     }
 
 return chemin;
-}
+} 
