@@ -1,4 +1,4 @@
-Amédée Fleau - Clément Heresaz - Guillaume Chaput - Lucas Albarede -Loïc Chevalier
+﻿Amédée Fleau - Clément Heresaz - Guillaume Chaput - Lucas Albarede -Loïc Chevalier
 
 Projet d'éditeur de liens au format ELF
 Journal de bord 
@@ -64,8 +64,16 @@ En fin de journée, l'étape 6 est sur le point d'être terminée (quelques bugs
 
 Mardi 12 Janvier
 	Finition de l'étape 6, commancement de l'étape 7 et fonctionnalités
-.
 	
 Nous nous sommes répartis le travail entre deux équipes : le premier corrige les bugs restant du code émis hier. Dès que cela est fait, ce groupe est passé à la programmation de l'étape 7.
 Parallèlement, la seconde équipe s'est attelée à la documentation "Doxygen" du code et à l'ajout de fonctionnalitées : une option permettant d'utiliser les fonctions développées à l'étape 6 ainsi qu'une gestion du renommage dynamique du fichier sortant (sans les sections REL).
 En fin de journée, l'équipe s'est reconstitué pour continuer l'étape 7.
+
+Mercredi 13 Janvier
+	Finition de l'étape 7, commencement de l'étape 8 et rédation de documents annexes
+
+Le groupe se scinde en deux groupes de travail. Pendant qu'un groupe fini l'étape 7 avec difficulté et en faisant en même temps l'étape 8, l'autre commence à rédiger
+les documents annexes à rendre avec le projet : les organigrames de la structure du projet et des fonctionnalités. Ensuite les 2 groupes de travail ont fusionné
+afin de travailler ensemble les 2 phases. L'étape 7 est terminée et l'étape 8 est déjà bien avancée.
+
+-- Note : Modification de la documentation Doxygen
