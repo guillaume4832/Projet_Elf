@@ -78,3 +78,10 @@ Le groupe se scinde en deux groupes de travail. Pendant qu'une équipe termine l
  afin d'achever ensemble les étapes 7 et 8, lesquelles sont terminées à la fin de la journée.
 
 -- Note : Mise à jour de la documentation Doxygen.
+
+Jeudi 14 Janvier
+	Finition de l'étape 8, Programtion de l'étape 9, annexes et Péparation de la soutenance.
+
+Le groupe se scinde 2 espaces de travail, le premier s'occupe de finir l'étape 8 pendant que le second commence à prévoir
+la soutnance du lendemain. Plus tard, le 2 groupes travaillent respectivement sur la programmation de l'étape 9 et sur la 
+finalisation des annexes avec l'ajout du diagrammes des tâches.
