@@ -56,7 +56,7 @@ int is_file(const char* path) {
 void main(int argc, char * argv[]){
 
 	//Lecture des Options
-	
+
     int opt;
 	char *fileName;
 
@@ -89,22 +89,22 @@ void main(int argc, char * argv[]){
 				break;
 			case 'x':
 				if(isnumber(optarg))
-				{	
+				{
 					unsigned char* fileBytes = readFileBytes(fileName);
-					Elf32_Ehdr header = readHeader(fileName,verboseHeader);
+					Elf32_Ehdr header = readHeader(fileName,0);
 					Elf32_Shdr shdr[header.e_shnum];
-					readSheader(fileName,header,shdr,verboseSectionH);
+					readSheader(fileName,header,shdr,0);
 					sectionDetails = atoi(optarg);
 					if(sectionDetails < 0 || sectionDetails >= header.e_shnum){
 						sectionDetails = -1;
-						printf("La section %s n'existe pas. Veuillez choisir un num de section valable (entre 0 et %d).\n",optarg,header.e_shnum-1);			
+						printf("La section %s n'existe pas. Veuillez choisir un num de section valable (entre 0 et %d).\n",optarg,header.e_shnum-1);
 					}
 				}
 				else{
 					unsigned char* fileBytes = readFileBytes(fileName);
-					Elf32_Ehdr header = readHeader(fileName,verboseHeader);
+					Elf32_Ehdr header = readHeader(fileName,0);
 					Elf32_Shdr shdr[header.e_shnum];
-					readSheader(fileName,header,shdr,verboseSectionH);
+					readSheader(fileName,header,shdr,0);
 					int i;
 					int addrStrTable = shdr[header.e_shstrndx].sh_offset;
 					for(i=0;i<header.e_shnum;i++){
@@ -145,10 +145,10 @@ void main(int argc, char * argv[]){
 				if(fileName[0]=='-') {
 					hasFile = 0;
 				}
-				
+
 				break;
 			case 'd':
-				
+
 				optiond = 1;
 				break;
 			default:
@@ -171,19 +171,19 @@ void main(int argc, char * argv[]){
 	// Lecture des headers de sections
 	Elf32_Shdr shdr[header.e_shnum];
 	readSheader(fileName,header,shdr,verboseSectionH);
-	
+
 	// Lecture d'une section
 	if(sectionDetails != -1)
 		readSection(sectionDetails,fileName,header,shdr);  // PLANTE
 	// Lecture de la table des symboles
 
-	
+
 	int j = getIndSectionSymtab(header,shdr);
 	Elf32_Sym sym[(shdr[j].sh_size)/(4+4+4+1+1+2)];
 
-	
+
 	readSymTable(fileName,header,shdr,sym,verboseSymboles);
-	
+
 	int i;
 	int count = 0;
 	for(i=0;i<header.e_shnum;i++) {
@@ -192,15 +192,15 @@ void main(int argc, char * argv[]){
 		}
 	}
 	char* nomfichier = malloc(sizeof(char)*100);
-	
+
 
 	if (count != 0) {
 
 		Elf32_Rel* rel[count];
 		readRelTable(fileName,header,shdr,rel,sym,verboseRelocation);
-		
+
 		if(optiond == 1){
-			
+
 			nomfichier = delRelTable(fileName,header,shdr);
 
 			Elf32_Ehdr headerNew = readHeader(nomfichier,0);
@@ -208,12 +208,12 @@ void main(int argc, char * argv[]){
 			Elf32_Shdr shdrNew[headerNew.e_shnum];
 
 			readSheader(nomfichier,headerNew,shdrNew,0);
-			
 
-			readSymTable(nomfichier,headerNew,shdrNew,sym,0);	
+
+			readSymTable(nomfichier,headerNew,shdrNew,sym,0);
 
 			nomfichier = elfmodifsymb(nomfichier,header,headerNew,shdr,shdrNew,sym);
-		
+
 			j = getIndSectionSymtab(headerNew,shdrNew);
 			Elf32_Sym symNew[(shdrNew[j].sh_size)/(4+4+4+1+1+2)];
 
@@ -223,6 +223,6 @@ void main(int argc, char * argv[]){
 		}
 	}
 
-	
+
 
 }
