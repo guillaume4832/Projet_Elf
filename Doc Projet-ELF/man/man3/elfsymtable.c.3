@@ -1,0 +1,94 @@
+.TH "C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsymtable.c" 3 "Fri Jan 15 2016" "Projet_Elf" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsymtable.c \- Programme des symboles\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'elfsymtable\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBgetIndSectionSymtab\fP (Elf32_Ehdr header, Elf32_Shdr *shdr)"
+.br
+.RI "\fIFonction permettant de retrouver l'indice de la section symtab dans la table des en-têtes\&. \fP"
+.ti -1c
+.RI "void \fBreadSymTable\fP (char *filePath, Elf32_Ehdr header, Elf32_Shdr *shdr, Elf32_Sym *sym, int isVerbose)"
+.br
+.RI "\fIFonction d'affichage de la table des symboles\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Programme des symboles\&. 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Amédée Fleau - Clément Heresaz - Guillaume Chaput - Lucas Albarede - Loïc Chevalier 
+.RE
+.PP
+\fBVersion:\fP
+.RS 4
+1 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+12 Janvier 2016
+.RE
+.PP
+Programme permettant l'affichage des symboles du fichier ELF\&. 
+.PP
+Definition in file \fBelfsymtable\&.c\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "int getIndSectionSymtab (Elf32_Ehdr header, Elf32_Shdr * shdr)"
+
+.PP
+Fonction permettant de retrouver l'indice de la section symtab dans la table des en-têtes\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIheader\fP l'en-tête du fichier Elf définie par *filePath\&. 
+.br
+\fIshdr\fP le tableau des en-têtes de sections\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+i l'indice correspondant à la section symtab dans les en-têtes de section\&. 
+.RE
+.PP
+
+.PP
+Definition at line 23 of file elfsymtable\&.c\&.
+.SS "void readSymTable (char * filePath, Elf32_Ehdr header, Elf32_Shdr * shdr, Elf32_Sym * sym, int isVerbose)"
+
+.PP
+Fonction d'affichage de la table des symboles\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI*filePath\fP le chemin du fichier entrée en paramètre\&. 
+.br
+\fIheader\fP l'en-tête du fichier Elf définie par *filePath\&. 
+.br
+\fIshdr\fP le tableau des en-têtes de sections\&. 
+.br
+\fIsym\fP le tableau des symboles\&. 
+.br
+\fIisVerbose\fP Permet de cacher ou voir les informations de l'en-tête\&. 
+.RE
+.PP
+printf('%x\\n', k); 
+.PP
+Definition at line 43 of file elfsymtable\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Projet_Elf from the source code\&.

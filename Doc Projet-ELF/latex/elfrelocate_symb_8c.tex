@@ -1,0 +1,133 @@
+\hypertarget{elfrelocate_symb_8c}{}\section{C\+:/\+Users/\+Guillaume/\+Documents/\+Git\+Hub/\+Projet\+\_\+\+Elf/elfrelocate\+Symb.c File Reference}
+\label{elfrelocate_symb_8c}\index{C\+:/\+Users/\+Guillaume/\+Documents/\+Git\+Hub/\+Projet\+\_\+\+Elf/elfrelocate\+Symb.\+c@{C\+:/\+Users/\+Guillaume/\+Documents/\+Git\+Hub/\+Projet\+\_\+\+Elf/elfrelocate\+Symb.\+c}}
+{\ttfamily \#include \char`\"{}elfrelocate\+Symb.\+h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{elfrelocate_symb_8c_a95c086ff84293bf6ab39ec50d9fbbe28}{E\+L\+F\+\_\+\+R\+E\+L\+O\+C\+\_\+\+E\+RR}~-\/1
+\item 
+\#define \hyperlink{elfrelocate_symb_8c_a093fa5ee40068f146bfcae5945721d27}{D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S32}(S,  A,  T)~(S + A) $\vert$ T
+\item 
+\#define \hyperlink{elfrelocate_symb_8c_a35d51558d1302b132fc93034c0d286c4}{D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S16}(S,  A)~(S + A)
+\item 
+\#define \hyperlink{elfrelocate_symb_8c_a415ed3dcdc9f1505bed8a4c6cec39c3c}{D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S12}(S,  A)~(S + A)
+\item 
+\#define \hyperlink{elfrelocate_symb_8c_afd7406e647c9250f553d4c35710fcf40}{D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S8}(S,  A)~(S + A)
+\item 
+\#define \hyperlink{elfrelocate_symb_8c_ad9fed6122676b50a862faeaaedd278d3}{D\+O\+\_\+\+A\+R\+M\+\_\+\+C\+A\+LL}(S,  A,  T,  P)~((S + A) $\vert$ T) -\/ P
+\item 
+\#define \hyperlink{elfrelocate_symb_8c_a90b5641f897358c64e8fa24d1e54da1b}{D\+O\+\_\+\+A\+R\+M\+\_\+\+J\+U\+M\+P24}(S,  A,  T,  P)~((S + A) $\vert$ T) -\/ P
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{elfrelocate_symb_8c_a37926c215984c523107a93ea4ff42c0a}{elfrelocatesymb} (char $\ast$file\+Path, Elf32\+\_\+\+Ehdr header, Elf32\+\_\+\+Ehdr header\+New, Elf32\+\_\+\+Rel $\ast$$\ast$rel, Elf32\+\_\+\+Shdr $\ast$shdr, Elf32\+\_\+\+Shdr $\ast$shdr\+New, Elf32\+\_\+\+Sym $\ast$sym\+O\+LD, Elf32\+\_\+\+Sym $\ast$sym)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{elfrelocate\+Symb.\+c@{elfrelocate\+Symb.\+c}!D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S12@{D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S12}}
+\index{D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S12@{D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S12}!elfrelocate\+Symb.\+c@{elfrelocate\+Symb.\+c}}
+\subsubsection[{\texorpdfstring{D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S12}{DO_ARM_ABS12}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S12(
+\begin{DoxyParamCaption}
+\item[{}]{S, }
+\item[{}]{A}
+\end{DoxyParamCaption}
+)~(S + A)}\hypertarget{elfrelocate_symb_8c_a415ed3dcdc9f1505bed8a4c6cec39c3c}{}\label{elfrelocate_symb_8c_a415ed3dcdc9f1505bed8a4c6cec39c3c}
+
+
+Definition at line 5 of file elfrelocate\+Symb.\+c.
+
+\index{elfrelocate\+Symb.\+c@{elfrelocate\+Symb.\+c}!D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S16@{D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S16}}
+\index{D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S16@{D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S16}!elfrelocate\+Symb.\+c@{elfrelocate\+Symb.\+c}}
+\subsubsection[{\texorpdfstring{D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S16}{DO_ARM_ABS16}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S16(
+\begin{DoxyParamCaption}
+\item[{}]{S, }
+\item[{}]{A}
+\end{DoxyParamCaption}
+)~(S + A)}\hypertarget{elfrelocate_symb_8c_a35d51558d1302b132fc93034c0d286c4}{}\label{elfrelocate_symb_8c_a35d51558d1302b132fc93034c0d286c4}
+
+
+Definition at line 4 of file elfrelocate\+Symb.\+c.
+
+\index{elfrelocate\+Symb.\+c@{elfrelocate\+Symb.\+c}!D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S32@{D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S32}}
+\index{D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S32@{D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S32}!elfrelocate\+Symb.\+c@{elfrelocate\+Symb.\+c}}
+\subsubsection[{\texorpdfstring{D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S32}{DO_ARM_ABS32}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S32(
+\begin{DoxyParamCaption}
+\item[{}]{S, }
+\item[{}]{A, }
+\item[{}]{T}
+\end{DoxyParamCaption}
+)~(S + A) $\vert$ T}\hypertarget{elfrelocate_symb_8c_a093fa5ee40068f146bfcae5945721d27}{}\label{elfrelocate_symb_8c_a093fa5ee40068f146bfcae5945721d27}
+
+
+Definition at line 3 of file elfrelocate\+Symb.\+c.
+
+\index{elfrelocate\+Symb.\+c@{elfrelocate\+Symb.\+c}!D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S8@{D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S8}}
+\index{D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S8@{D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S8}!elfrelocate\+Symb.\+c@{elfrelocate\+Symb.\+c}}
+\subsubsection[{\texorpdfstring{D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S8}{DO_ARM_ABS8}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+O\+\_\+\+A\+R\+M\+\_\+\+A\+B\+S8(
+\begin{DoxyParamCaption}
+\item[{}]{S, }
+\item[{}]{A}
+\end{DoxyParamCaption}
+)~(S + A)}\hypertarget{elfrelocate_symb_8c_afd7406e647c9250f553d4c35710fcf40}{}\label{elfrelocate_symb_8c_afd7406e647c9250f553d4c35710fcf40}
+
+
+Definition at line 6 of file elfrelocate\+Symb.\+c.
+
+\index{elfrelocate\+Symb.\+c@{elfrelocate\+Symb.\+c}!D\+O\+\_\+\+A\+R\+M\+\_\+\+C\+A\+LL@{D\+O\+\_\+\+A\+R\+M\+\_\+\+C\+A\+LL}}
+\index{D\+O\+\_\+\+A\+R\+M\+\_\+\+C\+A\+LL@{D\+O\+\_\+\+A\+R\+M\+\_\+\+C\+A\+LL}!elfrelocate\+Symb.\+c@{elfrelocate\+Symb.\+c}}
+\subsubsection[{\texorpdfstring{D\+O\+\_\+\+A\+R\+M\+\_\+\+C\+A\+LL}{DO_ARM_CALL}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+O\+\_\+\+A\+R\+M\+\_\+\+C\+A\+LL(
+\begin{DoxyParamCaption}
+\item[{}]{S, }
+\item[{}]{A, }
+\item[{}]{T, }
+\item[{}]{P}
+\end{DoxyParamCaption}
+)~((S + A) $\vert$ T) -\/ P}\hypertarget{elfrelocate_symb_8c_ad9fed6122676b50a862faeaaedd278d3}{}\label{elfrelocate_symb_8c_ad9fed6122676b50a862faeaaedd278d3}
+
+
+Definition at line 7 of file elfrelocate\+Symb.\+c.
+
+\index{elfrelocate\+Symb.\+c@{elfrelocate\+Symb.\+c}!D\+O\+\_\+\+A\+R\+M\+\_\+\+J\+U\+M\+P24@{D\+O\+\_\+\+A\+R\+M\+\_\+\+J\+U\+M\+P24}}
+\index{D\+O\+\_\+\+A\+R\+M\+\_\+\+J\+U\+M\+P24@{D\+O\+\_\+\+A\+R\+M\+\_\+\+J\+U\+M\+P24}!elfrelocate\+Symb.\+c@{elfrelocate\+Symb.\+c}}
+\subsubsection[{\texorpdfstring{D\+O\+\_\+\+A\+R\+M\+\_\+\+J\+U\+M\+P24}{DO_ARM_JUMP24}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+O\+\_\+\+A\+R\+M\+\_\+\+J\+U\+M\+P24(
+\begin{DoxyParamCaption}
+\item[{}]{S, }
+\item[{}]{A, }
+\item[{}]{T, }
+\item[{}]{P}
+\end{DoxyParamCaption}
+)~((S + A) $\vert$ T) -\/ P}\hypertarget{elfrelocate_symb_8c_a90b5641f897358c64e8fa24d1e54da1b}{}\label{elfrelocate_symb_8c_a90b5641f897358c64e8fa24d1e54da1b}
+
+
+Definition at line 8 of file elfrelocate\+Symb.\+c.
+
+\index{elfrelocate\+Symb.\+c@{elfrelocate\+Symb.\+c}!E\+L\+F\+\_\+\+R\+E\+L\+O\+C\+\_\+\+E\+RR@{E\+L\+F\+\_\+\+R\+E\+L\+O\+C\+\_\+\+E\+RR}}
+\index{E\+L\+F\+\_\+\+R\+E\+L\+O\+C\+\_\+\+E\+RR@{E\+L\+F\+\_\+\+R\+E\+L\+O\+C\+\_\+\+E\+RR}!elfrelocate\+Symb.\+c@{elfrelocate\+Symb.\+c}}
+\subsubsection[{\texorpdfstring{E\+L\+F\+\_\+\+R\+E\+L\+O\+C\+\_\+\+E\+RR}{ELF_RELOC_ERR}}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+L\+F\+\_\+\+R\+E\+L\+O\+C\+\_\+\+E\+RR~-\/1}\hypertarget{elfrelocate_symb_8c_a95c086ff84293bf6ab39ec50d9fbbe28}{}\label{elfrelocate_symb_8c_a95c086ff84293bf6ab39ec50d9fbbe28}
+
+
+Definition at line 2 of file elfrelocate\+Symb.\+c.
+
+
+
+\subsection{Function Documentation}
+\index{elfrelocate\+Symb.\+c@{elfrelocate\+Symb.\+c}!elfrelocatesymb@{elfrelocatesymb}}
+\index{elfrelocatesymb@{elfrelocatesymb}!elfrelocate\+Symb.\+c@{elfrelocate\+Symb.\+c}}
+\subsubsection[{\texorpdfstring{elfrelocatesymb(char $\ast$file\+Path, Elf32\+\_\+\+Ehdr header, Elf32\+\_\+\+Ehdr header\+New, Elf32\+\_\+\+Rel $\ast$$\ast$rel, Elf32\+\_\+\+Shdr $\ast$shdr, Elf32\+\_\+\+Shdr $\ast$shdr\+New, Elf32\+\_\+\+Sym $\ast$sym\+O\+L\+D, Elf32\+\_\+\+Sym $\ast$sym)}{elfrelocatesymb(char *filePath, Elf32_Ehdr header, Elf32_Ehdr headerNew, Elf32_Rel **rel, Elf32_Shdr *shdr, Elf32_Shdr *shdrNew, Elf32_Sym *symOLD, Elf32_Sym *sym)}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ elfrelocatesymb (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{file\+Path, }
+\item[{Elf32\+\_\+\+Ehdr}]{header, }
+\item[{Elf32\+\_\+\+Ehdr}]{header\+New, }
+\item[{Elf32\+\_\+\+Rel $\ast$$\ast$}]{rel, }
+\item[{Elf32\+\_\+\+Shdr $\ast$}]{shdr, }
+\item[{Elf32\+\_\+\+Shdr $\ast$}]{shdr\+New, }
+\item[{Elf32\+\_\+\+Sym $\ast$}]{sym\+O\+LD, }
+\item[{Elf32\+\_\+\+Sym $\ast$}]{sym}
+\end{DoxyParamCaption}
+)}\hypertarget{elfrelocate_symb_8c_a37926c215984c523107a93ea4ff42c0a}{}\label{elfrelocate_symb_8c_a37926c215984c523107a93ea4ff42c0a}
+
+
+Definition at line 10 of file elfrelocate\+Symb.\+c.
+

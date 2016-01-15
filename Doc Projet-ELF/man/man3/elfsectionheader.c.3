@@ -1,0 +1,106 @@
+.TH "C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsectionheader.c" 3 "Fri Jan 15 2016" "Projet_Elf" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsectionheader.c \- Programme des en-têtes de section\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'elfsectionheader\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "char * \fBnom_type\fP (Elf32_Word sh_type)"
+.br
+.RI "\fITable de correspondance de renommage des globales\&. \fP"
+.ti -1c
+.RI "char * \fBnom_flags\fP (unsigned int flags)"
+.br
+.RI "\fIReconnaît les fanions\&. \fP"
+.ti -1c
+.RI "void \fBreadSheader\fP (char *filePath, Elf32_Ehdr header, Elf32_Shdr *shdr, int isVerbose)"
+.br
+.RI "\fILecture du header des sections\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Programme des en-têtes de section\&. 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Amédée Fleau - Clément Heresaz - Guillaume Chaput - Lucas Albarede - Loïc Chevalier 
+.RE
+.PP
+\fBVersion:\fP
+.RS 4
+1 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+11 Janvier 2016
+.RE
+.PP
+Programme permettant l'affichage du tableau des en-tête de section ELF des fichiers 
+.PP
+Definition in file \fBelfsectionheader\&.c\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "char* nom_flags (unsigned int flags)"
+
+.PP
+Reconnaît les fanions\&. * \fBnom_flags(unsigned int flags)\fP 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIElf32_Word\fP sh_type type de fichier Elf32 reçu en entrée\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+val - Retourne l'acronyme des fanions\&. 
+.RE
+.PP
+
+.PP
+Definition at line 67 of file elfsectionheader\&.c\&.
+.SS "char * nom_type (Elf32_Word sh_type)"
+
+.PP
+Table de correspondance de renommage des globales\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIElf32_Word\fP sh_type type de fichier Elf32 reçu en entrée\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+char* - Retourne le pointeur utilisant l'étiquette modifiée\&. 
+.RE
+.PP
+
+.PP
+Definition at line 21 of file elfsectionheader\&.c\&.
+.SS "void readSheader (char * filePath, Elf32_Ehdr header, Elf32_Shdr * shdr, int isVerbose)"
+
+.PP
+Lecture du header des sections\&. \fBreadSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbose)\fP 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIElf32_Word\fP sh_type type de fichier Elf32 reçu en entrée\&. 
+.RE
+.PP
+
+.PP
+Definition at line 134 of file elfsectionheader\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Projet_Elf from the source code\&.

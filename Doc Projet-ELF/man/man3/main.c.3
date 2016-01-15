@@ -1,0 +1,119 @@
+.TH "C:/Users/Guillaume/Documents/GitHub/Projet_Elf/main.c" 3 "Fri Jan 15 2016" "Projet_Elf" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/Guillaume/Documents/GitHub/Projet_Elf/main.c \- Programme Principal\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <elf\&.h>\fP
+.br
+\fC#include <getopt\&.h>\fP
+.br
+\fC#include <sys/stat\&.h>\fP
+.br
+\fC#include 'elfheader\&.h'\fP
+.br
+\fC#include 'elfsectionheader\&.h'\fP
+.br
+\fC#include 'elfsection\&.h'\fP
+.br
+\fC#include 'elfsymtable\&.h'\fP
+.br
+\fC#include 'elfrelocation\&.h'\fP
+.br
+\fC#include 'elfdeleterel\&.h'\fP
+.br
+\fC#include 'elfrelocateSymb\&.h'\fP
+.br
+\fC#include 'elfmodifsymb\&.h'\fP
+.br
+\fC#include 'filereader\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBisnumber\fP (const char *s)"
+.br
+.RI "\fIVérifie si la chaîne de caractère donnée est un nombre\&. \fP"
+.ti -1c
+.RI "int \fBis_file\fP (const char *path)"
+.br
+.ti -1c
+.RI "void \fBmain\fP (int argc, char *argv[])"
+.br
+.RI "\fIProgramme principal du fichier\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Programme Principal\&. 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Amédée Fleau - Clément Heresaz - Guillaume Chaput - Lucas Albarede - Loïc Chevalier 
+.RE
+.PP
+\fBVersion:\fP
+.RS 4
+1 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+11 Janvier 2016
+.RE
+.PP
+Programme Principal pour la gestion du format ELF 
+.PP
+Definition in file \fBmain\&.c\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "int is_file (const char * path)"
+
+.PP
+Definition at line 42 of file main\&.c\&.
+.SS "int isnumber (const char * s)"
+
+.PP
+Vérifie si la chaîne de caractère donnée est un nombre\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI*s\fP Chaîne de caractères reçue en entrée\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 si il ne s'agit pas d'un nombre, 1 sinon\&. 
+.RE
+.PP
+
+.PP
+Definition at line 36 of file main\&.c\&.
+.SS "void main (int argc, char * argv[])"
+
+.PP
+Programme principal du fichier\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIargc\fP Nombre d'arguments reçus en entrée\&. 
+.br
+\fIargv\fP Tableau d'arguments reçus en entrée\&. 
+.RE
+.PP
+
+.PP
+Definition at line 56 of file main\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Projet_Elf from the source code\&.

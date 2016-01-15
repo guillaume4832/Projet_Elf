@@ -1,0 +1,45 @@
+\hypertarget{elfsection_8h}{}\section{C\+:/\+Users/\+Guillaume/\+Documents/\+Git\+Hub/\+Projet\+\_\+\+Elf/elfsection.h File Reference}
+\label{elfsection_8h}\index{C\+:/\+Users/\+Guillaume/\+Documents/\+Git\+Hub/\+Projet\+\_\+\+Elf/elfsection.\+h@{C\+:/\+Users/\+Guillaume/\+Documents/\+Git\+Hub/\+Projet\+\_\+\+Elf/elfsection.\+h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$elf.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}filereader.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{elfsection_8h_a8235e7bcee0dfe60ab05462e08630e90}{read\+Section} (int numsection, char $\ast$file\+Path, Elf32\+\_\+\+Ehdr header, Elf32\+\_\+\+Shdr $\ast$shdr)
+\begin{DoxyCompactList}\small\item\em Fonction d\textquotesingle{}affichage des contenus de section. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{elfsection.\+h@{elfsection.\+h}!read\+Section@{read\+Section}}
+\index{read\+Section@{read\+Section}!elfsection.\+h@{elfsection.\+h}}
+\subsubsection[{\texorpdfstring{read\+Section(int numsection, char $\ast$file\+Path, Elf32\+\_\+\+Ehdr header, Elf32\+\_\+\+Shdr $\ast$shdr)}{readSection(int numsection, char *filePath, Elf32_Ehdr header, Elf32_Shdr *shdr)}}]{\setlength{\rightskip}{0pt plus 5cm}void read\+Section (
+\begin{DoxyParamCaption}
+\item[{int}]{numsection, }
+\item[{char $\ast$}]{file\+Path, }
+\item[{Elf32\+\_\+\+Ehdr}]{header, }
+\item[{Elf32\+\_\+\+Shdr $\ast$}]{shdr}
+\end{DoxyParamCaption}
+)}\hypertarget{elfsection_8h_a8235e7bcee0dfe60ab05462e08630e90}{}\label{elfsection_8h_a8235e7bcee0dfe60ab05462e08630e90}
+
+
+Fonction d\textquotesingle{}affichage des contenus de section. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em numsection} & le numéro de l\textquotesingle{}en-\/tête de section courant. \\
+\hline
+{\em $\ast$file\+Path} & le chemin du fichier entrée en paramètre. \\
+\hline
+{\em header} & l\textquotesingle{}en-\/tête du fichier Elf définie par $\ast$file\+Path. \\
+\hline
+{\em shdr} & le tableau des en-\/têtes de sections. \\
+\hline
+\end{DoxyParams}
+printf(\char`\"{}\%x\char`\"{}, addr);
+
+printf(\char`\"{}\%d\char`\"{}, size); 
+
+Definition at line 24 of file elfsection.\+c.
+

@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="dir_abb34d41e333021553b838732931cf19" kind="dir">
+    <compoundname>C:/Users/Guillaume/Documents/GitHub/Projet_Elf</compoundname>
+    <innerfile refid="elfdeleterel_8c">elfdeleterel.c</innerfile>
+    <innerfile refid="elfdeleterel_8h">elfdeleterel.h</innerfile>
+    <innerfile refid="elfheader_8c">elfheader.c</innerfile>
+    <innerfile refid="elfheader_8h">elfheader.h</innerfile>
+    <innerfile refid="elfmodifsymb_8c">elfmodifsymb.c</innerfile>
+    <innerfile refid="elfmodifsymb_8h">elfmodifsymb.h</innerfile>
+    <innerfile refid="elfrelocate_symb_8c">elfrelocateSymb.c</innerfile>
+    <innerfile refid="elfrelocate_symb_8h">elfrelocateSymb.h</innerfile>
+    <innerfile refid="elfrelocation_8c">elfrelocation.c</innerfile>
+    <innerfile refid="elfrelocation_8h">elfrelocation.h</innerfile>
+    <innerfile refid="elfsection_8c">elfsection.c</innerfile>
+    <innerfile refid="elfsection_8h">elfsection.h</innerfile>
+    <innerfile refid="elfsectionheader_8c">elfsectionheader.c</innerfile>
+    <innerfile refid="elfsectionheader_8h">elfsectionheader.h</innerfile>
+    <innerfile refid="elfsymtable_8c">elfsymtable.c</innerfile>
+    <innerfile refid="elfsymtable_8h">elfsymtable.h</innerfile>
+    <innerfile refid="etape2_8c">etape2.c</innerfile>
+    <innerfile refid="filereader_8c">filereader.c</innerfile>
+    <innerfile refid="filereader_8h">filereader.h</innerfile>
+    <innerfile refid="main_8c">main.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/Guillaume/Documents/GitHub/Projet_Elf/"/>
+  </compounddef>
+</doxygen>

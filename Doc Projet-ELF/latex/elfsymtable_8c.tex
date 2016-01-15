@@ -1,0 +1,90 @@
+\hypertarget{elfsymtable_8c}{}\section{C\+:/\+Users/\+Guillaume/\+Documents/\+Git\+Hub/\+Projet\+\_\+\+Elf/elfsymtable.c File Reference}
+\label{elfsymtable_8c}\index{C\+:/\+Users/\+Guillaume/\+Documents/\+Git\+Hub/\+Projet\+\_\+\+Elf/elfsymtable.\+c@{C\+:/\+Users/\+Guillaume/\+Documents/\+Git\+Hub/\+Projet\+\_\+\+Elf/elfsymtable.\+c}}
+
+
+Programme des symboles.  
+
+
+{\ttfamily \#include \char`\"{}elfsymtable.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{elfsymtable_8c_a2ebed7108f5ccfdeb5c580c0cc13ad7c}{get\+Ind\+Section\+Symtab} (Elf32\+\_\+\+Ehdr header, Elf32\+\_\+\+Shdr $\ast$shdr)
+\begin{DoxyCompactList}\small\item\em Fonction permettant de retrouver l\textquotesingle{}indice de la section symtab dans la table des en-\/têtes. \end{DoxyCompactList}\item 
+void \hyperlink{elfsymtable_8c_aafde15e2f87e0a590eb50fd82af048c1}{read\+Sym\+Table} (char $\ast$file\+Path, Elf32\+\_\+\+Ehdr header, Elf32\+\_\+\+Shdr $\ast$shdr, Elf32\+\_\+\+Sym $\ast$sym, int is\+Verbose)
+\begin{DoxyCompactList}\small\item\em Fonction d\textquotesingle{}affichage de la table des symboles. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Programme des symboles. 
+
+\begin{DoxyAuthor}{Author}
+Amédée Fleau -\/ Clément Heresaz -\/ Guillaume Chaput -\/ Lucas Albarede -\/ Loïc Chevalier 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+12 Janvier 2016
+\end{DoxyDate}
+Programme permettant l\textquotesingle{}affichage des symboles du fichier E\+LF. 
+
+\subsection{Function Documentation}
+\index{elfsymtable.\+c@{elfsymtable.\+c}!get\+Ind\+Section\+Symtab@{get\+Ind\+Section\+Symtab}}
+\index{get\+Ind\+Section\+Symtab@{get\+Ind\+Section\+Symtab}!elfsymtable.\+c@{elfsymtable.\+c}}
+\subsubsection[{\texorpdfstring{get\+Ind\+Section\+Symtab(\+Elf32\+\_\+\+Ehdr header, Elf32\+\_\+\+Shdr $\ast$shdr)}{getIndSectionSymtab(Elf32_Ehdr header, Elf32_Shdr *shdr)}}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Ind\+Section\+Symtab (
+\begin{DoxyParamCaption}
+\item[{Elf32\+\_\+\+Ehdr}]{header, }
+\item[{Elf32\+\_\+\+Shdr $\ast$}]{shdr}
+\end{DoxyParamCaption}
+)}\hypertarget{elfsymtable_8c_a2ebed7108f5ccfdeb5c580c0cc13ad7c}{}\label{elfsymtable_8c_a2ebed7108f5ccfdeb5c580c0cc13ad7c}
+
+
+Fonction permettant de retrouver l\textquotesingle{}indice de la section symtab dans la table des en-\/têtes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em header} & l\textquotesingle{}en-\/tête du fichier Elf définie par $\ast$file\+Path. \\
+\hline
+{\em shdr} & le tableau des en-\/têtes de sections. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+i l\textquotesingle{}indice correspondant à la section symtab dans les en-\/têtes de section. 
+\end{DoxyReturn}
+
+
+Definition at line 23 of file elfsymtable.\+c.
+
+\index{elfsymtable.\+c@{elfsymtable.\+c}!read\+Sym\+Table@{read\+Sym\+Table}}
+\index{read\+Sym\+Table@{read\+Sym\+Table}!elfsymtable.\+c@{elfsymtable.\+c}}
+\subsubsection[{\texorpdfstring{read\+Sym\+Table(char $\ast$file\+Path, Elf32\+\_\+\+Ehdr header, Elf32\+\_\+\+Shdr $\ast$shdr, Elf32\+\_\+\+Sym $\ast$sym, int is\+Verbose)}{readSymTable(char *filePath, Elf32_Ehdr header, Elf32_Shdr *shdr, Elf32_Sym *sym, int isVerbose)}}]{\setlength{\rightskip}{0pt plus 5cm}void read\+Sym\+Table (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{file\+Path, }
+\item[{Elf32\+\_\+\+Ehdr}]{header, }
+\item[{Elf32\+\_\+\+Shdr $\ast$}]{shdr, }
+\item[{Elf32\+\_\+\+Sym $\ast$}]{sym, }
+\item[{int}]{is\+Verbose}
+\end{DoxyParamCaption}
+)}\hypertarget{elfsymtable_8c_aafde15e2f87e0a590eb50fd82af048c1}{}\label{elfsymtable_8c_aafde15e2f87e0a590eb50fd82af048c1}
+
+
+Fonction d\textquotesingle{}affichage de la table des symboles. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$file\+Path} & le chemin du fichier entrée en paramètre. \\
+\hline
+{\em header} & l\textquotesingle{}en-\/tête du fichier Elf définie par $\ast$file\+Path. \\
+\hline
+{\em shdr} & le tableau des en-\/têtes de sections. \\
+\hline
+{\em sym} & le tableau des symboles. \\
+\hline
+{\em is\+Verbose} & Permet de cacher ou voir les informations de l\textquotesingle{}en-\/tête. \\
+\hline
+\end{DoxyParams}
+printf(\char`\"{}\%x\textbackslash{}n\char`\"{}, k); 
+
+Definition at line 43 of file elfsymtable.\+c.
+

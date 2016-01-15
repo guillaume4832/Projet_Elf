@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="elfsectionheader_8h" kind="file" language="C++">
+    <compoundname>elfsectionheader.h</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes local="no">elf.h</includes>
+    <includes refid="filereader_8h" local="yes">filereader.h</includes>
+    <includedby refid="elfsectionheader_8c" local="yes">C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsectionheader.c</includedby>
+    <includedby refid="main_8c" local="yes">C:/Users/Guillaume/Documents/GitHub/Projet_Elf/main.c</includedby>
+    <incdepgraph>
+      <node id="120">
+        <label>stdint.h</label>
+      </node>
+      <node id="117">
+        <label>stdlib.h</label>
+      </node>
+      <node id="118">
+        <label>elf.h</label>
+      </node>
+      <node id="115">
+        <label>C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsectionheader.h</label>
+        <link refid="elfsectionheader.h"/>
+        <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
+      </node>
+      <node id="119">
+        <label>filereader.h</label>
+        <link refid="filereader_8h"/>
+        <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="120" relation="include">
+        </childnode>
+      </node>
+      <node id="116">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="122">
+        <label>C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsectionheader.c</label>
+        <link refid="elfsectionheader_8c"/>
+      </node>
+      <node id="121">
+        <label>C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsectionheader.h</label>
+        <link refid="elfsectionheader.h"/>
+        <childnode refid="122" relation="include">
+        </childnode>
+        <childnode refid="123" relation="include">
+        </childnode>
+      </node>
+      <node id="123">
+        <label>C:/Users/Guillaume/Documents/GitHub/Projet_Elf/main.c</label>
+        <link refid="main_8c"/>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="elfsectionheader_8h_1a5782e7de779e3d4edfafcd2d49a1ab6a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char* nom_type</definition>
+        <argsstring>(Elf32_Word sh_type)</argsstring>
+        <name>nom_type</name>
+        <param>
+          <type>Elf32_Word</type>
+          <declname>sh_type</declname>
+        </param>
+        <briefdescription>
+<para>Table de correspondance de renommage des globales. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>Elf32_Word</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>sh_type type de fichier Elf32 reçu en entrée. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>char* - Retourne le pointeur utilisant l&apos;étiquette modifiée. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsectionheader.h" line="22" column="1" bodyfile="C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsectionheader.c" bodystart="21" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="elfsectionheader_8h_1a33d7efef2d18d4f82a670857fff0641c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char* nom_flags</definition>
+        <argsstring>(unsigned int flags)</argsstring>
+        <name>nom_flags</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>flags</declname>
+        </param>
+        <briefdescription>
+<para>Reconnaît les fanions. </para>        </briefdescription>
+        <detaileddescription>
+<para>* <ref refid="elfsectionheader_8h_1a33d7efef2d18d4f82a670857fff0641c" kindref="member">nom_flags(unsigned int flags)</ref> <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>Elf32_Word</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>sh_type type de fichier Elf32 reçu en entrée. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>val - Retourne l&apos;acronyme des fanions. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsectionheader.h" line="31" column="1" bodyfile="C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsectionheader.c" bodystart="67" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="elfsectionheader_8h_1a315449f5afe65d97747680c874e03dbd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void readSheader</definition>
+        <argsstring>(char *filePath, Elf32_Ehdr header, Elf32_Shdr *shdr, int isVerbose)</argsstring>
+        <name>readSheader</name>
+        <param>
+          <type>char *</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>Elf32_Ehdr</type>
+          <declname>header</declname>
+        </param>
+        <param>
+          <type>Elf32_Shdr *</type>
+          <declname>shdr</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>isVerbose</declname>
+        </param>
+        <briefdescription>
+<para>Lecture du header des sections. </para>        </briefdescription>
+        <detaileddescription>
+<para><ref refid="elfsectionheader_8h_1a315449f5afe65d97747680c874e03dbd" kindref="member">readSheader(char * filePath, Elf32_Ehdr header,Elf32_Shdr* shdr,int isVerbose)</ref> <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>Elf32_Word</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>sh_type type de fichier Elf32 reçu en entrée. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsectionheader.h" line="39" column="1" bodyfile="C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsectionheader.c" bodystart="134" bodyend="327"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Amédée Fleau - Clément Heresaz - Guillaume Chaput - Lucas Albarede - Loïc Chevalier </para></simplesect>
+<simplesect kind="version"><para>1 </para></simplesect>
+<simplesect kind="date"><para>12 Janvier 2016 </para></simplesect>
+</para>    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="10"><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;elf.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="filereader_8h" kindref="compound">filereader.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="elfsectionheader_8h_1a5782e7de779e3d4edfafcd2d49a1ab6a" kindref="member">nom_type</ref>(Elf32_Word<sp/>sh_type);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="elfsectionheader_8h_1a33d7efef2d18d4f82a670857fff0641c" kindref="member">nom_flags</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>flags);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="elfsectionheader_8h_1a315449f5afe65d97747680c874e03dbd" kindref="member">readSheader</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>filePath,<sp/>Elf32_Ehdr<sp/>header,Elf32_Shdr*<sp/>shdr,</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>isVerbose);</highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsectionheader.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,50 @@
+\hypertarget{elfheader_8h}{}\section{C\+:/\+Users/\+Guillaume/\+Documents/\+Git\+Hub/\+Projet\+\_\+\+Elf/elfheader.h File Reference}
+\label{elfheader_8h}\index{C\+:/\+Users/\+Guillaume/\+Documents/\+Git\+Hub/\+Projet\+\_\+\+Elf/elfheader.\+h@{C\+:/\+Users/\+Guillaume/\+Documents/\+Git\+Hub/\+Projet\+\_\+\+Elf/elfheader.\+h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$elf.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}filereader.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Elf32\+\_\+\+Ehdr \hyperlink{elfheader_8h_a5b5a85bc4a029f002525d070e34dd20a}{read\+Header} (char $\ast$file\+Path, int is\+Verbose)
+\begin{DoxyCompactList}\small\item\em Lecture de l\textquotesingle{}en-\/tête E\+LF d\textquotesingle{}un fichier. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{elfheader.\+h@{elfheader.\+h}!read\+Header@{read\+Header}}
+\index{read\+Header@{read\+Header}!elfheader.\+h@{elfheader.\+h}}
+\subsubsection[{\texorpdfstring{read\+Header(char $\ast$file\+Path, int is\+Verbose)}{readHeader(char *filePath, int isVerbose)}}]{\setlength{\rightskip}{0pt plus 5cm}Elf32\+\_\+\+Ehdr read\+Header (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{file\+Path, }
+\item[{int}]{is\+Verbose}
+\end{DoxyParamCaption}
+)}\hypertarget{elfheader_8h_a5b5a85bc4a029f002525d070e34dd20a}{}\label{elfheader_8h_a5b5a85bc4a029f002525d070e34dd20a}
+
+
+Lecture de l\textquotesingle{}en-\/tête E\+LF d\textquotesingle{}un fichier. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$file\+Path} & Fichier entré en paramètre. \\
+\hline
+{\em is\+Verbose} & Permet de cacher ou voir les informations de l\textquotesingle{}en-\/tête. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+header -\/ Retourne l\textquotesingle{}objet contenant les informations de l\textquotesingle{}en-\/tête.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$} & file\+Path Fichier entré en paramètre. \\
+\hline
+{\em is\+Verbose} & Permet de cacher ou voir les informations de l\textquotesingle{}en-\/tête. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+header -\/ Retourne l\textquotesingle{}objet contenant les informations de l\textquotesingle{}en-\/tête. 
+\end{DoxyReturn}
+
+
+Definition at line 22 of file elfheader.\+c.
+

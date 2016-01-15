@@ -1,0 +1,66 @@
+\hypertarget{elfheader_8c}{}\section{C\+:/\+Users/\+Guillaume/\+Documents/\+Git\+Hub/\+Projet\+\_\+\+Elf/elfheader.c File Reference}
+\label{elfheader_8c}\index{C\+:/\+Users/\+Guillaume/\+Documents/\+Git\+Hub/\+Projet\+\_\+\+Elf/elfheader.\+c@{C\+:/\+Users/\+Guillaume/\+Documents/\+Git\+Hub/\+Projet\+\_\+\+Elf/elfheader.\+c}}
+
+
+Programme de l\textquotesingle{}en-\/tête.  
+
+
+{\ttfamily \#include \char`\"{}elfheader.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Elf32\+\_\+\+Ehdr \hyperlink{elfheader_8c_a5b5a85bc4a029f002525d070e34dd20a}{read\+Header} (char $\ast$file\+Path, int is\+Verbose)
+\begin{DoxyCompactList}\small\item\em Lecture de l\textquotesingle{}en-\/tête E\+LF d\textquotesingle{}un fichier. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Programme de l\textquotesingle{}en-\/tête. 
+
+\begin{DoxyAuthor}{Author}
+Amédée Fleau -\/ Clément Heresaz -\/ Guillaume Chaput -\/ Lucas Albarede -\/ Loïc Chevalier 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+11 Janvier 2016
+\end{DoxyDate}
+Programme permettant l\textquotesingle{}affichage de l\textquotesingle{}en-\/tête E\+LF des fichiers 
+
+\subsection{Function Documentation}
+\index{elfheader.\+c@{elfheader.\+c}!read\+Header@{read\+Header}}
+\index{read\+Header@{read\+Header}!elfheader.\+c@{elfheader.\+c}}
+\subsubsection[{\texorpdfstring{read\+Header(char $\ast$file\+Path, int is\+Verbose)}{readHeader(char *filePath, int isVerbose)}}]{\setlength{\rightskip}{0pt plus 5cm}Elf32\+\_\+\+Ehdr read\+Header (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{file\+Path, }
+\item[{int}]{is\+Verbose}
+\end{DoxyParamCaption}
+)}\hypertarget{elfheader_8c_a5b5a85bc4a029f002525d070e34dd20a}{}\label{elfheader_8c_a5b5a85bc4a029f002525d070e34dd20a}
+
+
+Lecture de l\textquotesingle{}en-\/tête E\+LF d\textquotesingle{}un fichier. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$file\+Path} & Fichier entré en paramètre. \\
+\hline
+{\em is\+Verbose} & Permet de cacher ou voir les informations de l\textquotesingle{}en-\/tête. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+header -\/ Retourne l\textquotesingle{}objet contenant les informations de l\textquotesingle{}en-\/tête.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$} & file\+Path Fichier entré en paramètre. \\
+\hline
+{\em is\+Verbose} & Permet de cacher ou voir les informations de l\textquotesingle{}en-\/tête. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+header -\/ Retourne l\textquotesingle{}objet contenant les informations de l\textquotesingle{}en-\/tête. 
+\end{DoxyReturn}
+
+
+Definition at line 22 of file elfheader.\+c.
+

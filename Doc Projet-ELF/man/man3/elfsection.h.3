@@ -1,0 +1,51 @@
+.TH "C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsection.h" 3 "Fri Jan 15 2016" "Projet_Elf" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsection.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <elf\&.h>\fP
+.br
+\fC#include 'filereader\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBreadSection\fP (int numsection, char *filePath, Elf32_Ehdr header, Elf32_Shdr *shdr)"
+.br
+.RI "\fIFonction d'affichage des contenus de section\&. \fP"
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void readSection (int numsection, char * filePath, Elf32_Ehdr header, Elf32_Shdr * shdr)"
+
+.PP
+Fonction d'affichage des contenus de section\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInumsection\fP le numéro de l'en-tête de section courant\&. 
+.br
+\fI*filePath\fP le chemin du fichier entrée en paramètre\&. 
+.br
+\fIheader\fP l'en-tête du fichier Elf définie par *filePath\&. 
+.br
+\fIshdr\fP le tableau des en-têtes de sections\&. 
+.RE
+.PP
+printf('%x', addr);
+.PP
+printf('%d', size); 
+.PP
+Definition at line 24 of file elfsection\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Projet_Elf from the source code\&.

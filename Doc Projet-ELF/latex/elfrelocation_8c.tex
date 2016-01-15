@@ -1,0 +1,46 @@
+\hypertarget{elfrelocation_8c}{}\section{C\+:/\+Users/\+Guillaume/\+Documents/\+Git\+Hub/\+Projet\+\_\+\+Elf/elfrelocation.c File Reference}
+\label{elfrelocation_8c}\index{C\+:/\+Users/\+Guillaume/\+Documents/\+Git\+Hub/\+Projet\+\_\+\+Elf/elfrelocation.\+c@{C\+:/\+Users/\+Guillaume/\+Documents/\+Git\+Hub/\+Projet\+\_\+\+Elf/elfrelocation.\+c}}
+{\ttfamily \#include \char`\"{}elfrelocation.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{elfrelocation_8c_aec384cbf169bfb8f1db914e5d3af0e59}{read\+Rel\+Table} (char $\ast$file\+Path, Elf32\+\_\+\+Ehdr header, Elf32\+\_\+\+Shdr $\ast$shdr, Elf32\+\_\+\+Rel $\ast$rel\mbox{[}$\,$\mbox{]}, Elf32\+\_\+\+Sym $\ast$sym, int is\+Verbose)
+\begin{DoxyCompactList}\small\item\em Fonction d\textquotesingle{}affichage du contenus des section rel. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{elfrelocation.\+c@{elfrelocation.\+c}!read\+Rel\+Table@{read\+Rel\+Table}}
+\index{read\+Rel\+Table@{read\+Rel\+Table}!elfrelocation.\+c@{elfrelocation.\+c}}
+\subsubsection[{\texorpdfstring{read\+Rel\+Table(char $\ast$file\+Path, Elf32\+\_\+\+Ehdr header, Elf32\+\_\+\+Shdr $\ast$shdr, Elf32\+\_\+\+Rel $\ast$rel[], Elf32\+\_\+\+Sym $\ast$sym, int is\+Verbose)}{readRelTable(char *filePath, Elf32_Ehdr header, Elf32_Shdr *shdr, Elf32_Rel *rel[], Elf32_Sym *sym, int isVerbose)}}]{\setlength{\rightskip}{0pt plus 5cm}void read\+Rel\+Table (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{file\+Path, }
+\item[{Elf32\+\_\+\+Ehdr}]{header, }
+\item[{Elf32\+\_\+\+Shdr $\ast$}]{shdr, }
+\item[{Elf32\+\_\+\+Rel $\ast$}]{rel\mbox{[}$\,$\mbox{]}, }
+\item[{Elf32\+\_\+\+Sym $\ast$}]{sym, }
+\item[{int}]{is\+Verbose}
+\end{DoxyParamCaption}
+)}\hypertarget{elfrelocation_8c_aec384cbf169bfb8f1db914e5d3af0e59}{}\label{elfrelocation_8c_aec384cbf169bfb8f1db914e5d3af0e59}
+
+
+Fonction d\textquotesingle{}affichage du contenus des section rel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$file\+Path} & le chemin du fichier entrée en paramètre. \\
+\hline
+{\em header} & l\textquotesingle{}en-\/tête du fichier Elf définie par $\ast$file\+Path. \\
+\hline
+{\em shdr} & le tableau des en-\/têtes de sections. \\
+\hline
+{\em rel\mbox{[}$\,$\mbox{]}} & le tableau contenant les contenus des différentes sections de type rel \\
+\hline
+{\em sym} & le tableau des symboles. \\
+\hline
+{\em is\+Verbose} & Permet de cacher ou voir les informations de l\textquotesingle{}en-\/tête. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 26 of file elfrelocation.\+c.
+

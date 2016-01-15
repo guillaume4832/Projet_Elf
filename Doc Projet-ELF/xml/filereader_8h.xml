@@ -1,0 +1,247 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="filereader_8h" kind="file" language="C++">
+    <compoundname>filereader.h</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes local="no">stdint.h</includes>
+    <includedby refid="elfdeleterel_8h" local="yes">C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfdeleterel.h</includedby>
+    <includedby refid="elfheader_8h" local="yes">C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfheader.h</includedby>
+    <includedby refid="elfrelocate_symb_8h" local="yes">C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfrelocateSymb.h</includedby>
+    <includedby refid="elfmodifsymb_8h" local="yes">C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfmodifsymb.h</includedby>
+    <includedby refid="elfrelocation_8h" local="yes">C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfrelocation.h</includedby>
+    <includedby refid="elfsection_8h" local="yes">C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsection.h</includedby>
+    <includedby refid="elfsectionheader_8h" local="yes">C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsectionheader.h</includedby>
+    <includedby refid="elfsymtable_8h" local="yes">C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsymtable.h</includedby>
+    <includedby refid="filereader_8c" local="yes">C:/Users/Guillaume/Documents/GitHub/Projet_Elf/filereader.c</includedby>
+    <includedby refid="main_8c" local="yes">C:/Users/Guillaume/Documents/GitHub/Projet_Elf/main.c</includedby>
+    <incdepgraph>
+      <node id="153">
+        <label>stdint.h</label>
+      </node>
+      <node id="152">
+        <label>stdlib.h</label>
+      </node>
+      <node id="150">
+        <label>C:/Users/Guillaume/Documents/GitHub/Projet_Elf/filereader.h</label>
+        <link refid="filereader.h"/>
+        <childnode refid="151" relation="include">
+        </childnode>
+        <childnode refid="152" relation="include">
+        </childnode>
+        <childnode refid="153" relation="include">
+        </childnode>
+      </node>
+      <node id="151">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="162">
+        <label>C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfrelocateSymb.c</label>
+        <link refid="elfrelocate_symb_8c"/>
+      </node>
+      <node id="160">
+        <label>C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfrelocateSymb.h</label>
+        <link refid="elfrelocate_symb_8h"/>
+        <childnode refid="161" relation="include">
+        </childnode>
+        <childnode refid="162" relation="include">
+        </childnode>
+        <childnode refid="157" relation="include">
+        </childnode>
+      </node>
+      <node id="169">
+        <label>C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsectionheader.c</label>
+        <link refid="elfsectionheader_8c"/>
+      </node>
+      <node id="168">
+        <label>C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsectionheader.h</label>
+        <link refid="elfsectionheader_8h"/>
+        <childnode refid="169" relation="include">
+        </childnode>
+        <childnode refid="157" relation="include">
+        </childnode>
+      </node>
+      <node id="167">
+        <label>C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsection.c</label>
+        <link refid="elfsection_8c"/>
+      </node>
+      <node id="166">
+        <label>C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsection.h</label>
+        <link refid="elfsection_8h"/>
+        <childnode refid="167" relation="include">
+        </childnode>
+        <childnode refid="157" relation="include">
+        </childnode>
+      </node>
+      <node id="159">
+        <label>C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfheader.c</label>
+        <link refid="elfheader_8c"/>
+      </node>
+      <node id="158">
+        <label>C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfheader.h</label>
+        <link refid="elfheader_8h"/>
+        <childnode refid="159" relation="include">
+        </childnode>
+        <childnode refid="157" relation="include">
+        </childnode>
+      </node>
+      <node id="172">
+        <label>C:/Users/Guillaume/Documents/GitHub/Projet_Elf/filereader.c</label>
+        <link refid="filereader_8c"/>
+      </node>
+      <node id="154">
+        <label>C:/Users/Guillaume/Documents/GitHub/Projet_Elf/filereader.h</label>
+        <link refid="filereader.h"/>
+        <childnode refid="155" relation="include">
+        </childnode>
+        <childnode refid="158" relation="include">
+        </childnode>
+        <childnode refid="160" relation="include">
+        </childnode>
+        <childnode refid="163" relation="include">
+        </childnode>
+        <childnode refid="164" relation="include">
+        </childnode>
+        <childnode refid="166" relation="include">
+        </childnode>
+        <childnode refid="168" relation="include">
+        </childnode>
+        <childnode refid="170" relation="include">
+        </childnode>
+        <childnode refid="172" relation="include">
+        </childnode>
+        <childnode refid="157" relation="include">
+        </childnode>
+      </node>
+      <node id="165">
+        <label>C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfrelocation.c</label>
+        <link refid="elfrelocation_8c"/>
+      </node>
+      <node id="164">
+        <label>C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfrelocation.h</label>
+        <link refid="elfrelocation_8h"/>
+        <childnode refid="165" relation="include">
+        </childnode>
+        <childnode refid="157" relation="include">
+        </childnode>
+      </node>
+      <node id="157">
+        <label>C:/Users/Guillaume/Documents/GitHub/Projet_Elf/main.c</label>
+        <link refid="main_8c"/>
+      </node>
+      <node id="156">
+        <label>C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfdeleterel.c</label>
+        <link refid="elfdeleterel_8c"/>
+      </node>
+      <node id="155">
+        <label>C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfdeleterel.h</label>
+        <link refid="elfdeleterel_8h"/>
+        <childnode refid="156" relation="include">
+        </childnode>
+        <childnode refid="157" relation="include">
+        </childnode>
+      </node>
+      <node id="161">
+        <label>C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfmodifsymb.c</label>
+        <link refid="elfmodifsymb_8c"/>
+      </node>
+      <node id="163">
+        <label>C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfmodifsymb.h</label>
+        <link refid="elfmodifsymb_8h"/>
+        <childnode refid="157" relation="include">
+        </childnode>
+      </node>
+      <node id="171">
+        <label>C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsymtable.c</label>
+        <link refid="elfsymtable_8c"/>
+      </node>
+      <node id="170">
+        <label>C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsymtable.h</label>
+        <link refid="elfsymtable_8h"/>
+        <childnode refid="171" relation="include">
+        </childnode>
+        <childnode refid="157" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="filereader_8h_1a7e953090d868ee919a6d2fae4b0de1c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char* readFileBytes</definition>
+        <argsstring>(const char *name)</argsstring>
+        <name>readFileBytes</name>
+        <param>
+          <type>const char *</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Guillaume/Documents/GitHub/Projet_Elf/filereader.h" line="7" column="1" bodyfile="C:/Users/Guillaume/Documents/GitHub/Projet_Elf/filereader.c" bodystart="3" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="filereader_8h_1afa0563ea0ce3f72ce11b848e848a132f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int writeFileBytes</definition>
+        <argsstring>(char *fileBytes, char *fileName, int size)</argsstring>
+        <name>writeFileBytes</name>
+        <param>
+          <type>char *</type>
+          <declname>fileBytes</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>fileName</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Guillaume/Documents/GitHub/Projet_Elf/filereader.h" line="8" column="1" bodyfile="C:/Users/Guillaume/Documents/GitHub/Projet_Elf/filereader.c" bodystart="15" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="filereader_8h_1ade57166b3b24f4707ab6724ab0451055" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int is_big_endian</definition>
+        <argsstring>(void)</argsstring>
+        <name>is_big_endian</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/Guillaume/Documents/GitHub/Projet_Elf/filereader.h" line="9" column="1" bodyfile="C:/Users/Guillaume/Documents/GitHub/Projet_Elf/filereader.c" bodystart="32" bodyend="39"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>__FILE_READER__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__FILE_READER__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="filereader_8h_1a7e953090d868ee919a6d2fae4b0de1c2" kindref="member">readFileBytes</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*name);</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="filereader_8h_1afa0563ea0ce3f72ce11b848e848a132f" kindref="member">writeFileBytes</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>fileBytes,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>fileName,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>size);</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="filereader_8h_1ade57166b3b24f4707ab6724ab0451055" kindref="member">is_big_endian</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/Guillaume/Documents/GitHub/Projet_Elf/filereader.h"/>
+  </compounddef>
+</doxygen>

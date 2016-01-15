@@ -1,0 +1,103 @@
+\hypertarget{elfsectionheader_8c}{}\section{C\+:/\+Users/\+Guillaume/\+Documents/\+Git\+Hub/\+Projet\+\_\+\+Elf/elfsectionheader.c File Reference}
+\label{elfsectionheader_8c}\index{C\+:/\+Users/\+Guillaume/\+Documents/\+Git\+Hub/\+Projet\+\_\+\+Elf/elfsectionheader.\+c@{C\+:/\+Users/\+Guillaume/\+Documents/\+Git\+Hub/\+Projet\+\_\+\+Elf/elfsectionheader.\+c}}
+
+
+Programme des en-\/têtes de section.  
+
+
+{\ttfamily \#include \char`\"{}elfsectionheader.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{elfsectionheader_8c_ae97f674208c87e531eb3eea603e56491}{nom\+\_\+type} (Elf32\+\_\+\+Word sh\+\_\+type)
+\begin{DoxyCompactList}\small\item\em Table de correspondance de renommage des globales. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{elfsectionheader_8c_a33d7efef2d18d4f82a670857fff0641c}{nom\+\_\+flags} (unsigned int flags)
+\begin{DoxyCompactList}\small\item\em Reconnaît les fanions. \end{DoxyCompactList}\item 
+void \hyperlink{elfsectionheader_8c_a315449f5afe65d97747680c874e03dbd}{read\+Sheader} (char $\ast$file\+Path, Elf32\+\_\+\+Ehdr header, Elf32\+\_\+\+Shdr $\ast$shdr, int is\+Verbose)
+\begin{DoxyCompactList}\small\item\em Lecture du header des sections. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Programme des en-\/têtes de section. 
+
+\begin{DoxyAuthor}{Author}
+Amédée Fleau -\/ Clément Heresaz -\/ Guillaume Chaput -\/ Lucas Albarede -\/ Loïc Chevalier 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+11 Janvier 2016
+\end{DoxyDate}
+Programme permettant l\textquotesingle{}affichage du tableau des en-\/tête de section E\+LF des fichiers 
+
+\subsection{Function Documentation}
+\index{elfsectionheader.\+c@{elfsectionheader.\+c}!nom\+\_\+flags@{nom\+\_\+flags}}
+\index{nom\+\_\+flags@{nom\+\_\+flags}!elfsectionheader.\+c@{elfsectionheader.\+c}}
+\subsubsection[{\texorpdfstring{nom\+\_\+flags(unsigned int flags)}{nom_flags(unsigned int flags)}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ nom\+\_\+flags (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{flags}
+\end{DoxyParamCaption}
+)}\hypertarget{elfsectionheader_8c_a33d7efef2d18d4f82a670857fff0641c}{}\label{elfsectionheader_8c_a33d7efef2d18d4f82a670857fff0641c}
+
+
+Reconnaît les fanions. 
+
+$\ast$ \hyperlink{elfsectionheader_8c_a33d7efef2d18d4f82a670857fff0641c}{nom\+\_\+flags(unsigned int flags)} 
+\begin{DoxyParams}{Parameters}
+{\em Elf32\+\_\+\+Word} & sh\+\_\+type type de fichier Elf32 reçu en entrée. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+val -\/ Retourne l\textquotesingle{}acronyme des fanions. 
+\end{DoxyReturn}
+
+
+Definition at line 67 of file elfsectionheader.\+c.
+
+\index{elfsectionheader.\+c@{elfsectionheader.\+c}!nom\+\_\+type@{nom\+\_\+type}}
+\index{nom\+\_\+type@{nom\+\_\+type}!elfsectionheader.\+c@{elfsectionheader.\+c}}
+\subsubsection[{\texorpdfstring{nom\+\_\+type(\+Elf32\+\_\+\+Word sh\+\_\+type)}{nom_type(Elf32_Word sh_type)}}]{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ nom\+\_\+type (
+\begin{DoxyParamCaption}
+\item[{Elf32\+\_\+\+Word}]{sh\+\_\+type}
+\end{DoxyParamCaption}
+)}\hypertarget{elfsectionheader_8c_ae97f674208c87e531eb3eea603e56491}{}\label{elfsectionheader_8c_ae97f674208c87e531eb3eea603e56491}
+
+
+Table de correspondance de renommage des globales. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Elf32\+\_\+\+Word} & sh\+\_\+type type de fichier Elf32 reçu en entrée. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ -\/ Retourne le pointeur utilisant l\textquotesingle{}étiquette modifiée. 
+\end{DoxyReturn}
+
+
+Definition at line 21 of file elfsectionheader.\+c.
+
+\index{elfsectionheader.\+c@{elfsectionheader.\+c}!read\+Sheader@{read\+Sheader}}
+\index{read\+Sheader@{read\+Sheader}!elfsectionheader.\+c@{elfsectionheader.\+c}}
+\subsubsection[{\texorpdfstring{read\+Sheader(char $\ast$file\+Path, Elf32\+\_\+\+Ehdr header, Elf32\+\_\+\+Shdr $\ast$shdr, int is\+Verbose)}{readSheader(char *filePath, Elf32_Ehdr header, Elf32_Shdr *shdr, int isVerbose)}}]{\setlength{\rightskip}{0pt plus 5cm}void read\+Sheader (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{file\+Path, }
+\item[{Elf32\+\_\+\+Ehdr}]{header, }
+\item[{Elf32\+\_\+\+Shdr $\ast$}]{shdr, }
+\item[{int}]{is\+Verbose}
+\end{DoxyParamCaption}
+)}\hypertarget{elfsectionheader_8c_a315449f5afe65d97747680c874e03dbd}{}\label{elfsectionheader_8c_a315449f5afe65d97747680c874e03dbd}
+
+
+Lecture du header des sections. 
+
+\hyperlink{elfsectionheader_8c_a315449f5afe65d97747680c874e03dbd}{read\+Sheader(char $\ast$ file\+Path, Elf32\+\_\+\+Ehdr header,\+Elf32\+\_\+\+Shdr$\ast$ shdr,int is\+Verbose)} 
+\begin{DoxyParams}{Parameters}
+{\em Elf32\+\_\+\+Word} & sh\+\_\+type type de fichier Elf32 reçu en entrée. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 134 of file elfsectionheader.\+c.
+

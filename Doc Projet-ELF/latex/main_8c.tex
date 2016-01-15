@@ -1,0 +1,104 @@
+\hypertarget{main_8c}{}\section{C\+:/\+Users/\+Guillaume/\+Documents/\+Git\+Hub/\+Projet\+\_\+\+Elf/main.c File Reference}
+\label{main_8c}\index{C\+:/\+Users/\+Guillaume/\+Documents/\+Git\+Hub/\+Projet\+\_\+\+Elf/main.\+c@{C\+:/\+Users/\+Guillaume/\+Documents/\+Git\+Hub/\+Projet\+\_\+\+Elf/main.\+c}}
+
+
+Programme Principal.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$elf.\+h$>$}\\*
+{\ttfamily \#include $<$getopt.\+h$>$}\\*
+{\ttfamily \#include $<$sys/stat.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}elfheader.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}elfsectionheader.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}elfsection.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}elfsymtable.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}elfrelocation.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}elfdeleterel.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}elfrelocate\+Symb.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}elfmodifsymb.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}filereader.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8c_aabdb8b25cd483d34395c3386b9d54057}{isnumber} (const char $\ast$s)
+\begin{DoxyCompactList}\small\item\em Vérifie si la chaîne de caractère donnée est un nombre. \end{DoxyCompactList}\item 
+int \hyperlink{main_8c_ade74c674de705ba000d89b8b814a1f81}{is\+\_\+file} (const char $\ast$path)
+\item 
+void \hyperlink{main_8c_a91a3bbcc7eb26e8695255b2795d6e46f}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Programme principal du fichier. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Programme Principal. 
+
+\begin{DoxyAuthor}{Author}
+Amédée Fleau -\/ Clément Heresaz -\/ Guillaume Chaput -\/ Lucas Albarede -\/ Loïc Chevalier 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+11 Janvier 2016
+\end{DoxyDate}
+Programme Principal pour la gestion du format E\+LF 
+
+\subsection{Function Documentation}
+\index{main.\+c@{main.\+c}!is\+\_\+file@{is\+\_\+file}}
+\index{is\+\_\+file@{is\+\_\+file}!main.\+c@{main.\+c}}
+\subsubsection[{\texorpdfstring{is\+\_\+file(const char $\ast$path)}{is_file(const char *path)}}]{\setlength{\rightskip}{0pt plus 5cm}int is\+\_\+file (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{path}
+\end{DoxyParamCaption}
+)}\hypertarget{main_8c_ade74c674de705ba000d89b8b814a1f81}{}\label{main_8c_ade74c674de705ba000d89b8b814a1f81}
+
+
+Definition at line 42 of file main.\+c.
+
+\index{main.\+c@{main.\+c}!isnumber@{isnumber}}
+\index{isnumber@{isnumber}!main.\+c@{main.\+c}}
+\subsubsection[{\texorpdfstring{isnumber(const char $\ast$s)}{isnumber(const char *s)}}]{\setlength{\rightskip}{0pt plus 5cm}int isnumber (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{s}
+\end{DoxyParamCaption}
+)}\hypertarget{main_8c_aabdb8b25cd483d34395c3386b9d54057}{}\label{main_8c_aabdb8b25cd483d34395c3386b9d54057}
+
+
+Vérifie si la chaîne de caractère donnée est un nombre. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$s} & Chaîne de caractères reçue en entrée. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 si il ne s\textquotesingle{}agit pas d\textquotesingle{}un nombre, 1 sinon. 
+\end{DoxyReturn}
+
+
+Definition at line 36 of file main.\+c.
+
+\index{main.\+c@{main.\+c}!main@{main}}
+\index{main@{main}!main.\+c@{main.\+c}}
+\subsubsection[{\texorpdfstring{main(int argc, char $\ast$argv[])}{main(int argc, char *argv[])}}]{\setlength{\rightskip}{0pt plus 5cm}void main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{main_8c_a91a3bbcc7eb26e8695255b2795d6e46f}{}\label{main_8c_a91a3bbcc7eb26e8695255b2795d6e46f}
+
+
+Programme principal du fichier. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Nombre d\textquotesingle{}arguments reçus en entrée. \\
+\hline
+{\em argv} & Tableau d\textquotesingle{}arguments reçus en entrée. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 56 of file main.\+c.
+

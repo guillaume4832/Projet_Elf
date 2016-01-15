@@ -1,0 +1,62 @@
+.TH "C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfheader.h" 3 "Fri Jan 15 2016" "Projet_Elf" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfheader.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <elf\&.h>\fP
+.br
+\fC#include 'filereader\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "Elf32_Ehdr \fBreadHeader\fP (char *filePath, int isVerbose)"
+.br
+.RI "\fILecture de l'en-tête ELF d'un fichier\&. \fP"
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "Elf32_Ehdr readHeader (char * filePath, int isVerbose)"
+
+.PP
+Lecture de l'en-tête ELF d'un fichier\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI*filePath\fP Fichier entré en paramètre\&. 
+.br
+\fIisVerbose\fP Permet de cacher ou voir les informations de l'en-tête\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+header - Retourne l'objet contenant les informations de l'en-tête\&.
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fI*\fP filePath Fichier entré en paramètre\&. 
+.br
+\fIisVerbose\fP Permet de cacher ou voir les informations de l'en-tête\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+header - Retourne l'objet contenant les informations de l'en-tête\&. 
+.RE
+.PP
+
+.PP
+Definition at line 22 of file elfheader\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Projet_Elf from the source code\&.

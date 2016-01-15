@@ -1,0 +1,70 @@
+.TH "C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsection.c" 3 "Fri Jan 15 2016" "Projet_Elf" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/Guillaume/Documents/GitHub/Projet_Elf/elfsection.c \- Programme du contenu des sections\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'elfsection\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBreadSection\fP (int numsection, char *filePath, Elf32_Ehdr header, Elf32_Shdr *shdr)"
+.br
+.RI "\fIFonction d'affichage des contenus de section\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Programme du contenu des sections\&. 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Amédée Fleau - Clément Heresaz - Guillaume Chaput - Lucas Albarede - Loïc Chevalier 
+.RE
+.PP
+\fBVersion:\fP
+.RS 4
+1 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+12 Janvier 2016
+.RE
+.PP
+Programme permettant l'affichage du contenu des en-tête de section ELF 
+.PP
+Definition in file \fBelfsection\&.c\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "void readSection (int numsection, char * filePath, Elf32_Ehdr header, Elf32_Shdr * shdr)"
+
+.PP
+Fonction d'affichage des contenus de section\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInumsection\fP le numéro de l'en-tête de section courant\&. 
+.br
+\fI*filePath\fP le chemin du fichier entrée en paramètre\&. 
+.br
+\fIheader\fP l'en-tête du fichier Elf définie par *filePath\&. 
+.br
+\fIshdr\fP le tableau des en-têtes de sections\&. 
+.RE
+.PP
+printf('%x', addr);
+.PP
+printf('%d', size); 
+.PP
+Definition at line 24 of file elfsection\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Projet_Elf from the source code\&.
